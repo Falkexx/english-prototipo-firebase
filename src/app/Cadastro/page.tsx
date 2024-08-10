@@ -8,6 +8,10 @@ import AvanceBtn from "./Components/AvanceBtn";
 import { useRouter } from 'next/navigation'
 import EnglishLevel from './Components/Telas/EnglishLevel'
 import ReasonToStudy from "./Components/Telas/ReasonToStudy";
+import Skills from './Components/Telas/Skills';
+import Difficulty from "./Components/Telas/Difficulty";
+import Age from "./Components/Telas/Age";
+import TimeToStudy from "./Components/Telas/TimeToStudy";
 
 export default function index() {
 
@@ -95,6 +99,7 @@ export default function index() {
 
                     <main className="p-4 flex flex-col justify-between h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <Skills />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
                     </main>
                 </>
@@ -108,6 +113,7 @@ export default function index() {
 
                     <main className="p-4 flex flex-col justify-between h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <Difficulty />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
                     </main>
                 </>
@@ -121,6 +127,7 @@ export default function index() {
 
                     <main className="p-4 flex flex-col justify-between h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <Age />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
                     </main>
                 </>
@@ -134,6 +141,7 @@ export default function index() {
 
                     <main className="p-4 flex flex-col justify-between h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <TimeToStudy />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
                     </main>
                 </>

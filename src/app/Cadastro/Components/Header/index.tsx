@@ -32,7 +32,7 @@ function HeaderCadastros({ ProgressBarStatus = 0, BackFunction }: HeaderCadastro
                         </div>
 
                         {/* Número fracionado */}
-                        <div className="ml-4 text-sm text-gray-600">
+                        <div className="ml-4 text-base text-zinc-700 font-bold">
                             {ProgressBarStatus}/{totalSteps}
                         </div>
                     </div>
