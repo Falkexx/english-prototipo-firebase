@@ -1,6 +1,6 @@
 interface AvanceBtnProps {
 
-    AvanceFunction: () => void,
+    AvanceFunction?: () => void,
     ProgressStatus?: number
 }
 

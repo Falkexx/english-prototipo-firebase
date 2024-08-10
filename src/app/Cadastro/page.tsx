@@ -63,7 +63,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-around h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
                         <HeaderCadastros BackFunction={Back}/>
                         <EnglishLevel/>
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />

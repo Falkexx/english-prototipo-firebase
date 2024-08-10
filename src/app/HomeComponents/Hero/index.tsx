@@ -7,7 +7,7 @@ function index() {
             <Image src={MascoteHome} alt="Mascote" className="w-full mb-6"/>
 
             <div className="text-center">
-                <span className="text-2xl font-extrabold text-gray-700">Decole o seu nível de Inglês embarcando na tripulação da English Onboard</span>
+                <span className="text-2xl font-extrabold text-zinc-700">Decole o seu nível de Inglês embarcando na tripulação da English Onboard</span>
             </div>
         </section>
     );
