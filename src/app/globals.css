@@ -70,6 +70,21 @@
     letter-spacing: 0.4px;
     ;
   }
+
+  .inputDef {
+
+    font-size: 18px;
+    font-weight: normal;
+    border-bottom: solid 2px;
+    border-color: var(--color-red-default);
+    color: #27272A;
+  }
+
+  .labelDef {
+
+    color: #A1A1AA;
+    font-size: 14px;
+  }
 }
 
 @layer components {}
