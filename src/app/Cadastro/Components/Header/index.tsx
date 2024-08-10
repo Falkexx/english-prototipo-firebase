@@ -20,7 +20,7 @@ function HeaderCadastros({ ProgressBarStatus = 0, BackFunction }: HeaderCadastro
                     className="cursor-pointer"
                 />
 
-                {ProgressBarStatus >= 1 ? (
+                {ProgressBarStatus >= 1 && ProgressBarStatus <=6 ? (
 
                     <div className="flex items-center ml-4 flex-1">
                         {/* Barra de progresso */}

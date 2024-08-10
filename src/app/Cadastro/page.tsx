@@ -12,6 +12,12 @@ import Skills from './Components/Telas/Skills';
 import Difficulty from "./Components/Telas/Difficulty";
 import Age from "./Components/Telas/Age";
 import TimeToStudy from "./Components/Telas/TimeToStudy";
+import SignUpConclusion from "./Components/Telas/SignUpConclusion";
+import YourName from "./Components/Telas/YourName";
+import YourEmail from "./Components/Telas/YourEmail";
+import YourPsswrd from "./Components/Telas/YourPsswrd";
+import Loading from "./Components/Telas/Loading";
+import AlternativesConclusion from "./Components/Telas/AlternativesConclusion";
 
 export default function index() {
 
@@ -35,6 +41,17 @@ export default function index() {
         if (progressBar == 0) {
 
             router.push("/")
+
+        }
+
+    }
+
+    
+    function GoToLoggedHome() {
+
+        if (progressBar == 12) {
+
+            router.push("/LoggedHome")
 
         }
 
@@ -146,6 +163,126 @@ export default function index() {
                     </main>
                 </>
             )
+
+
+        case 7:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <AlternativesConclusion />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
+                </>
+            )
+
+        case 8:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <YourName />
+
+                        <div className="flex-grow"></div>
+
+                        <div className="self-end w-full">
+                            <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                        </div>
+                    </main>
+                </>
+            )
+
+        case 9:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <YourEmail Nome={"André"} />
+
+                        <div className="flex-grow"></div>
+
+                        <div className="self-end w-full">
+                            <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                        </div>
+                    </main>
+                </>
+            )
+
+        case 10:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+
+                        <YourPsswrd />
+
+                        <div className="flex-grow"></div>
+
+                        <div className="self-end w-full">
+                            <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                        </div>
+                    </main>
+                </>
+            )
+
+        case 11:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+
+                        <Loading />
+
+
+                        <div className="flex-grow"></div>
+
+                        <div className="self-end w-full">
+                            <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                        </div>
+                    </main>
+                </>
+            )
+
+        case 12:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col h-screen gap-5">
+
+                        <div className='m-auto'>
+                            <SignUpConclusion />
+                        </div>
+
+                        <div className="self-end w-full">
+                            <AvanceBtn AvanceFunction={GoToLoggedHome} ProgressStatus={progressBar} />
+                        </div>
+                    </main>
+                </>
+            )
+
+
+
+
+
+
+
 
         default:
             return (

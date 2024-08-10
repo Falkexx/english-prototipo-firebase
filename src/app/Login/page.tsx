@@ -4,7 +4,6 @@ import AvanceBtn from "../Cadastro/Components/AvanceBtn";
 import HeaderCadastros from "../Cadastro/Components/Header";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
-import { IoMail, IoEyeOff, IoEye, IoLockClosed } from "react-icons/io5";
 
 
 function Page() {

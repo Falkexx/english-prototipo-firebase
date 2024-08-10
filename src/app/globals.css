@@ -24,6 +24,13 @@
   --color-gradient2: linear-gradient(90deg, #EF4444 -0.05%, #B91C1C 100.02%);
 }
 
+textarea:focus,
+input:focus,
+select:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -74,11 +81,14 @@
   .inputDef {
 
     font-size: 18px;
-    font-weight: normal;
+    font-weight: bold;
     border-bottom: solid 2px;
     border-color: var(--color-red-default);
     color: #27272A;
+
   }
+
+
 
   .labelDef {
 
