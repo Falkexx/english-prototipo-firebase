@@ -36,6 +36,8 @@ function Index() {
 
     return (
         <div className="h-full mt-6">
+
+
             <section className="flex flex-col gap-8 h-full">
                 <section className="flex flex-row items-center">
                 <Image src={RightSmallDuck} alt="Patinho" />
@@ -43,6 +45,9 @@ function Index() {
                         <span className="text-lg font-extrabold text-zinc-800">Vamos começar! Qual é o seu nível atual de Inglês?</span>
                     </article>
                 </section>
+
+
+
                 <section className="gap-4 flex flex-col text-zinc-800">
                     {LevelOptions.map((option, index) => (
                         <section onClick={() => HandleClick(option.Title)} 
@@ -57,6 +62,8 @@ function Index() {
                         </section>
                     ))}
                 </section>
+
+                
             </section>
         </div>
     );

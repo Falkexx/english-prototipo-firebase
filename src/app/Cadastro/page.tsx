@@ -7,6 +7,7 @@ import HeaderCadastros from "./Components/Header";
 import AvanceBtn from "./Components/AvanceBtn";
 import { useRouter } from 'next/navigation'
 import EnglishLevel from './Components/Telas/EnglishLevel'
+import ReasonToStudy from "./Components/Telas/ReasonToStudy";
 
 export default function index() {
 
@@ -25,9 +26,9 @@ export default function index() {
 
     }
 
-    function BackToHome(){
+    function BackToHome() {
 
-        if(progressBar == 0){
+        if (progressBar == 0) {
 
             router.push("/")
 
@@ -42,7 +43,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-around h-screen gap-5">
+                    <main className=" px-4 flex flex-col justify-around h-screen gap-5">
 
                         <HeaderCadastros BackFunction={BackToHome} />
 
@@ -64,13 +65,79 @@ export default function index() {
                 <>
 
                     <main className="p-4 flex flex-col justify-between h-screen gap-5">
-                        <HeaderCadastros BackFunction={Back}/>
-                        <EnglishLevel/>
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <EnglishLevel />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+
+                    </main>
+                </>
+            )
+
+        case 2:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <ReasonToStudy />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
                     </main>
                 </>
             )
 
+        case 3:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
+                </>
+            )
+
+        case 4:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
+                </>
+            )
+
+        case 5:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
+                </>
+            )
+
+        case 6:
+
+            return (
+
+                <>
+
+                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
+                </>
+            )
 
         default:
             return (
