@@ -62,11 +62,12 @@ export default function index() {
             return (
 
                 <>
-                    <HeaderCadastros BackFunction={Back}/>
-                    <EnglishLevel/>
-                    <h1>avancou</h1>
-                    <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
 
+                    <main className="p-4 flex flex-col justify-around h-screen gap-5">
+                        <HeaderCadastros BackFunction={Back}/>
+                        <EnglishLevel/>
+                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                    </main>
                 </>
             )
 

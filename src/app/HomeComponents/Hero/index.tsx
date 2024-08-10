@@ -4,10 +4,10 @@ function index() {
     return (
 
         <section className="w-full flex flex-col gap-3 justify-center items-center">
-            <Image src={MascoteHome} alt="Mascote" className="w-full "/>
+            <Image src={MascoteHome} alt="Mascote" className="w-full mb-6"/>
 
-            <div>
-                <h1 className="mainTitle">Decole o seu nível de Inglês embarcando na tripulação da English Onboard</h1>
+            <div className="text-center">
+                <span className="text-2xl font-extrabold text-gray-700">Decole o seu nível de Inglês embarcando na tripulação da English Onboard</span>
             </div>
         </section>
     );

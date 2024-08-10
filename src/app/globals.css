@@ -1,10 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
+:root {
+
+  font-family: "Nunito", Sans-serif;
+
+  --color-red-default: #F14968;
+  --color-red-800: #750727;
+  --color-red-700: #990534;
+  --color-red-600: #B91442;
+  --color-red-500: #D62D54;
+  --color-red-400: #EE4967;
+  --color-red-300: #FF687D;
+  --color-red-200: #FFAAB2;
+  --color-red-100: #FFCCD0;
+  --color-red-50: #FFEEEF;
+
+  --color-gradient1: linear-gradient(90deg, #F25976 -0.05%, #F14968 100.02%);
+  --color-gradient2: linear-gradient(90deg, #EF4444 -0.05%, #B91C1C 100.02%);
+}
 
 @layer utilities {
   .text-balance {
@@ -12,12 +30,12 @@
   }
 
   .bg-primary {
-    background: linear-gradient(90deg, #F25976 -0.05%, #F14968 100.02%);
+    background: var(--color-gradient1);
   }
 
   .mainTitle {
 
-    font-family: "Source Sans 3", sans-serif;
+    font-family: "Nunito", Sans-serif;
     font-size: 24px;
     font-weight: 700;
     line-height: 36px;
@@ -34,8 +52,9 @@
     opacity: 0px;
     background: var(--red-1-default, #F14968);
     box-shadow: 4px 8px 24px 0px #F1496840;
-    font-weight: bold;
+    font-weight: 700;
     color: white;
+    letter-spacing: 0.4px;
   }
 
   .Btn_Secundary {
@@ -48,6 +67,7 @@
     background: var(--red-1-50, #FFEEEF);
     color: #F14968;
     font-weight: 800;
+    letter-spacing: 0.4px;
     ;
 
 

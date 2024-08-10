@@ -26,24 +26,24 @@ function Index() {
     ];
 
     return (
-        <>
-            <section>
-                <section>
+        <div>
+            <section >
+                <section className="flex">
+                <Image src={RightSmallDuck} alt="Patinho" />
                     <article>
-                        <h1>Vamos começar! Qual é o seu nível atual de Inglês?</h1>
+                        <span>Vamos começar! Qual é o seu nível atual de Inglês?</span>
                     </article>
-                    <Image src={RightSmallDuck} alt="Patinho" />
                 </section>
                 <section>
                     {LevelOptions.map((option, index) => (
-                        <section key={index}>
+                        <section className="flex items-center gap-6" key={index}>
                             <Image src={option.Icon} alt="Icone" />
                             <h1>{option.Title}</h1>
                         </section>
                     ))}
                 </section>
             </section>
-        </>
+        </div>
     );
 }
 
