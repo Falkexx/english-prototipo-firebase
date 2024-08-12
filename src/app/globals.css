@@ -52,8 +52,15 @@ select:focus {
 
   .Btn_Primary {
 
-    background-color: black;
+    width: 100%;
+    height: 58px;
+    padding: 18px 16px 18px 16px;
+    border-radius: 100px;
+    background: var(--color-red-default);
+    box-shadow: 4px 8px 24px 0px #F1496840;
+    font-weight: 700;
     color: white;
+    letter-spacing: 0.4px;
   }
 
   .Btn_Secundary {
@@ -61,12 +68,10 @@ select:focus {
     width: 100%;
     padding: 18px 16px 18px 16px;
     border-radius: 100px;
-    opacity: 0px;
     background: var(--color-red-50);
     color: #F14968;
     font-weight: 800;
     letter-spacing: 0.4px;
-    ;
   }
 
   .inputDef {
@@ -85,10 +90,10 @@ select:focus {
     font-size: 14px;
   }
 
-  .AssinaturaContainerBG {
-
+  .AssinaturaContainerBG{
+    
     width: 100%;
-
+    
     background-color: var(--color-gradient2);
   }
 }
