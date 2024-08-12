@@ -57,7 +57,7 @@ select:focus {
     padding: 18px 16px 18px 16px;
     border-radius: 100px;
     opacity: 0px;
-    background: var(--color-red-default);
+    background-color: black;
     box-shadow: 4px 8px 24px 0px #F1496840;
     font-weight: 700;
     color: white;
