@@ -57,7 +57,7 @@ select:focus {
     padding: 18px 16px 18px 16px;
     border-radius: 100px;
     opacity: 0px;
-    background: var(#F14968);
+    background: var(--color-red-default);
     box-shadow: 4px 8px 24px 0px #F1496840;
     font-weight: 700;
     color: white;
@@ -70,7 +70,7 @@ select:focus {
     padding: 18px 16px 18px 16px;
     border-radius: 100px;
     opacity: 0px;
-    background: var(#FFEEEF);
+    background: var(--color-red-50);
     color: #F14968;
     font-weight: 800;
     letter-spacing: 0.4px;
@@ -96,7 +96,7 @@ select:focus {
   .AssinaturaContainerBG{
     
     width: 100%;
-
+    
     background-color: var(--color-gradient2);
   }
 }
