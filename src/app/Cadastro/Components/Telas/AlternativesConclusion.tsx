@@ -38,7 +38,7 @@ function AlternativesConclusion() {
         <div className="w-full">
 
 
-            <main className="w-full flex flex-col gap-4">
+            <main className="w-full flex flex-col justify-center items-center gap-4">
 
                 <div className="w-[358px] h-[168px] p-5 rounded-3xl border-2 border-zinc-200 justify-center items-center gap-2 inline-flex">
                     <div className="grow shrink basis-0 text-center text-zinc-800 text-xl font-bold font-['Nunito'] leading-loose">Uhuuul! Sua rotina de aprendizado está pronta! Agora, vamos criar sua conta para salvar seu progresso.</div>

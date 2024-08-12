@@ -46,7 +46,7 @@ export default function index() {
 
     }
 
-    
+
     function GoToLoggedHome() {
 
         if (progressBar == 12) {
@@ -85,10 +85,13 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4  h-full flex flex-col justify-between min-h-screen relative gap-5 ">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <EnglishLevel />
-                        <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+
+                        <div className="relative my-3 w-full ">
+                            <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
+                        </div>
 
                     </main>
                 </>
@@ -100,7 +103,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen justify-between gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <ReasonToStudy />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -114,7 +117,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between min-h-screen  gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <Skills />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -128,7 +131,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <Difficulty />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -142,7 +145,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <Age />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -156,7 +159,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <TimeToStudy />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -171,7 +174,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <AlternativesConclusion />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -185,7 +188,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <YourName />
 
@@ -204,7 +207,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <YourEmail Nome={"André"} />
 
@@ -223,7 +226,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
 
                         <YourPsswrd />
@@ -243,7 +246,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
 
                         <Loading />
@@ -264,7 +267,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col h-screen gap-5">
+                    <main className="p-4 flex flex-col min-h-screen gap-5">
 
                         <div className='m-auto'>
                             <SignUpConclusion />

@@ -6,11 +6,17 @@ interface AvanceBtnProps {
 }
 
 
-function AvanceBtn({ AvanceFunction, ProgressStatus=0, ProgressLogin }: AvanceBtnProps) {
+function AvanceBtn({ AvanceFunction, ProgressStatus = 0, ProgressLogin }: AvanceBtnProps) {
 
     //CASO A PROGRESS BAR SEJA IGUAL A ZERO. ELE VAI RENDERIZAR O BOTAO COM O TEXTO INICIAR
 
-
+    if(ProgressLogin === 0) {
+        return (
+            <>
+                <button className="Btn_Primary" onClick={AvanceFunction}>Entrar</button>
+            </>
+        )
+    }
 
     if (ProgressStatus === 0) {
 
@@ -29,7 +35,7 @@ function AvanceBtn({ AvanceFunction, ProgressStatus=0, ProgressLogin }: AvanceBt
         )
     }
 
-    else if ( ProgressStatus > 7 && ProgressStatus < 12) {
+    else if (ProgressStatus > 7 && ProgressStatus < 12) {
         return (
             <>
                 <button className="Btn_Primary" onClick={AvanceFunction}>Continuar</button>
@@ -45,7 +51,7 @@ function AvanceBtn({ AvanceFunction, ProgressStatus=0, ProgressLogin }: AvanceBt
         )
     }
 
-    
+
     else if (ProgressStatus === 10) {
         return (
             <>
@@ -54,22 +60,15 @@ function AvanceBtn({ AvanceFunction, ProgressStatus=0, ProgressLogin }: AvanceBt
         )
     }
 
-    else if (ProgressLogin === 0) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>Entrar</button>
-            </>
-        )
-    }
-
     else {
 
         return (<>
 
-            <button className="Btn_Primary" onClick={AvanceFunction}>Avançar</button>
+            <button className="Btn_Primary " onClick={AvanceFunction}>Avançar</button>
         </>);
 
     }
+
 }
 
 export default AvanceBtn;
