@@ -1,5 +1,3 @@
-'use client'
-
 import Link from "next/link";
 
 function index() {
@@ -8,14 +6,14 @@ function index() {
 
             <article className="w-full m-auto">
                 <Link href={"/Cadastro"}>
-                    <button className="bg-black">Comece agora</button>
+                    <button className="Btn_Primary">Comece agora</button>
                 </Link>
             </article>
 
 
             <article className="w-full m-auto">
                 <Link href={"/Login"}>
-                    <button className="bg-black">Acessar minha conta</button>
+                    <button className="Btn_Secundary">Acessar minha conta</button>
                 </Link>
             </article>
 
