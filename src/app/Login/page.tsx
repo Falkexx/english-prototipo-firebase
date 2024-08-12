@@ -41,7 +41,7 @@ function Page() {
         case 0:
             return (
                 <>
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-screen gap-5">
                         <HeaderCadastros BackFunction={BackToHome} />
 
                         <article className="flex flex-col gap-2 mb-10 mt-10">
