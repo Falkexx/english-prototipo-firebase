@@ -1,7 +1,7 @@
 "use client"
 
-import AvanceBtn from "../Cadastro/Components/AvanceBtn";
-import HeaderCadastros from "../Cadastro/Components/Header";
+import AvanceBtn from "@/app/Cadastro/Components/AvanceBtn/index";
+import HeaderCadastros from "@/app/Cadastro/Components/Header/index";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
 import Mail from "@/Midias/mail.png";
