@@ -64,7 +64,7 @@ export default function index() {
 
                 <>
 
-                    <main className=" px-4 flex flex-col justify-around h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-around h-[calc(100vh-15vh)] gap-5">
 
                         <HeaderCadastros BackFunction={BackToHome} />
 
@@ -174,7 +174,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col justify-between min-h-screen gap-5">
+                    <main className="p-4 flex flex-col justify-between h-[calc(100vh-15vh)] gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <AlternativesConclusion />
                         <AvanceBtn AvanceFunction={Avance} ProgressStatus={progressBar} />
@@ -188,7 +188,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-[calc(100vh-15vh)] gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <YourName />
 
@@ -207,7 +207,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-[calc(100vh-15vh)] gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
                         <YourEmail Nome={"André"} />
 
@@ -226,7 +226,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-[calc(100vh-15vh)] gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
 
                         <YourPsswrd />
@@ -246,7 +246,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-[calc(100vh-15vh)] gap-5">
                         <HeaderCadastros BackFunction={Back} ProgressBarStatus={progressBar} />
 
                         <Loading />
@@ -267,7 +267,7 @@ export default function index() {
 
                 <>
 
-                    <main className="p-4 flex flex-col min-h-screen gap-5">
+                    <main className="p-4 flex flex-col h-[calc(100vh-15vh)] gap-5">
 
                         <div className='m-auto'>
                             <SignUpConclusion />

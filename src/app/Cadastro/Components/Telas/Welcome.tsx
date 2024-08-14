@@ -11,7 +11,7 @@ function BemVindo() {
             </article>
 
             <section className="mt-10">
-                <Image src={LeftDuck} alt="Patinho"/>
+                <Image src={LeftDuck} alt="Patinho" priority quality={100}/>
             </section>
 
         </section>
