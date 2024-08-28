@@ -19,6 +19,9 @@ const config: Config = {
         "text-primary":"#1E3A8A",
         "text-secundary":"#F14968",
         "bg-primary":"#F14968",
+      },
+      boxShadow: {
+      "buttonSubmit": "4px 8px 24px 0px rgba(241, 73, 104, 0.25)"
       }
     },
   },
