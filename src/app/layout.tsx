@@ -1,13 +1,13 @@
+'use client'
+
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const nunito = Nunito({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Englishonboard",
-  description: "Seu ingles afiado",
-};
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -16,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="Pt-BR">
-      <body className={nunito.className}>{children}</body>
+      <body className={nunito.className}>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </body>
     </html>
   );
 }
