@@ -51,7 +51,7 @@ export default function index() {
 
         if (progressBar == 12) {
 
-            router.push("/LoggedHome")
+            router.push("/Home")
 
         }
 

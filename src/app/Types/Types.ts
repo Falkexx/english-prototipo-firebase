@@ -14,9 +14,21 @@ interface ConquestsEspecs{
 
 }
 
+interface UserDatasEspecs{
+
+    imgUrl: string
+    userName: string
+    memberSince: string
+}
+
 export interface ConquestsUser {
 
     data: ConquestsEspecs[]
+}
+
+export interface Userdatas {
+
+    data: UserDatasEspecs[]
 }
 
 export interface RankingUsers {

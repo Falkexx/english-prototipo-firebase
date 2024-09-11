@@ -1,4 +1,4 @@
-import Header from "../LoggedHome/Components/Header";
+import Header from "../Home/Components/Header";
 import PremiumDescription from "./components/PremiumDescription";
 import ButtonsContainer from './components/ButtonsContainer'
 

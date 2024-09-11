@@ -5,7 +5,7 @@ function index() {
         <section className="flex flex-col gap-5">
 
             <article className="w-full m-auto">
-                <Link href={"/Cadastro"}>
+                <Link href={"/Signup"}>
                     <button className="Btn_Primary">Comece agora</button>
                 </Link>
             </article>

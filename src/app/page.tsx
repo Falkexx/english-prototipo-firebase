@@ -1,7 +1,7 @@
 import Header from "@/Components/Header";
 import Image from "next/image";
-import Hero from '@/app/HomeComponents/Hero/index'
-import CTA_Buttons from "./HomeComponents/CTA_Buttons";
+import Hero from '@/app/Components/Hero/index'
+import CTA_Buttons from "./Components/CTA_Buttons";
 
 export default function Home() {
   return (

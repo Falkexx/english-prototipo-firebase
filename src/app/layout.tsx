@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { AuthProvider } from "./contexts/AuthContext";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="Pt-BR">
       <body className={nunito.className}>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </QueryClientProvider>
       </body>
     </html>
