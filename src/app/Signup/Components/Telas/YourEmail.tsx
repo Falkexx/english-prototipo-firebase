@@ -29,7 +29,7 @@ function YourEmail({ Nome, onEmailChange }: YourEmailProps) {
                         <Image src={Mail} alt="Mail Icon" width={20} height={20} />
                     </div>
                     <input
-                        type="text"
+                        type="email"
                         className="inputDef pl-7 w-full"
                         value={email}
                         onChange={handleChange}
