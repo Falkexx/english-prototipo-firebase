@@ -2,9 +2,15 @@ import { useForm } from "react-hook-form";
 import Mail from "@/Midias/mail.png";
 import Image from "next/image";
 
+// Definindo o tipo dos dados do formulário
+type FormData = {
+  email: string;
+};
+
+
 function EmailContainer({ avancar }: { avancar: () => void }) {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormData>();
 
   async function handleEmail(data: { email: string }) {
     avancar();

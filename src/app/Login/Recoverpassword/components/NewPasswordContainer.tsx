@@ -7,17 +7,25 @@ import Lock from "@/Midias/lock-closed.png";
 import { useState } from "react";
 import useValidation from "@/app/Signup/hooks/useValidation"; // Importa o hook de validação
 
+// Definindo o tipo para os dados do formulário
+type FormData = {
+  password: string;
+  confirmPassword: string;
+};
+
 function NewPasswordContainer({ avancar }: { avancar: () => void }) {
   const [seePsswd, setSeePsswd] = useState(false);
   const [seeConfPsswd, setSeeConfPsswd] = useState(false);
 
-  const { register, handleSubmit, watch } = useForm();
-  const { errors, validatePassword } = useValidation(); 
+  // Usando o tipo FormData no useForm
+  const { register, handleSubmit, watch } = useForm<FormData>();
+  const { errors, validatePassword } = useValidation();
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
 
-  async function handlePassword(data: { password: string, confirmPassword: string  }) {
+  // Tipando corretamente a função handlePassword
+  async function handlePassword(data: FormData) {
     if (validatePassword(data.password, data.confirmPassword)) {
       avancar();
     }
@@ -47,7 +55,7 @@ function NewPasswordContainer({ avancar }: { avancar: () => void }) {
         <form
           className="h-3/4 flex flex-col justify-between"
           method="post"
-          onSubmit={handleSubmit(handlePassword)}
+          onSubmit={handleSubmit(handlePassword)} // Não altera aqui
         >
           <section className="flex flex-col gap-5">
             {/* Campo de nova senha */}

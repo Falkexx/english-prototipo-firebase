@@ -13,10 +13,18 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "@/app/contexts/AuthContext"; // Autenticação via contexto
 import Link from "next/link";
 
+// Definindo o tipo dos dados do formulário
+type FormData = {
+  email: string;
+  password: string;
+};
+
 function Page() {
   const [progressBar, setProgressBar] = useState(0);
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+
+  // Usando o tipo FormData no useForm
+  const { register, handleSubmit } = useForm<FormData>();
   const { signIn } = useContext(AuthContext); // Utilizando a função de login via contexto
 
   function BackToHome() {
@@ -25,7 +33,7 @@ function Page() {
     }
   }
 
-  async function handleSigin(data: { email: string; password: string }) {
+  async function handleSigin(data: FormData) {
     // Utilizando a função de login do contexto
     await signIn(data);
   }
@@ -47,7 +55,7 @@ function Page() {
           <form
             className="flex flex-col gap-2 h-full justify-between"
             method="post"
-            onSubmit={handleSubmit(handleSigin)}
+            onSubmit={handleSubmit(handleSigin)} // Não altera aqui
           >
             <section className="flex flex-col gap-2 ">
               <label className="labelDef" htmlFor="Email">
@@ -89,13 +97,13 @@ function Page() {
               </div>
 
               <div className="w-full mt-6">
-
-                <Link href={"/Login/Recoverpassword"} className="text-[#f14968] text-base font-medium font-['Nunito'] leading-normal">
+                <Link
+                  href={"/Login/Recoverpassword"}
+                  className="text-[#f14968] text-base font-medium font-['Nunito'] leading-normal"
+                >
                   Esqueci a minha senha
                 </Link>
-                
               </div>
-
             </section>
             <div className="w-full mt-6">
               <input type="submit" value="Entrar" className="Btn_Primary" />
