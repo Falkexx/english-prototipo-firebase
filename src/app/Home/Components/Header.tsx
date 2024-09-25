@@ -57,7 +57,7 @@ function Header() {
     const toggleOverlay = () => setHamburguerMenu(!hamburgerMenu);
 
     if (isLoading) return <div>Carregando...</div>;
-    if (error) return <div>Erro: {error.message}</div>;
+    if (error) return <div>Erro ao carregar</div>;
 
     return (
         <header className='w-full px-4 py-8 border border-b'>
