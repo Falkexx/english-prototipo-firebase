@@ -22,7 +22,7 @@ import FotoMenu from '@/Midias/menu-alt-3.svg';
 
 // Função para buscar dados do usuário
 const fetchUserData = async (token: string) => {
-    const response = await fetch('http://localhost:3000/student/current', {
+    const response = await fetch(`http://localhost:3000/student/current`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,

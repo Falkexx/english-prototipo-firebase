@@ -7,7 +7,7 @@ import axios from "axios";
 
 const fetchModulosData = async () => {
   const data = await axios.get(
-    "http://localhost:3000/section/all?take=10&skip=0"
+    `http://localhost:3000/section/all?take=10&skip=0`
   );
   return data.data;
 };

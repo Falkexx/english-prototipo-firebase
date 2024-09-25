@@ -11,6 +11,7 @@ import Lock from "@/Midias/lock-closed.png";
 import { setCookie } from "nookies";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@/app/contexts/AuthContext"; // Autenticação via contexto
+import Link from "next/link";
 
 function Page() {
   const [progressBar, setProgressBar] = useState(0);
@@ -86,6 +87,15 @@ function Page() {
                   required
                 />
               </div>
+
+              <div className="w-full mt-6">
+
+                <Link href={"/Login/Recoverpassword"} className="text-[#f14968] text-base font-medium font-['Nunito'] leading-normal">
+                  Esqueci a minha senha
+                </Link>
+                
+              </div>
+
             </section>
             <div className="w-full mt-6">
               <input type="submit" value="Entrar" className="Btn_Primary" />

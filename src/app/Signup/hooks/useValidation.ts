@@ -7,6 +7,7 @@ export type ValidationErrors = {
 };
 
 export default function useValidation() {
+  
   const [errors, setErrors] = useState<ValidationErrors>({
     nameError: "",
     emailError: "",
