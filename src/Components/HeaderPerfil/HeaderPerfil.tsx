@@ -59,7 +59,7 @@ function HeaderPerfil() {
 
                     <ul className='flex flex-col gap-8'>
                         <li className='flex justify-between'>
-                            <a href="/LoggedHome" className='text-base text-zinc-800 font-bold'>Página Inicial</a>
+                            <a href="/Home" className='text-base text-zinc-800 font-bold'>Página Inicial</a>
                             <Image src={HomeIcon} alt="Home" />
                         </li>
 

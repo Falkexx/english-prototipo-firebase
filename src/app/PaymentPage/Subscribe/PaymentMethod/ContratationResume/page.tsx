@@ -1,6 +1,6 @@
 'use client'
 
-import Header from "@/app/LoggedHome/Components/Header";
+import Header from "@/app/Home/Components/Header";
 import Resume from "./Components/Resume";
 import Btn_continue from "./Components/Btn_continue";
 import SucessPayment from "./Screens/SucessPayment";

@@ -1,4 +1,4 @@
-import Header from "@/app/LoggedHome/Components/Header";
+import Header from "@/app/Home/Components/Header";
 import ChooseACard from '@/app/PaymentPage/Subscribe/PaymentMethod/components/ChooseACard'
 import Btn_Continue from "./components/Btn_Continue";
 function index() {

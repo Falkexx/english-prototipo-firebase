@@ -1,4 +1,4 @@
-import Header from "@/app/LoggedHome/Components/Header";
+import Header from "@/app/Home/Components/Header";
 import ChooseAPlan from "./components/ChooseAPlan";
 import Btn_Continue from "./components/Btn_Continue";
 
