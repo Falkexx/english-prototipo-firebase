@@ -6,6 +6,8 @@ import ModuleContainer from "./Components/ModuleContainer";
 import ShowSections from "./Components/ShowSections";
 import ShowChapters from "./Components/ShowChapters";
 import { useState } from "react";
+import BottomHeader from "./Components/BottomHeader";
+
 
 function LoggedHome() {
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>('16092024153320972');
@@ -25,6 +27,7 @@ function LoggedHome() {
   return (
     <>
       <Header />
+
       <main className="w-full px-4 overflow-x-hidden">
         <AssinaturaContainer />
         <ShowSections onSelectSection={handleSelectSection} />
@@ -36,6 +39,10 @@ function LoggedHome() {
         )}
         {selectedModuleId && <ShowChapters moduleId={selectedModuleId} />}
       </main>
+
+      <section className="fixed bottom-0 w-full">
+        <BottomHeader/>
+      </section>
     </>
   );
 }
