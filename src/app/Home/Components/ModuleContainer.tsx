@@ -16,7 +16,7 @@ function ModuleContainer({
   // Função para buscar os módulos baseados no sectionId
   const fetchModulesBySection = async () => {
     const { data } = await axios.get(
-      `http://localhost:3000/module/all?take=10&skip=0&sectionId=${sectionId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/module/all?take=10&skip=0&sectionId=${sectionId}`
     );
     return data;
   };

@@ -24,7 +24,7 @@ export function AuthProvider({ children }: any) {
 
   async function signIn({ email, password }: { email: string; password: string }) {
     try {
-      const response = await fetch(`http://localhost:3000/auth/sign-in`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: any) {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/student/register`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/student/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

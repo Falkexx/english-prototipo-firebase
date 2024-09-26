@@ -8,7 +8,7 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
   // Função para buscar os capítulos com base no moduleId
   const fetchChaptersByModule = async () => {
     const { data } = await axios.get(
-      `http://localhost:3000/chapter/all?take=10&skip=0&moduleId=${moduleId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/chapter/all?take=10&skip=0&moduleId=${moduleId}`
     );
     return data;
   };
