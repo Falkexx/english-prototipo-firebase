@@ -40,8 +40,8 @@ function LoggedHome() {
         {selectedModuleId && <ShowChapters moduleId={selectedModuleId} />}
       </main>
 
-      <section className="fixed bottom-0 w-full">
-        <BottomHeader/>
+      <section >
+        <BottomHeader ActualPath="Home"/>
       </section>
     </>
   );

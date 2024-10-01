@@ -16,6 +16,7 @@ import CupIcon from "@/Midias/Icons/cup.svg";
 import LogoutIcon from "@/Midias/Icons/logout.svg";
 import FotoPerfil from "@/Midias/Rectangle 8.png";
 import FotoMenu from "@/Midias/menu-alt-3.svg";
+import FlagsSelector from "./FlagSelector";
 
 // Função para buscar dados do usuário
 const fetchUserData = async (token: string) => {
@@ -85,7 +86,7 @@ function Header() {
           </section>
 
           <section>
-            <Image src={FotoMenu} alt="Menu" onClick={toggleOverlay} />
+            <FlagsSelector/>
           </section>
         </nav>
 
