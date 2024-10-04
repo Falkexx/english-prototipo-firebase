@@ -1,8 +1,9 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Eyes from "@/Midias/eye-off.png";
+import OpenedEyes from "@/Midias/Icons/eye.svg";
 import Lock from "@/Midias/lock-closed.png";
 
 interface YourPsswrdProps {
@@ -46,11 +47,16 @@ function YourPsswrd({
         <label className="labelDef">Sua Senha</label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center">
-            <Image src={Lock} alt="Lock Icon" width={20} height={20} />
+            {isVisiblePassword ? (
+              <Image src={Lock} alt="Lock Icon" width={20} height={20} />
+            ) : (
+              <Image src={OpenedEyes} alt="Lock Icon" width={20} height={20} />
+            )}
           </div>
           <div
             className="absolute inset-y-0 right-0 flex items-center"
-            onClick={handleShowPassword}>
+            onClick={handleShowPassword}
+          >
             <Image src={Eyes} alt="Eye Icon" width={20} height={20} />
           </div>
           <input
@@ -67,8 +73,13 @@ function YourPsswrd({
           </div>
           <div
             className="absolute inset-y-0 right-0 flex items-center"
-            onClick={handleShowConfirmPassword}>
-            <Image src={Eyes} alt="Eye Icon" width={20} height={20} />
+            onClick={handleShowConfirmPassword}
+          >
+            {isVisibleConfirmPassword ? (
+              <Image src={Eyes} alt="Eye Icon" width={20} height={20} />
+            ) : (
+              <Image src={OpenedEyes} alt="Eye Icon" width={20} height={20} />
+            )}
           </div>
           <input
             type={isVisibleConfirmPassword ? "text" : "password"}
