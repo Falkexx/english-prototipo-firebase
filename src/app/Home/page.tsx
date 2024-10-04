@@ -28,7 +28,7 @@ function LoggedHome() {
     <>
       <Header />
 
-      <main className="w-full px-4 overflow-x-hidden">
+      <main className="w-full px-4 overflow-x-hidden mb-20 ">
         <AssinaturaContainer />
         <ShowSections onSelectSection={handleSelectSection} />
         {selectedSectionId && (
