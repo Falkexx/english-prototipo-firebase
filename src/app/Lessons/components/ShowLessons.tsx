@@ -1,5 +1,6 @@
-"use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import CorrectAnswer from "@/app/Lessons/components/CorrectAnswer";
+import WrongAnswer from "@/app/Lessons/components/WrongAnswer";
 
 interface Lesson {
   id: string;
@@ -15,33 +16,33 @@ interface Lesson {
   updated_at: string;
 }
 
-async function fetchLessons(): Promise<Lesson[]> {
-  const response = await fetch(
-    "http://localhost:3000/lessons/many?take=100&skip=0"
-  );
-  const data = await response.json();
-  return data;
+interface ShowLessonsProps {
+  updateProgress: (progress: number) => void;
+  lessons: Lesson[];
+  currentLessonIndex: number;
+  setCurrentLessonIndex: (index: number) => void;
 }
 
 function ShowLessons({
   updateProgress,
-}: {
-  updateProgress: (progress: number) => void;
-}) {
-  const [lessons, setLessons] = useState<Lesson[]>([]);
+  lessons = [],
+  currentLessonIndex,
+  setCurrentLessonIndex,
+}: ShowLessonsProps) {
   const [inputs, setInputs] = useState<{ [key: string]: string }>({});
   const [availableSuggestions, setAvailableSuggestions] = useState<{
     [key: string]: string[];
   }>({});
-  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [completedLessons, setCompletedLessons] = useState<number>(0);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+  const [isAnswerWrong, setIsAnswerWrong] = useState(false);
+  const [incorrectLessons, setIncorrectLessons] = useState<Lesson[]>([]); // Estado para lições erradas
 
   useEffect(() => {
-    const getLessons = async () => {
-      const lessonsData = await fetchLessons();
-      setLessons(lessonsData);
+    if (lessons.length > 0) {
+      updateProgress((completedLessons / lessons.length) * 100);
 
-      const initialSuggestions = lessonsData.reduce(
+      const initialSuggestions = lessons.reduce(
         (acc, lesson) => ({
           ...acc,
           [lesson.id]: lesson.suggestions.split(";").map((s) => s.trim()),
@@ -49,20 +50,11 @@ function ShowLessons({
         {}
       );
       setAvailableSuggestions(initialSuggestions);
-    };
-
-    getLessons();
-  }, []);
-
-  useEffect(() => {
-    if (lessons.length > 0) {
-      updateProgress((completedLessons / lessons.length) * 100);
     }
-  }, [completedLessons, lessons, updateProgress]);
+  }, [lessons, completedLessons, updateProgress]);
 
   const handleSuggestionClick = (lessonId: string, suggestion: string) => {
     const nextEmptyIndex = findNextEmptyIndex(lessonId);
-
     if (nextEmptyIndex) {
       setInputs((prevInputs) => ({
         ...prevInputs,
@@ -81,11 +73,18 @@ function ShowLessons({
   const handleSpanClick = (lessonId: string, index: string) => {
     const inputValue = inputs[`${lessonId}-${index}`];
     if (inputValue) {
-      setAvailableSuggestions((prevSuggestions) => ({
-        ...prevSuggestions,
-        [lessonId]: [...prevSuggestions[lessonId], inputValue],
-      }));
+      setAvailableSuggestions((prevSuggestions) => {
+        // Verifica se a sugestão já existe antes de adicioná-la
+        if (!prevSuggestions[lessonId].includes(inputValue)) {
+          return {
+            ...prevSuggestions,
+            [lessonId]: [...prevSuggestions[lessonId], inputValue],
+          };
+        }
+        return prevSuggestions;
+      });
 
+      // Limpa o input
       setInputs((prevInputs) => ({
         ...prevInputs,
         [`${lessonId}-${index}`]: "",
@@ -94,7 +93,6 @@ function ShowLessons({
   };
 
   const findNextEmptyIndex = (lessonId: string) => {
-    // Encontra o próximo campo vazio
     const answerParts = lessons[currentLessonIndex].answer.match(/\$\d/g);
     if (!answerParts) return null;
 
@@ -113,11 +111,27 @@ function ShowLessons({
       .replace(/\$2/g, inputs[`${lesson.id}-2`] || "");
 
     if (filledAnswer === lesson.correct_answer) {
-      alert("Resposta correta!");
-      setCompletedLessons((prev) => prev + 1);
-      setCurrentLessonIndex((prevIndex) => prevIndex + 1);
+      setIsAnswerCorrect(true);
+      setCompletedLessons((prev) => prev + 1); // Incrementa apenas se a resposta estiver correta
     } else {
-      alert("Resposta incorreta. Tente novamente!");
+      setIsAnswerWrong(true);
+      setIncorrectLessons((prev) => [...prev, lesson]); // Armazena a lição errada
+    }
+  };
+
+  const handleNextExercise = () => {
+    setIsAnswerCorrect(false);
+    // Avança para a próxima lição
+    setCurrentLessonIndex(currentLessonIndex + 1); // Atualize diretamente com o novo valor
+  };
+  const handleRetryLesson = () => {
+    setIsAnswerWrong(false);
+    setCurrentLessonIndex(currentLessonIndex + 1); // Atualize diretamente com o novo valor
+    // Reintroduz a lição errada para o final da lista
+    if (incorrectLessons.length > 0) {
+      const nextIncorrect = incorrectLessons[0];
+      setIncorrectLessons((prev) => prev.slice(1));
+      lessons.push(nextIncorrect); // Adiciona a lição errada ao final
     }
   };
 
@@ -128,7 +142,10 @@ function ShowLessons({
   return (
     <section className="h-[90vh]">
       {currentLessonIndex < lessons.length ? (
-        <section key={lessons[currentLessonIndex].id} className="mb-6 h-[80%] flex flex-col justify-between">
+        <section
+          key={lessons[currentLessonIndex].id}
+          className="mb-6 h-[80%] flex flex-col justify-between"
+        >
           <section className="h-[50%] flex flex-col justify-between items-center ">
             <h1 className="text-zinc-800 text-lg font-bold font-['Nunito'] leading-7">
               {lessons[currentLessonIndex].name}
@@ -138,7 +155,6 @@ function ShowLessons({
               alt={lessons[currentLessonIndex].name}
               className="w-[100%] h-[217px] rounded-[10px] border-2 border-[#f14968]"
             />
-
             <div className="self-end justify-self-end">
               <p className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose">
                 {lessons[currentLessonIndex].answer
@@ -174,8 +190,7 @@ function ShowLessons({
             </div>
           </section>
 
-          <section className="h-[50%]  flex flex-col  justify-end">
-
+          <section className="h-[50%] flex flex-col justify-end">
             <div>
               <div className="flex gap-2 mt-2">
                 {availableSuggestions[lessons[currentLessonIndex].id]?.map(
@@ -210,6 +225,9 @@ function ShowLessons({
       ) : (
         <div>Você concluiu todas as lições!</div>
       )}
+
+      {isAnswerCorrect && <CorrectAnswer onNextExercise={handleNextExercise} />}
+      {isAnswerWrong && <WrongAnswer onRetryLesson={handleRetryLesson} />}
     </section>
   );
 }

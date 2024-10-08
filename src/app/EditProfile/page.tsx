@@ -5,8 +5,11 @@ import Image from 'next/image'
 import React from 'react'
 import FotoPerfilEditar from '@/Midias/FotoUsuarioEditar.png'
 import { optionsPaises } from '@/constants/constants'
+import axios from 'axios'
+
 
 const page = () => {
+    
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
