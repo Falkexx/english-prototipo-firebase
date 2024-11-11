@@ -1,0 +1,89 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page",
+    "startNow": "start Now",
+    "accessAccount": "Access Account"
+  },
+
+  "NotAuthenticaded":{
+    "title": "Oh, you are not Authenticaded",
+    "subtitle":"Comeback to Sign in page.",
+    "CTABtn": "Go to Sign in Page"
+  },
+
+  "LoginPage": {
+    "title": "Welcome back!",
+    "subtitle": "fill up the form with your Login data",
+    "emailabel": "Your Email",
+    "passwordlabel": "Your Password",
+    "forgotpassword": "Recovery password",
+    "loginBtn": "Sign in"
+    },
+
+  "LoggedHome": {
+    "SubscribeContainer": "Unlock All Courses on the Platform!",
+    "subscribreBtn": "subscribe"
+  },
+
+  "SignUpStages":{
+
+    "0":"Welcome to English OnBoard!. Before the Leassons, let's Sign up your datas to personalize your Learning experience.",
+
+    "1":"Let's go! Select the one that represents your English level.",
+    "1.1":"Beginner",
+    "1.2":"I know some words",
+    "1.3":"I can talk easyly in english",
+    "1.4":"Advanced",
+
+
+    "2":"Why do you like to study english?",
+    "2.1":"Just for fun",
+    "2.2":"Improve my career",
+    "2.3":"Trips and Turism",
+    "2.4":"Others",
+
+    "3":"Wich ability you want to improve?",
+    "3.1":"All abilitys",
+    "3.2":"Gramatic",
+    "3.3":"Conversation",
+    "3.4":"Listening",
+    "3.5":"Writing",
+    "3.6":"Reading",
+
+    "4":"What is your learning most difficulty?",
+    "4.1":"I don't have time",
+    "4.2":"I can't stay motivated",
+    "4.3":"I can't memorize",
+    "4.4":"I have difficulty to pronounce some words",
+    "4.5":"I have difficulty with gramatics",
+    "4.6":"I have difficulty to meet new study partners",
+
+    "5":"What's your age?",
+    "5.1":"Less than 18 years old",
+    "5.2":"18-24 years old",
+    "5.3":"25-34 years old",
+    "5.4":"33-44 years old",
+    "5.5":"45-54 years old",
+    "5.6":"More than 54 years old",
+
+    "6":"How much time do you want to study everyday",
+    "6.1":"10 minutes per day",
+    "6.2":"15 minutes per day",
+    "6.3":"30 minutes per day",
+    "6.4":"60 minutes per day",
+
+
+    "7":"Well done! Your learning routine is done! Now we'll create your account to save your progress",
+    "7.1":"Create my account",
+
+    "8":"First of all, how can we call you?",
+    "8.1":"Your Name",
+
+    "9":"Thanks, ",
+    "9.01":"Now whats is your Email Adress?",
+    "9.1":"Your Email"
+    
+  }
+
+}

@@ -1,0 +1,31 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+
+  "LoginPage": {
+  "title": "Bem-vindo de volta!",
+  "subtitle": "preencha o formulário com seus dados de Login",
+  "emailabel": "Seu Email",
+  "passwordlabel": "Sua Senha",
+  "forgotpassword": "Recuperar senha",
+  "loginBtn": "Entrar"
+},
+
+"NotAuthenticaded":{
+  "title": "Oh, Você não está autenticado(a)!",
+  "subtitle":"Volte para página de Login. E acesse.",
+  "CTABtn": "Ir para tela de Login"
+},
+
+"LoggedHome": {
+
+  "SubscribeContainer": "Desbloqueie todos os cursos da plataforma",
+  "subscribreBtn": "assinar"
+}
+
+
+
+  
+}
