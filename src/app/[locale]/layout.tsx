@@ -1,7 +1,8 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import React from 'react';
-import RootLayoutClient from '../../layout'; // Componente de layout no lado do cliente
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import React from "react";
+import RootLayoutClient from "../../layout"; // Componente de layout no lado do cliente
+import { SubscriptionProvider } from "@/contexts/SubscribtionPayment";
 
 export default async function LocaleLayout({
   children,
@@ -14,11 +15,11 @@ export default async function LocaleLayout({
   const messages = await getMessages(locale);
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {/* Passa o children para o layout no lado do cliente */}
-      <RootLayoutClient locale={locale}>
-        {children}
-      </RootLayoutClient>
-    </NextIntlClientProvider>
+    <SubscriptionProvider>
+      <NextIntlClientProvider messages={messages}>
+        {/* Passa o children para o layout no lado do cliente */}
+        <RootLayoutClient locale={locale}>{children}</RootLayoutClient>
+      </NextIntlClientProvider>
+    </SubscriptionProvider>
   );
 }

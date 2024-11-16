@@ -1,5 +1,5 @@
-import Header from "@/app/Home/Components/Header";
-import ChooseACard from '@/app/PaymentPage/Subscribe/PaymentMethod/components/ChooseACard'
+import Header from "@/app/[locale]/Home/Components/Header";
+import ChooseACard from '@/app/[locale]/PaymentPage/Subscribe/PaymentMethod/components/ChooseACard'
 import Btn_Continue from "./components/Btn_Continue";
 function index() {
     return ( 

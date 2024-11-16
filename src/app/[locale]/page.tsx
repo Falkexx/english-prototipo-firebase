@@ -17,7 +17,6 @@ export default function Home() {
       <Header />
 
       <main className="w-full flex flex-col p-9 justify-around h-[calc(100vh-80px)]">
-      <h1>{t('title')}</h1>
         <Hero/>
         <CTA_Buttons/>
       </main>

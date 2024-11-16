@@ -68,11 +68,11 @@ function BottomHeader({ ActualPath }: BottomHeaderProps) {
         )}
 
         {ActualPath === "Plans" ? (
-          <Link href="/" className="w-10 p-1 bg-[#ffeeef] rounded-xl border border-[#f14968]">
+          <Link href="/PaymentPage" className="w-10 p-1 bg-[#ffeeef] rounded-xl border border-[#f14968]">
             <Image src={DollarIconActived} alt="Dollar icon" className="w-12 h-9" />
           </Link>
         ) : (
-          <Link href="/">
+          <Link href="/PaymentPage">
             <Image src={DollarIcon} alt="Dollar icon" className="w-12 h-9" />
           </Link>
         )}

@@ -1,4 +1,4 @@
-import Header from "@/app/Home/Components/Header";
+import Header from "@/app/[locale]/Home/Components/Header";
 import ChooseAPlan from "./components/ChooseAPlan";
 import Btn_Continue from "./components/Btn_Continue";
 
@@ -10,7 +10,6 @@ function index() {
 
             <main className="px-4 h-[calc(100vh-30vh)]  flex flex-col justify-between">
                 <ChooseAPlan/>
-                <Btn_Continue/>
             </main>
         </>
     );
