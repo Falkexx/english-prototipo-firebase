@@ -16,7 +16,6 @@ async function GenerateToken(email:string){
       return response.data;
       
     } catch (error) {
-      console.log(error)
       throw error
     }
   }

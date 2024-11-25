@@ -23,7 +23,6 @@ function Recoverpassword() {
   }
 
   useEffect(()=>{
-    console.log(email, token, password, confirmPassword)
   },[email, token, password, confirmPassword])
   function Avance() {
     setProgressBar(progressBar + 1);

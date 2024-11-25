@@ -52,7 +52,7 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
                 <div className="relative flex-shrink-0">
                   <img
                     className="w-12 h-12 rounded-full border-4 border-[#f14968] z-10"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9x1UBJjJ8EtpuWBdX3NEJFdKxtTvLFB2Dcw&s"
+                    src={chapter.image_url}
                   />
                 </div>
 

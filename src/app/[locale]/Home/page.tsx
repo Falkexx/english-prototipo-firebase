@@ -8,9 +8,7 @@ import ShowChapters from "./Components/ShowChapters";
 import { useState, useContext, useEffect } from "react";
 import BottomHeader from "./Components/BottomHeader";
 import { AuthContext } from "@/contexts/AuthContext"; // Autenticação via contexto
-import NotAuthenticaded from "@/Components/NotAuthenticaded";
-import Loading from "@/Components/Loading";
-import {Link} from '@/i18n/routing';
+import Loading from "@/Components/LoadingHome";
 
 
 function LoggedHome() {
@@ -42,16 +40,9 @@ function LoggedHome() {
     setSelectedModuleId(moduleId); 
   };
 
-  if (loading) {
-    return <Loading/>;
-  }
-
-  if (!isAuthenticated) {
-    return <NotAuthenticaded />;
-  }
 
   return (
-    <>
+    <Loading>
       <Header />
 
       <main className="w-full px-4 overflow-x-hidden mb-20 ">
@@ -69,7 +60,7 @@ function LoggedHome() {
       <section>
         <BottomHeader ActualPath="Home" />
       </section>
-    </>
+    </Loading>
   );
 }
 

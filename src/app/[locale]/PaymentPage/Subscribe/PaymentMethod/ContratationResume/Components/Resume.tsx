@@ -28,11 +28,11 @@ function Resume() {
 
         return(
 
-            <div>
+            <div className='text-center'>
 
                 <h1>Houve um erro ao processar sua compra. Faça o processo novamente</h1>
 
-                <Link href="/PaymentPage/Subscribe">
+                <Link href="/PaymentPage/Subscribe" className='text-rose-500'>
                     Ir para tela de planos
                 </Link>
             </div>

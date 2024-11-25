@@ -56,7 +56,6 @@ const Page = () => {
     }
 
     try {
-      console.log(Data);
       const response = await ChangeDatas(Data, token);
 
       if (response.avatar_url) {

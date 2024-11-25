@@ -5,6 +5,7 @@ import Resume from "./Components/Resume";
 import Btn_continue from "./Components/Btn_continue";
 import SucessPayment from "./Screens/SucessPayment";
 import { useState } from "react";
+import BottomHeader from "@/app/[locale]/Home/Components/BottomHeader";
 function index() {
 
     const[Progress, setProgress] = useState(0)
@@ -25,6 +26,8 @@ function index() {
                 <Btn_continue handleProgress={handleProgress} />
 
             </main>
+
+            <BottomHeader ActualPath="Plans"/>
         
         </>
     );

@@ -8,12 +8,13 @@ function Btn_continue() {
     const { plan, cardData } = useSubscription();
     const { token } = useContext(AuthContext);
     const router = useRouter();
+    let disabled_Btn = false
 
     const handleProgress = async () => {
         try {
             if (!token || !plan || !cardData) {
-                console.log(token, plan, cardData)
-                alert("Dados incompletos para realizar o pagamento.");
+                alert("Dados incompletos para realizar o pagamento. Volte para a tela de Planos");
+                disabled_Btn = true;
                 return;
             }
             
@@ -28,7 +29,7 @@ function Btn_continue() {
     };
 
     return (
-        <button onClick={handleProgress} className="Btn_Primary">
+        <button onClick={handleProgress} className="Btn_Primary" disabled={disabled_Btn}>
             Confirmar pagamento
         </button>
     );

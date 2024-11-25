@@ -1,7 +1,7 @@
 {
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+    "startNow": "Comece agora",
+    "accessAccount": "Acessar conta"
   },
 
   "LoginPage": {

@@ -19,7 +19,7 @@ interface UserDTO  {
 
 async function GetUserDatas(token: string):Promise<UserDTO>{
 
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/student/current`, {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/v1/student/current`, {
     headers: {
 
       "Accept":"*/*",

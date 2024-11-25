@@ -11,8 +11,12 @@ function index() {
         <h2 className="text-sm font-medium text-zinc-500">{t("subtitle")}</h2>
       </section>
 
-      <section className="w-full mt-6 mx-auto">
-        <Link href="/Login" className="Btn_Primary">{t("CTABtn")}</Link>
+      <section className="w-full mt-6 mx-auto flex flex-row justify-center items-center">
+        <div className="w-2/4 mt-2">
+          <Link href="/Login" className="Btn_Primary">
+            {t("CTABtn")}
+          </Link>
+        </div>
       </section>
     </main>
   );

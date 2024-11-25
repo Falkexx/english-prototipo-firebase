@@ -44,10 +44,7 @@ function NewPasswordContainer({ avancar, GetPassword, GetConfirmedPassword, emai
 
       const isPasswordChanged = await ChangePassword(email, token, data.confirmedPassword)
 
-      console.log(isPasswordChanged)
-
       if(isPasswordChanged.message == 'success'){
-        console.log('cheguei aqui')
         avancar();
       }
     }

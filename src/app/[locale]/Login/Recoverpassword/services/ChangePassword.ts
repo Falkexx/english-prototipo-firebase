@@ -20,7 +20,6 @@ async function ChangePassword(email:string, token:string, newPassword:string ): 
     return response.data as {message: 'success' | 'fail'}
     
   } catch (error) {
-    console.log(Error)
   }
 
   return {message: 'fail'}

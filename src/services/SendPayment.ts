@@ -4,7 +4,7 @@ import axios from 'axios';
 async function SendPayment(token:any, plan:any, cardData:any) {
     try {
         const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/student/by/card`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/v1/student/by/card`,
             {
                 plan_name: plan.unique_name,
                 installments: 10, 

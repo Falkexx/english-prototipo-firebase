@@ -1,6 +1,9 @@
 import BottomHeader from "../Home/Components/BottomHeader";
+import IsAuthenticated from "@/services/IsAuthenticaded";
+async function Recheck() {
 
-function Recheck() {
+  await IsAuthenticated();
+  
   return (
     <>
       <section className="h-screen w-full flex justify-center items-center">

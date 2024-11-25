@@ -127,7 +127,7 @@ export default function Index() {
           <Container>{stages[progressBar].component}</Container>
           <AvanceBtn
             AvanceFunction={
-              progressBar === SIGNUP_STAGES.PASSWORD
+              progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION
                 ? handleSignUp
                 : handleNextStage
             }

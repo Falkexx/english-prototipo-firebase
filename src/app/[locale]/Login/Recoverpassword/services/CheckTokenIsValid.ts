@@ -17,7 +17,6 @@ async function CheckTokenIsValid(
         }
       );
 
-      console.log(response.data);
       
       return response.data as { message: 'success' | 'fail' };
     } catch (error) {

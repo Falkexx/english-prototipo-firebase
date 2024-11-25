@@ -1,7 +1,11 @@
 import Header from './Components/Header'
+import IsAuthenticated from '@/services/IsAuthenticaded';
 
 import ShowConquests from './Components/ShowConquests';
-function page() {
+async function page() {
+
+    await IsAuthenticated();
+    
     return (
         <>  
             <Header/>
