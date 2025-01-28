@@ -8,7 +8,7 @@ export interface DataProps {
 
 async function ChangeDatas(data: DataProps, token: string) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/student`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/v1/student`, {
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',

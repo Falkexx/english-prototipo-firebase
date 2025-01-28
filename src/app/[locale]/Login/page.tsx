@@ -1,6 +1,5 @@
 "use client";
 
-import AvanceBtn from "@/app/[locale]/Signup/Components/AvanceBtn";
 import HeaderCadastros from "@/app/[locale]/Signup/Components/Header/index";
 import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
@@ -8,12 +7,11 @@ import Mail from "@/Midias/mail.png";
 import Image from "next/image";
 import Eyes from "@/Midias/eye-off.png";
 import Lock from "@/Midias/lock-closed.png";
-import { setCookie } from "nookies";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "@/contexts/AuthContext"; // Autenticação via contexto
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-
+import LoginLoading from "@/Components/UI/LoginLoading";
 // Definindo o tipo dos dados do formulário
 type FormData = {
   email: string;
@@ -22,6 +20,8 @@ type FormData = {
 
 function Page() {
   const [progressBar, setProgressBar] = useState(0);
+  const [isLoading, setIsLoading] = useState(false)
+
   const router = useRouter();
 
   // Usando o tipo FormData no useForm
@@ -36,6 +36,7 @@ function Page() {
 
   async function handleSigin(data: FormData) {
     // Utilizando a função de login do contexto
+    setIsLoading(true)
     await signIn(data);
   }
 
@@ -43,7 +44,10 @@ function Page() {
 
   return (
     <>
+      {isLoading ? <LoginLoading/> : ""}
       <main className="p-4 flex flex-col h-[calc(100vh-10vh)] justify-between gap-5">
+
+
         <section>
           <HeaderCadastros BackFunction={BackToHome} />
           <article className="flex flex-col gap-2 mb-10 mt-10">

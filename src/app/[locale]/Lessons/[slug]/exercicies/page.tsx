@@ -53,7 +53,7 @@ function Page() {
         { letter: "D", question: "Gallery Operator" },
         { letter: "E", question: "Aircraft Engineer" },
       ],
-      correct_answer: "Captain", // Resposta correta
+      correct_answer: "B", // Resposta correta
     },
     {
       id: "nrILaRYUczlbk9cJqJ1r",
@@ -113,7 +113,13 @@ function Page() {
       image_url: "http://domain/image.png",
       audio_url: "http://domain/image.png",
       correct_answer: ["1", "2", "3", "4", "5"],
-      questions: ["Check safety equipment", "Attend briefing", "Welcome passengers", "Put on uniform", "Report for duty"],
+      questions: [
+        "Check safety equipment",
+        "Attend briefing",
+        "Welcome passengers",
+        "Put on uniform",
+        "Report for duty",
+      ],
       difficulty: "HARD",
       isPremium: true,
       created_at: "2024-11-24T21:21:04.006Z",
@@ -146,22 +152,23 @@ function Page() {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0); // Índice do exercício atual
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false); // Controle do componente de resposta correta
   const [showWrongAnswer, setShowWrongAnswer] = useState(false); // Controle do componente de resposta errada
-  const [ShowStatistics, setShowStatistics] = useState(false)
+  const [showStatistics, setShowStatistics] = useState(false); // Controle para mostrar estatísticas
 
   const currentExercise = exercicies[currentExerciseIndex];
 
   const handleNextExercise = () => {
     setShowCorrectAnswer(false); // Reseta o estado de resposta correta
     setShowWrongAnswer(false); // Reseta o estado de resposta errada
-    setCurrentExerciseIndex((prev) =>
-      Math.min(prev + 1, exercicies.length - 1)
-    ); // Avança para o próximo exercício
 
-    //Mostra as statisticas
-    if(currentExerciseIndex == exercicies.length - 1){
-      setShowStatistics(true)
+    if (currentExerciseIndex === exercicies.length - 1) {
+      // Se estiver no último exercício, mostra as estatísticas
+      setShowStatistics(true);
+    } else {
+      // Caso contrário, avança para o próximo exercício
+      setCurrentExerciseIndex((prev) =>
+        Math.min(prev + 1, exercicies.length - 1)
+      );
     }
-
   };
 
   const handleRetryExercise = () => {
@@ -181,78 +188,80 @@ function Page() {
 
   return (
     <section className="px-4 py-4 relative">
-      {/* Barra de progresso */}
-      <ExerciciesProgressBar
-        LessonsAmount={exercicies.length}
-        currentLesson={currentExerciseIndex + 1} // Passa o exercício atual
-      />
+      {/* Mostra as estatísticas se for o momento */}
+      {showStatistics ? (
+        <ShowStatisticsComponent />
+      ) : (
+        <>
+          {/* Barra de progresso */}
+          <ExerciciesProgressBar
+            LessonsAmount={exercicies.length}
+            currentLesson={currentExerciseIndex + 1} // Passa o exercício atual
+          />
 
-      {/* Renderiza o exercício atual */}
-      {currentExercise?.type === "verticalFillBox" && (
-        <VerticalFillbox
-          title={currentExercise.title}
-          questions={currentExercise.questions}
-          suggestions={currentExercise.suggestions}
-          onCheckAnswers={(answers) =>
-            handleCheckAnswers(
-              JSON.stringify(answers) ===
-                JSON.stringify(currentExercise.correct_answer)
-            )
-          }
-        />
-      )}
+          {/* Renderiza o exercício atual */}
+          {currentExercise?.type === "verticalFillBox" && (
+            <VerticalFillbox
+              title={currentExercise.title}
+              questions={currentExercise.questions}
+              suggestions={currentExercise.suggestions}
+              onCheckAnswers={(answers) =>
+                handleCheckAnswers(
+                  JSON.stringify(answers) ===
+                    JSON.stringify(currentExercise.correct_answer)
+                )
+              }
+            />
+          )}
 
-      {currentExercise?.type === "alternatives" && (
-        <Alternatives
-          title={currentExercise.title}
-          description={currentExercise.description}
-          questions={currentExercise.questions}
-          correctAnswer={currentExercise.correct_answer}
-          onCheckAnswers={handleCheckAnswers} // Valida respostas no tipo alternatives
-        />
-      )}
+          {currentExercise?.type === "alternatives" && (
+            <Alternatives
+              title={currentExercise.title}
+              description={currentExercise.description}
+              questions={currentExercise.questions}
+              correctAnswer={currentExercise.correct_answer}
+              onCheckAnswers={handleCheckAnswers} // Valida respostas no tipo alternatives
+            />
+          )}
 
-      {currentExercise?.type === "fillboxWithOptions" && (
-        <FillboxWithOptions
-          title={currentExercise.title}
-          description={currentExercise.description}
-          questions={currentExercise.questions}
-          options={currentExercise.options}
-          correctAnswer={currentExercise.correct_answer}
-          onCheckAnswers={handleCheckAnswers} // Passa diretamente o handleCheckAnswers
-        />
-      )}
+          {currentExercise?.type === "fillboxWithOptions" && (
+            <FillboxWithOptions
+              title={currentExercise.title}
+              description={currentExercise.description}
+              questions={currentExercise.questions}
+              options={currentExercise.options}
+              correctAnswer={currentExercise.correct_answer}
+              onCheckAnswers={handleCheckAnswers} // Passa diretamente o handleCheckAnswers
+            />
+          )}
 
-      {currentExercise?.type === "horizontalFillBox" && (
-        <HorizontalFillbox
-          title={currentExercise.title}
-          question={currentExercise.question}
-          suggestions={currentExercise.suggestions}
-          imgUrl={currentExercise.img_url} // Passa a imagem
-          audioUrl={currentExercise.audio_url} // Passa o áudio
-          description={currentExercise.description}
-          onCheckAnswers={(answers) =>
-            handleCheckAnswers(
-              JSON.stringify(answers) ===
-                JSON.stringify(currentExercise.correct_answer)
-            )
-          }
-        />
-      )}
+          {currentExercise?.type === "horizontalFillBox" && (
+            <HorizontalFillbox
+              title={currentExercise.title}
+              question={currentExercise.question}
+              suggestions={currentExercise.suggestions}
+              imgUrl={currentExercise.img_url} // Passa a imagem
+              audioUrl={currentExercise.audio_url} // Passa o áudio
+              description={currentExercise.description}
+              onCheckAnswers={(answers) =>
+                handleCheckAnswers(
+                  JSON.stringify(answers) ===
+                    JSON.stringify(currentExercise.correct_answer)
+                )
+              }
+            />
+          )}
 
-      {/* Mostra o componente de resposta correta */}
-      {showCorrectAnswer && (
-        <CorrectAnswer onNextExercise={handleNextExercise} />
-      )}
+          {/* Mostra o componente de resposta correta */}
+          {showCorrectAnswer && (
+            <CorrectAnswer onNextExercise={handleNextExercise} />
+          )}
 
-      {/* Mostra o componente de resposta errada */}
-      {showWrongAnswer && (
-        <WrongAnswer onRetryLesson={handleRetryExercise} />
-      )}
-
-      {/*Chama o componente de Estatisticas*/}
-      {ShowStatistics && (
-          <ShowStatisticsComponent/>
+          {/* Mostra o componente de resposta errada */}
+          {showWrongAnswer && (
+            <WrongAnswer onRetryLesson={handleRetryExercise} />
+          )}
+        </>
       )}
     </section>
   );

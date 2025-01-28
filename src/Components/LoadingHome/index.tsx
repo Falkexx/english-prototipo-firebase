@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 import NotAuthenticaded from "@/Components/NotAuthenticaded";
-import Image from "next/image";
 
 // Skeleton do Header
 function SkeletonHeader() {
@@ -76,14 +75,15 @@ function Loading({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useContext(AuthContext); // Estado de autenticação
 
   useEffect(() => {
-    // Simulando carregamento e verificação de autenticação
     const checkAuth = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Delay simulado
-      setLoading(false); // Desativa carregamento após verificação
+      // Espera a resposta do estado de autenticação real
+      if (isAuthenticated !== undefined) {
+        setLoading(false); // Termina o estado de carregamento quando receber o valor
+      }
     };
 
     checkAuth();
-  }, []);
+  }, [isAuthenticated]); // Reexecuta o efeito sempre que `isAuthenticated` mudar
 
   if (loading) {
     return (
