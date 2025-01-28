@@ -1,4 +1,4 @@
-import { ConquestsUser } from "@/app/Types/Types";
+import { ConquestsUser } from "@/Types/Types";
 
 function ShowConquests() {
 
