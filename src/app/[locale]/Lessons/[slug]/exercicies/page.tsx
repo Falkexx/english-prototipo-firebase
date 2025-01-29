@@ -9,9 +9,11 @@ import Alternatives from "../../components/exerciciesComponents/Alternatives";
 import FillboxWithOptions from "../../components/exerciciesComponents/FillboxWithOptions";
 import HorizontalFillbox from "../../components/exerciciesComponents/HorizontalFillbox";
 import ShowStatisticsComponent from "../../components/exerciciesComponents/ShowStatistics";
+import { ExercisesArray } from "@/Types/exercisies";
 
 function Page() {
-  const exercicies = [
+  
+  const exercicies:ExercisesArray = [
     {
       id: "1",
       type: "verticalFillBox",
@@ -242,7 +244,6 @@ function Page() {
               suggestions={currentExercise.suggestions}
               imgUrl={currentExercise.img_url} // Passa a imagem
               audioUrl={currentExercise.audio_url} // Passa o áudio
-              description={currentExercise.description}
               onCheckAnswers={(answers) =>
                 handleCheckAnswers(
                   JSON.stringify(answers) ===
