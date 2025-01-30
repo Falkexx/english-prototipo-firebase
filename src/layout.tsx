@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import '../src/globals.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -16,10 +15,10 @@ export default function RootLayoutClient({
   locale,
 }: {
   children: React.ReactNode;
-  locale: string;
+  locale?: string;
 }) {
   return (
-    <html lang={locale}>
+    <html lang={locale || 'en'}>
       <body className={nunito.className}>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>{children}</AuthProvider>

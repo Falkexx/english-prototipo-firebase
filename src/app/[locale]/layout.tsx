@@ -11,8 +11,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Obtém as mensagens de acordo com o locale atual no lado do servidor
-  const messages = await getMessages(locale);
+  const messages = await getMessages({locale});
 
   return (
     <SubscriptionProvider>
