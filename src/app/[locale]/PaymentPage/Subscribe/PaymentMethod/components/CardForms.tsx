@@ -94,7 +94,7 @@ function CardForms({ onClose, actualPath }: any) {
                             value={cardDetails.number}
                             onChange={handleInputChange}
                             className="w-full p-2 mt-1 border rounded"
-                            maxLength="19"
+                            maxLength={19}
                             required
                             onFocus={() => setIsFlipped(false)}
                         />
@@ -122,7 +122,7 @@ function CardForms({ onClose, actualPath }: any) {
                                 value={cardDetails.expiry_month}
                                 onChange={handleInputChange}
                                 className="w-full p-2 mt-1 border rounded"
-                                maxLength="2"
+                                maxLength={2}
                                 required
                                 onFocus={() => setIsFlipped(false)}
                             />
@@ -135,7 +135,7 @@ function CardForms({ onClose, actualPath }: any) {
                                 value={cardDetails.expiry_year}
                                 onChange={handleInputChange}
                                 className="w-full p-2 mt-1 border rounded"
-                                maxLength="4"
+                                maxLength={4}
                                 required
                                 onFocus={() => setIsFlipped(false)}
                             />
@@ -149,7 +149,7 @@ function CardForms({ onClose, actualPath }: any) {
                             value={cardDetails.cvv}
                             onChange={handleInputChange}
                             className="w-full p-2 mt-1 border rounded"
-                            maxLength="3"
+                            maxLength={3}
                             required
                             onFocus={() => setIsFlipped(true)}
                         />

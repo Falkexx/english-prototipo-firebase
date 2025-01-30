@@ -4,32 +4,33 @@ import SendPayment from '@/services/SendPayment';
 import { useContext } from 'react';
 import { AuthContext } from '@/contexts/AuthContext'; // Supondo que existe um AuthContext para pegar o token
 
-function Btn_continue() {
+// 🟢 Defina o tipo das props
+interface BtnContinueProps {
+    handleProgress: () => void;
+}
+
+function Btn_continue({ handleProgress }: BtnContinueProps) {
     const { plan, cardData } = useSubscription();
     const { token } = useContext(AuthContext);
-    const router = useRouter();
-    let disabled_Btn = false
+    let disabled_Btn = false;
 
-    const handleProgress = async () => {
+    const handleClick = async () => {
         try {
             if (!token || !plan || !cardData) {
                 alert("Dados incompletos para realizar o pagamento. Volte para a tela de Planos");
                 disabled_Btn = true;
                 return;
             }
-            
-            // Chama o serviço de pagamento
             await SendPayment(token, plan, cardData);
+            handleProgress();
             
-            // Em caso de sucesso, redireciona para a tela de sucesso
-            router.push('/bem-sucedido'); // Altere o caminho conforme necessário
         } catch (error) {
             alert("Erro ao processar o pagamento. Tente novamente.");
         }
     };
 
     return (
-        <button onClick={handleProgress} className="Btn_Primary" disabled={disabled_Btn}>
+        <button onClick={handleClick} className="Btn_Primary" disabled={disabled_Btn}>
             Confirmar pagamento
         </button>
     );
