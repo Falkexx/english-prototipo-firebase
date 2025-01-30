@@ -129,6 +129,10 @@ const handleSignUp = async () => {
             ProgressBarStatus={progressBar}
           />
           <Container>{stages[progressBar].component}</Container>
+
+          {progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION ? "" : (
+
+
           <AvanceBtn
             AvanceFunction={
               progressBar === SIGNUP_STAGES.PASSWORD
@@ -137,6 +141,7 @@ const handleSignUp = async () => {
             }
             ProgressStatus={progressBar}
           />
+          ) }
         </main>
       )}
     </>
