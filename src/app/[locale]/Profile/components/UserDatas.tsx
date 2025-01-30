@@ -1,14 +1,11 @@
 'use client'
 
-import { Userdatas } from "@/app/Types/Types";
+import { Userdatas } from "@/Types/Types";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useQuery } from "react-query";
 import React, { useContext, useState } from "react";
 import GetUserDatas from "@/services/GetUserDatas";
 
-import PerfilImg from '../../../Midias/FotoUsuarioEditar.png'
-
-import Image from "next/image";
 
 function UserDatas() {
     const { token } = useContext(AuthContext);

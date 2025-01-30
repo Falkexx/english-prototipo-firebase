@@ -1,4 +1,4 @@
-import { RankingUsers } from '@/app/Types/Types';
+import { RankingUsers } from '@/Types/Types';
 import Image from 'next/image';
 
 import GoldMedal from '@/Midias/Icons/GoldMedal.svg'

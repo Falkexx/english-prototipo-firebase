@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderCadastros from "../Header";
 
 interface ContainerProps {
 

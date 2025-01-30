@@ -20,7 +20,7 @@ function ShwoStatistics() {
 
             <section className="grid grid-cols-2 gap-2">
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={RaioIcon} alt="Statis" className="inline" />
@@ -32,7 +32,7 @@ function ShwoStatistics() {
                 </article>
 
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={MedalIcon} alt="Statis" className="inline" />
@@ -44,7 +44,7 @@ function ShwoStatistics() {
                 </article>
 
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={ClockIcon} alt="Statis" className="inline" />
@@ -56,7 +56,7 @@ function ShwoStatistics() {
                 </article>
 
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={EditIcon} alt="Statis" className="inline" />
@@ -67,7 +67,7 @@ function ShwoStatistics() {
 
                 </article>
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={StarIcon} alt="Statis" className="inline" />
@@ -78,7 +78,7 @@ function ShwoStatistics() {
 
                 </article>
 
-                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex gap-2">
+                <article className="h-[81px] p-4 rounded-3xl border border-zinc-200 flex-col justify-center items-start gap-[5px] inline-flex ">
 
                     <div className="w-full flex flex-row items-center gap-1">
                         <Image src={FireIcon} alt="Statis" className="inline" />
