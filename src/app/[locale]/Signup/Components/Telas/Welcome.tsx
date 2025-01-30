@@ -1,13 +1,15 @@
 import Image from "next/image";
 import LeftDuck from '@/Midias/LeftDuck.svg'
+import { useTranslations } from "next-intl";
 
 function BemVindo() {
+    const t = useTranslations('SignUpStages')
+
     return (<>
 
         <section className="flex flex-col gap-5">
-
             <article className="w-full text-center border-2 rounded-3xl py-5 px-4">
-                <span className="leading-normal font-extrabold text-xl text-zinc-700">Bem-vindo(a) a <span className="text-text-secundary font-extrabold">English Onboard!</span> Antes das lições, vamos cadastrar o seu perfil para personalizar a sua experiência de aprendizado.</span>
+                <span className="leading-normal font-extrabold text-xl text-zinc-700">{t("welcome.title")}<span className="text-text-secundary font-extrabold">{t("welcome.subtitle")}</span> {t("welcome.description")}</span>
             </article>
 
             <section className="mt-10">

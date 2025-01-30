@@ -26,7 +26,7 @@ function CountrySelect() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const locale = useLocale();
-  const pathName = window.location.pathname;
+  const pathName =  window.location.pathname;
 
   const handleSelect = (country: countriesProps) => {
     setSelectedCountry(country);

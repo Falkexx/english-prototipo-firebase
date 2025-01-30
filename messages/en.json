@@ -1,7 +1,6 @@
 {
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page",
+    "title": "Take your English to new heights by boarding the English OnBoard crew! ",
     "startNow": "start Now",
     "accessAccount": "Access Account"
   },
@@ -26,64 +25,119 @@
     "subscribreBtn": "subscribe"
   },
 
-  "SignUpStages":{
+  
+    "SignUpStages": {
+      "YourPsswrd": {
+        "title": "Final step! Set a password for your account.",
+        "passwordLabel": "Your Password",
+        "confirmPasswordLabel": "Confirm Your Password"
+      },
+  
+      "welcome": {
+        "title": "Welcome to ",
+        "subtitle":"English Onboard!",
+        "description": "Before the lessons, let's sign up your data to personalize your learning experience."
+      },
+  
+      "englishLevel": {
+        "title": "Let's go! Select the one that represents your English level.",
+        "options": {
+          "beginner": "Beginner",
+          "someWords": "I know some words",
+          "easyConversation": "I can talk easily in English",
+          "advanced": "Advanced"
+        }
+      },
+  
+      "studyMotivation": {
+        "title": "Why do you like to study English?",
+        "options": {
+          "fun": "Just for fun",
+          "career": "Improve my career",
+          "trips": "Trips and Tourism",
+          "others": "Others"
+        }
+      },
+  
+      "skillsToImprove": {
+        "title": "Which ability do you want to improve?",
+        "options": {
+          "allSkills": "All abilities",
+          "grammar": "Grammar",
+          "conversation": "Conversation",
+          "listening": "Listening",
+          "writing": "Writing",
+          "reading": "Reading"
+        }
+      },
 
-    "0":"Welcome to English OnBoard!. Before the Leassons, let's Sign up your datas to personalize your Learning experience.",
+      "SignUpConclusion": {
+        "welcome": "Welcome aboard!",
+        "allSet": "All set!",
+        "startJourney": "Let’s start your learning journey!"
+      },
+  
+      "learningChallenges": {
+        "title": "What is your learning's biggest difficulty?",
+        "options": {
+          "noTime": "I don't have time",
+          "lackMotivation": "I can't stay motivated",
+          "noMemory": "I can't memorize",
+          "pronunciation": "I have difficulty pronouncing some words",
+          "grammarDifficulty": "I have difficulty with grammar",
+          "studyPartners": "I have difficulty meeting new study partners"
+        }
+      },
+  
+      "age": {
+        "title": "What's your age?",
+        "options": {
+          "under18": "Less than 18 years old",
+          "18to24": "18-24 years old",
+          "25to34": "25-34 years old",
+          "35to44": "35-44 years old",
+          "45to54": "45-54 years old",
+          "over54": "More than 54 years old"
+        }
+      },
+  
+      "studyTime": {
+        "title": "How much time do you want to study every day?",
+        "options": {
+          "10min": "10 minutes per day",
+          "15min": "15 minutes per day",
+          "30min": "30 minutes per day",
+          "60min": "60 minutes per day"
+        }
+      },
+  
+      "conclusion": {
+        "title": "Well done! Your learning routine is done! Now we'll create your account to save your progress.",
+        "actionButton": "Create my account"
+      },
+  
+      "name": {
+        "title": "First of all, how can we call you?",
+        "inputLabel": "Your Name"
+      },
+  
+      "email": {
+        "title": "Thanks, ",
+        "emailPrompt": "Now what's your email address?",
+        "inputLabel": "Your Email"
+      },
 
-    "1":"Let's go! Select the one that represents your English level.",
-    "1.1":"Beginner",
-    "1.2":"I know some words",
-    "1.3":"I can talk easyly in english",
-    "1.4":"Advanced",
 
-
-    "2":"Why do you like to study english?",
-    "2.1":"Just for fun",
-    "2.2":"Improve my career",
-    "2.3":"Trips and Turism",
-    "2.4":"Others",
-
-    "3":"Wich ability you want to improve?",
-    "3.1":"All abilitys",
-    "3.2":"Gramatic",
-    "3.3":"Conversation",
-    "3.4":"Listening",
-    "3.5":"Writing",
-    "3.6":"Reading",
-
-    "4":"What is your learning most difficulty?",
-    "4.1":"I don't have time",
-    "4.2":"I can't stay motivated",
-    "4.3":"I can't memorize",
-    "4.4":"I have difficulty to pronounce some words",
-    "4.5":"I have difficulty with gramatics",
-    "4.6":"I have difficulty to meet new study partners",
-
-    "5":"What's your age?",
-    "5.1":"Less than 18 years old",
-    "5.2":"18-24 years old",
-    "5.3":"25-34 years old",
-    "5.4":"33-44 years old",
-    "5.5":"45-54 years old",
-    "5.6":"More than 54 years old",
-
-    "6":"How much time do you want to study everyday",
-    "6.1":"10 minutes per day",
-    "6.2":"15 minutes per day",
-    "6.3":"30 minutes per day",
-    "6.4":"60 minutes per day",
-
-
-    "7":"Well done! Your learning routine is done! Now we'll create your account to save your progress",
-    "7.1":"Create my account",
-
-    "8":"First of all, how can we call you?",
-    "8.1":"Your Name",
-
-    "9":"Thanks, ",
-    "9.01":"Now whats is your Email Adress?",
-    "9.1":"Your Email"
-    
-  }
+      "AvanceBtn": {
+        "start": "Start",
+        "enter": "Log in",
+        "createAccount": "Create my account",
+        "continue": "Continue",
+        "accessPlatform": "Access the platform",
+        "finish": "Finish",
+        "advance": "Advance"
+      }
+    }
+  
 
 }

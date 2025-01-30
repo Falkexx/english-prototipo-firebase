@@ -1,12 +1,16 @@
 "use-client"
 
 import { useState } from "react";
+import {useTranslations} from 'next-intl';
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
+
 
 function Age() {
 
     const [SelectedReason, setSelectedReason] = useState(null);
+
+    const t = useTranslations('SignUpStages');
 
     function HandleClick(index: any) {
         setSelectedReason(index);
@@ -14,22 +18,22 @@ function Age() {
 
     const Options = [
         {
-            Title: "Menor de 18 anos",
+            Title: t('age.options.under18'),
         },
         {
-            Title: "18 - 24 anos",
+            Title: t('age.options.18to24'),
         },
         {
-            Title: "25 - 34 anos",
+            Title: t('age.options.25to34'),
         },
         {
-            Title: "35 - 44 anos",
+            Title: t('age.options.35to44'),
         },
         {
-            Title: "45 - 54 anos",
+            Title: t('age.options.45to54'),
         },
         {
-            Title: "Maior de 55 anos",
+            Title: t('age.options.over54'),
         }
     ];
 
@@ -44,7 +48,7 @@ function Age() {
                     <Image src={RightSmallDuck} alt="Patinho" />
 
                     <article className="bg-zinc-50 p-5 border-2 border-zinc-100 rounded-3xl">
-                        <span className="text-lg font-extrabold text-zinc-800">Qual é a sua idade?</span>
+                        <span className="text-lg font-extrabold text-zinc-800">{t('age.title')}</span>
                     </article>
 
                 </section>

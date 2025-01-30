@@ -1,6 +1,7 @@
 "use-client"
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
 import LevelBar1 from '@/Midias/LevelsIcons/progress-bar-var1.svg';
@@ -11,25 +12,27 @@ import LevelBar4 from '@/Midias/LevelsIcons/progress-bar-var4.svg';
 function Index() {
     const [SelectedItem, setSelectedItem] = useState(null);
 
+    const t = useTranslations('SignUpStages')
+
     function HandleClick(index:any){
         setSelectedItem(index);
     };
 
     const LevelOptions = [
         {
-            Title: "Estou apenas começando a aprender Inglês",
+            Title: t('englishLevel.options.beginner'),
             Icon: LevelBar1,
         },
         {
-            Title: "Conheço algumas palavras e frases",
+            Title: t('englishLevel.options.someWords'),
             Icon: LevelBar2,
         },
         {
-            Title: "Consigo ter conversações simples",
+            Title: t('englishLevel.options.easyConversation'),
             Icon: LevelBar3,
         },
         {
-            Title: "Posso me comunicar em nível intermediário ou superior",
+            Title: t('englishLevel.options.advanced'),
             Icon: LevelBar4,
         },
     ];
@@ -42,7 +45,7 @@ function Index() {
                 <section className="flex flex-row items-center">
                 <Image src={RightSmallDuck} alt="Patinho" />
                     <article className="bg-zinc-50 p-5 border-2 border-zinc-100 rounded-3xl">
-                        <span className="text-lg font-extrabold text-zinc-800">Vamos começar! Qual é o seu nível atual de Inglês?</span>
+                        <span className="text-lg font-extrabold text-zinc-800">{t('englishLevel.title')}</span>
                     </article>
                 </section>
 

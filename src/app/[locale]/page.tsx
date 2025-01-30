@@ -1,9 +1,7 @@
 import Header from "@/Components/Header";
-import Image from "next/image";
 import Hero from '@/ComponentsPage/Hero'
 import CTA_Buttons from "../../ComponentsPage/CTA_Buttons";
 import {useTranslations} from 'next-intl';
-import {Link} from '@/i18n/routing';
 
 
 

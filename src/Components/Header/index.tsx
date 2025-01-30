@@ -1,21 +1,21 @@
 import Image from "next/image";
 import LogoMobile from '@/Midias/LogoMobile.svg'
-
+import FlagSelector from "@/app/[locale]/Home/Components/FlagSelector"
 function Header() {
     return (
 
-        <>
-            <header className="w-full h-20 flex flex-col justify-center items-center border border-b-2 ">
+<>
+  <header className="w-full h-20 flex items-center border-b-2 px-4">
+    <div className="flex-1 flex justify-center">
+      <Image src={LogoMobile} alt="Logo" />
+    </div>
 
-                <nav>
+    <div className="ml-auto">
+      <FlagSelector />
+    </div>
+  </header>
+</>
 
-                    <Image src={LogoMobile} alt="Logo" />
-
-                </nav>
-
-            </header>
-
-        </>
     );
 }
 

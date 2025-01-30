@@ -112,27 +112,32 @@ const handleSignUp = async () => {
   }
 };
 
-  return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <main
-          className={`p-4 ${
-            stages[progressBar].container
-              ? "h-[calc(100vh-15vh)]"
-              : "min-h-screen"
-          } flex flex-col justify-between gap-5`}
-        >
+return (
+  <>
+    {loading ? (
+      <Loading />
+    ) : (
+      <main
+        className={`${
+          progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION
+            ? "flex justify-center items-center h-screen"
+            : `p-4 ${
+                stages[progressBar].container
+                  ? "h-[calc(100vh-15vh)]"
+                  : "min-h-screen"
+              } flex flex-col justify-between gap-5`
+        }`}
+      >
+        {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
           <HeaderCadastros
             BackFunction={handleBack}
             ProgressBarStatus={progressBar}
           />
-          <Container>{stages[progressBar].component}</Container>
+        )}
 
-          {progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION ? "" : (
+        <Container>{stages[progressBar].component}</Container>
 
-
+        {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
           <AvanceBtn
             AvanceFunction={
               progressBar === SIGNUP_STAGES.PASSWORD
@@ -141,9 +146,11 @@ const handleSignUp = async () => {
             }
             ProgressStatus={progressBar}
           />
-          ) }
-        </main>
-      )}
-    </>
-  );
+        )}
+      </main>
+    )}
+  </>
+);
+
+
 }

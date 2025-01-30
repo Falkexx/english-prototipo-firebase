@@ -4,9 +4,14 @@ import React, { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import LeftDuck from '@/Midias/LeftDuck.svg'
 import Image from "next/image";
+import {useTranslations} from 'next-intl';
+
 
 function AlternativesConclusion() {
     const [showConfetti, setShowConfetti] = useState(false);
+
+    const t = useTranslations('SignUpStages');
+
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     useEffect(() => {
@@ -41,7 +46,7 @@ function AlternativesConclusion() {
             <main className="w-full flex flex-col justify-center items-center gap-4">
 
                 <div className="w-[358px] h-[168px] p-5 rounded-3xl border-2 border-zinc-200 justify-center items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-center text-zinc-800 text-xl font-bold font-['Nunito'] leading-loose">Uhuuul! Sua rotina de aprendizado está pronta! Agora, vamos criar sua conta para salvar seu progresso.</div>
+                    <div className="grow shrink basis-0 text-center text-zinc-800 text-xl font-bold font-['Nunito'] leading-loose">{t('conclusion.title')}</div>
                 </div>
 
 

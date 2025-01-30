@@ -1,6 +1,7 @@
 "use-client"
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
 
@@ -8,28 +9,30 @@ function Difficulty() {
 
     const [SelectedReason, setSelectedReason] = useState(null);
 
+    const t = useTranslations('SignUpStages')
+
     function HandleClick(index: any) {
         setSelectedReason(index);
     };
 
     const Options = [
         {
-            Title: "Pouco tempo livre",
+            Title: t('learningChallenges.options.noTime'),
         },
         {
-            Title: "Me manter motivado(a)",
+            Title: t('learningChallenges.options.lackMotivation'),
         },
         {
-            Title: "Dificuldade em memorizar",
+            Title: t('learningChallenges.options.noMemory'),
         },
         {
-            Title: "Dificuldade na pronunciação",
+            Title: t('learningChallenges.options.pronunciation'),
         },
         {
-            Title: "Dificuldade na gramática",
+            Title: t('learningChallenges.options.grammarDifficulty'),
         },
         {
-            Title: "Encontrar parceiros de estudo",
+            Title: t('learningChallenges.options.studyPartners'),
         }
     ];
 
@@ -44,7 +47,7 @@ function Difficulty() {
                     <Image src={RightSmallDuck} alt="Patinho" />
 
                     <article className="bg-zinc-50 p-5 border-2 border-zinc-100 rounded-3xl">
-                        <span className="text-lg font-extrabold text-zinc-800">Qual é a sua maior dificuldade de aprendizado?</span>
+                        <span className="text-lg font-extrabold text-zinc-800">{t('learningChallenges.title')}</span>
                     </article>
 
                 </section>

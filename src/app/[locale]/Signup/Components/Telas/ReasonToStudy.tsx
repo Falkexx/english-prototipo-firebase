@@ -1,6 +1,7 @@
 "use-client"
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
 import Icon1 from '@/Midias/ReasonToStudyIcons/image 1.png';
@@ -12,25 +13,27 @@ function ReasonToStudy() {
 
     const [SelectedReason, setSelectedReason] = useState(null);
 
+    const t = useTranslations('SignUpStages')
+
     function HandleClick(index: any) {
         setSelectedReason(index);
     };
 
     const Options = [
         {
-            Title: "Apenas por diversão",
+            Title: t("studyMotivation.options.fun"),
             Icon: Icon1,
         },
         {
-            Title: "Melhorar minha carreira",
+            Title: t("studyMotivation.options.trips"),
             Icon: Icon2,
         },
         {
-            Title: "Viagens e Turismo",
+            Title: t("studyMotivation.options.career"),
             Icon: Icon3,
         },
         {
-            Title: "Outros motivos",
+            Title: t("studyMotivation.options.others"),
             Icon: Icon4,
         },
     ];

@@ -1,6 +1,7 @@
 "use-client"
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
 import Icon1 from '@/Midias/Clocks/5min.svg'
@@ -12,25 +13,27 @@ function TimeToStudy() {
 
     const [SelectedReason, setSelectedReason] = useState(null);
 
+    const t = useTranslations('SignUpStages')
+
     function HandleClick(index: any) {
         setSelectedReason(index);
     };
 
     const Options = [
         {
-            Title: "10 minutos por dia",
+            Title: t('studyTime.options.10min'),
             Icon: Icon1,
         },
         {
-            Title: "15 minutos por dia",
+            Title: t('studyTime.options.15min'),
             Icon: Icon2,
         },
         {
-            Title: "30 minutos por dia",
+            Title: t('studyTime.options.30min'),
             Icon: Icon3,
         },
         {
-            Title: "60 minutos por dia",
+            Title: t('studyTime.options.60min'),
             Icon: Icon4,
         },
     ];
@@ -46,7 +49,7 @@ function TimeToStudy() {
                     <Image src={RightSmallDuck} alt="Patinho" />
 
                     <article className="bg-zinc-50 p-5 border-2 border-zinc-100 rounded-3xl">
-                        <span className="text-lg font-extrabold text-zinc-800">Agora, quanto tempo você planeja estudar por dia?</span>
+                        <span className="text-lg font-extrabold text-zinc-800">{t('studyTime.title')}</span>
                     </article>
 
                 </section>

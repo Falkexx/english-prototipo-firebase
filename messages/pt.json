@@ -1,31 +1,139 @@
 {
   "HomePage": {
+    "title": "Decole o seu nível de Inglês embarcando na tripulação da English OnBoard",
     "startNow": "Comece agora",
     "accessAccount": "Acessar conta"
   },
 
+  "NotAuthenticaded": {
+    "title": "Oh, você não está autenticado(a)!",
+    "subtitle": "Volte para a página de Login e acesse.",
+    "CTABtn": "Ir para tela de Login"
+  },
+
   "LoginPage": {
-  "title": "Bem-vindo de volta!",
-  "subtitle": "preencha o formulário com seus dados de Login",
-  "emailabel": "Seu Email",
-  "passwordlabel": "Sua Senha",
-  "forgotpassword": "Recuperar senha",
-  "loginBtn": "Entrar"
-},
+    "title": "Bem-vindo de volta!",
+    "subtitle": "Preencha o formulário com seus dados de login",
+    "emailLabel": "Seu Email",
+    "passwordLabel": "Sua Senha",
+    "forgotPassword": "Recuperar senha",
+    "loginBtn": "Entrar"
+  },
 
-"NotAuthenticaded":{
-  "title": "Oh, Você não está autenticado(a)!",
-  "subtitle":"Volte para página de Login. E acesse.",
-  "CTABtn": "Ir para tela de Login"
-},
+  "LoggedHome": {
+    "SubscribeContainer": "Desbloqueie todos os cursos da plataforma!",
+    "subscribeBtn": "Assinar"
+  },
 
-"LoggedHome": {
+  "SignUpStages": {
+    "welcome": {
+      "title": "Bem-vindo(a) a ",
+      "subtitle": "English Onboard!",
+      "description": "Antes das lições, vamos cadastrar o seu perfil para personalizar a sua experiência de aprendizado"
+    },
 
-  "SubscribeContainer": "Desbloqueie todos os cursos da plataforma",
-  "subscribreBtn": "assinar"
-}
+    "YourPsswrd": {
+      "title": "Final step! Set a password for your account.",
+      "passwordLabel": "Your Password",
+      "confirmPasswordLabel": "Confirm Your Password"
+    },
 
+    "englishLevel": {
+      "title": "Vamos lá! Selecione o nível de inglês que melhor representa você.",
+      "options": {
+        "beginner": "Iniciante",
+        "someWords": "Conheço algumas palavras",
+        "easyConversation": "Consigo conversar facilmente em inglês",
+        "advanced": "Avançado"
+      }
+    },
 
+    "studyMotivation": {
+      "title": "Por que você quer estudar inglês?",
+      "options": {
+        "fun": "Apenas por diversão",
+        "career": "Melhorar minha carreira",
+        "trips": "Viagens e turismo",
+        "others": "Outros"
+      }
+    },
 
-  
+    "skillsToImprove": {
+      "title": "Qual habilidade você quer melhorar?",
+      "options": {
+        "allSkills": "Todas as habilidades",
+        "grammar": "Gramática",
+        "conversation": "Conversação",
+        "listening": "Audição",
+        "writing": "Escrita",
+        "reading": "Leitura"
+      }
+    },
+
+    "learningChallenges": {
+      "title": "Qual é a sua maior dificuldade no aprendizado?",
+      "options": {
+        "noTime": "Não tenho tempo",
+        "lackMotivation": "Não consigo me manter motivado(a)",
+        "noMemory": "Tenho dificuldade em memorizar",
+        "pronunciation": "Tenho dificuldade em pronunciar algumas palavras",
+        "grammarDifficulty": "Tenho dificuldade com gramática",
+        "studyPartners": "Tenho dificuldade em encontrar parceiros de estudo"
+      }
+    },
+
+    "age": {
+      "title": "Qual é a sua idade?",
+      "options": {
+        "under18": "Menos de 18 anos",
+        "18to24": "18-24 anos",
+        "25to34": "25-34 anos",
+        "35to44": "35-44 anos",
+        "45to54": "45-54 anos",
+        "over54": "Mais de 54 anos"
+      }
+    },
+
+    "studyTime": {
+      "title": "Quanto tempo você quer estudar por dia?",
+      "options": {
+        "10min": "10 minutos por dia",
+        "15min": "15 minutos por dia",
+        "30min": "30 minutos por dia",
+        "60min": "60 minutos por dia"
+      }
+    },
+
+    "conclusion": {
+      "title": "Parabéns! Sua rotina de aprendizado está pronta! Agora, vamos criar sua conta para salvar seu progresso.",
+      "actionButton": "Criar minha conta"
+    },
+
+    "SignUpConclusion": {
+      "welcome": "Bem-vindo a bordo!",
+      "allSet": "Tudo pronto!",
+      "startJourney": "Vamos começar sua jornada de aprendizado!"
+    },
+
+    "name": {
+      "title": "Primeiro, como podemos te chamar?",
+      "inputLabel": "Seu Nome"
+    },
+
+    "email": {
+      "title": "Obrigado, ",
+      "emailPrompt": "Agora, qual é o seu endereço de e-mail?",
+      "inputLabel": "Seu Email"
+    },
+
+    "AvanceBtn": {
+      "start": "Iniciar",
+      "enter": "Entrar",
+      "createAccount": "Criar minha conta",
+      "continue": "Continuar",
+      "accessPlatform": "Acessar a plataforma",
+      "finish": "Finalizar",
+      "advance": "Avançar"
+    }
+  }
 }

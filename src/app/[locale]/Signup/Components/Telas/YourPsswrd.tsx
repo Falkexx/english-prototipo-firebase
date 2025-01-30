@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Eyes from "@/Midias/eye-off.png";
 import OpenedEyes from "@/Midias/Icons/eye.svg";
@@ -12,6 +13,9 @@ interface YourPsswrdProps {
 }
 
 function YourPsswrd({ onPasswordChange, onConfirmPasswordChange }: YourPsswrdProps) {
+
+  const t = useTranslations('SignUpStages')
+  
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = useState(false);
 
@@ -26,12 +30,12 @@ function YourPsswrd({ onPasswordChange, onConfirmPasswordChange }: YourPsswrdPro
   return (
     <section className="flex flex-col gap-14 mt-6">
       <h1 className="text-zinc-800 text-xl font-bold font-['Nunito'] leading-loose">
-        Última etapa! Defina uma senha de acesso para sua conta.
+        {t('YourPsswrd.title')}
       </h1>
 
       <form className="flex flex-col">
         {/* Campo da Senha */}
-        <label className="labelDef">Sua Senha</label>
+        <label className="labelDef">{t('YourPsswrd.passwordLabel')}</label>
         <div className="relative">
           {/* Ícone do Cadeado (fixo) */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -53,7 +57,7 @@ function YourPsswrd({ onPasswordChange, onConfirmPasswordChange }: YourPsswrdPro
         </div>
 
         {/* Campo de Confirmação da Senha */}
-        <label className="labelDef mt-14">Confirme sua Senha</label>
+        <label className="labelDef mt-14">{t('YourPsswrd.confirmPasswordLabel')}</label>
         <div className="relative">
           {/* Ícone do Cadeado (fixo) */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">

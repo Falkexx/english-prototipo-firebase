@@ -1,6 +1,7 @@
 "use-client"
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import RightSmallDuck from '@/Midias/RightSmallDuck.svg';
 
@@ -8,28 +9,30 @@ function Skills() {
 
     const [SelectedReason, setSelectedReason] = useState(null);
 
+    const t = useTranslations('SignUpStages')
+
     function HandleClick(index: any) {
         setSelectedReason(index);
     };
 
     const Options = [
         {
-            Title: "Todas as Habilidades",
+            Title: t('skillsToImprove.options.allSkills'),
         },
         {
-            Title: "Gramática",
+            Title: t('skillsToImprove.options.grammar'),
         },
         {
-            Title: "Conversação",
+            Title: t('skillsToImprove.options.conversation'),
         },
         {
-            Title: "Ouvir",
+            Title: t('skillsToImprove.options.listening'),
         },
         {
-            Title: "Escrever",
+            Title: t('skillsToImprove.options.writing'),
         },
         {
-            Title: "Leitura",
+            Title: t('skillsToImprove.options.reading'),
         }
     ];
 
@@ -44,7 +47,7 @@ function Skills() {
                     <Image src={RightSmallDuck} alt="Patinho" />
 
                     <article className="bg-zinc-50 p-5 border-2 border-zinc-100 rounded-3xl">
-                        <span className="text-lg font-extrabold text-zinc-800">Em qual habilidade você tem interesse em aprimorar?</span>
+                        <span className="text-lg font-extrabold text-zinc-800">{t('skillsToImprove.title')}</span>
                     </article>
 
                 </section>
