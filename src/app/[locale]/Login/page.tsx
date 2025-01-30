@@ -66,7 +66,7 @@ function Page() {
           >
             <section className="flex flex-col gap-2 ">
               <label className="labelDef" htmlFor="Email">
-                {t("emailabel")}
+                {t("emailLabel")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center">
@@ -84,7 +84,7 @@ function Page() {
               </div>
 
               <label className="labelDef mt-6" htmlFor="password">
-                {t("passwordlabel")}
+                {t("passwordLabel")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center">
@@ -108,7 +108,7 @@ function Page() {
                   href={"/Login/Recoverpassword"}
                   className="text-[#f14968] text-base font-medium font-['Nunito'] leading-normal"
                 >
-                  {t("forgotpassword")}
+                  {t("forgotPassword")}
                 </Link>
               </div>
             </section>

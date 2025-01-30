@@ -6,8 +6,8 @@ import NewPasswordContainer from "./components/NewPasswordContainer";
 import TokenContainer from "./components/TokenContaier";
 import SucefullScreen from "./components/SucefullScreen";
 
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useRouter } from "@/i18n/routing";
 
 function Recoverpassword() {
   const [progressBar, setProgressBar] = useState(0);
