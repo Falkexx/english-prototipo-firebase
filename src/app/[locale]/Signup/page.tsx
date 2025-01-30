@@ -2,9 +2,10 @@
 
 import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { SIGNUP_STAGES } from "./utils/stages";
+import { AuthContext } from "@/contexts/AuthContext";
 import useValidation from "./hooks/useValidation";
 import Container from "./Components/Container";
-import { SIGNUP_STAGES } from "./utils/stages";
 import BemVindo from "./Components/Telas/Welcome";
 import HeaderCadastros from "./Components/Header";
 import AvanceBtn from "./Components/AvanceBtn";
@@ -18,9 +19,9 @@ import SignUpConclusion from "./Components/Telas/SignUpConclusion";
 import YourName from "./Components/Telas/YourName";
 import YourEmail from "./Components/Telas/YourEmail";
 import YourPsswrd from "./Components/Telas/YourPsswrd";
-import Loading from "./Components/Telas/Loading";
+import Loading from "@/Components/UI/LoginLoading";
 import AlternativesConclusion from "./Components/Telas/AlternativesConclusion";
-import { AuthContext } from "@/contexts/AuthContext";
+
 
 export default function Index() {
   const [progressBar, setProgressBar] = useState(SIGNUP_STAGES.WELCOME);
@@ -94,19 +95,22 @@ export default function Index() {
     }
   };
 
-  const handleSignUp = async () => {
-    if (!name || !email || !password) return;
+const handleSignUp = async () => {
+  if (!name || !email || !password) return;
 
-    setLoading(true);
-    try {
-      await signUp({ name, email, password, country: "Brazil" });
-      setProgressBar(SIGNUP_STAGES.SIGNUP_CONCLUSION);
-    } catch (error) {
-      console.error("Erro ao se cadastrar:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setProgressBar(SIGNUP_STAGES.LOADING); // Exibe a tela de loading
+  setLoading(true);
+
+  try {
+    await signUp({ name, email, password, country: "Brazil" });
+    setProgressBar(SIGNUP_STAGES.SIGNUP_CONCLUSION); // Vai direto para a conclusão
+  } catch (error) {
+    console.error("Erro ao se cadastrar:", error);
+    setProgressBar(SIGNUP_STAGES.PASSWORD); // Retorna para a tela de senha em caso de erro
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <>
@@ -127,7 +131,7 @@ export default function Index() {
           <Container>{stages[progressBar].component}</Container>
           <AvanceBtn
             AvanceFunction={
-              progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION
+              progressBar === SIGNUP_STAGES.PASSWORD
                 ? handleSignUp
                 : handleNextStage
             }

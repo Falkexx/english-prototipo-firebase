@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ExercisesArray } from "@/Types/exercisies";
 import ExerciciesProgressBar from "../../components/ExerciciesProgressBar";
 import VerticalFillbox from "../../components/exerciciesComponents/VerticalFillbox";
 import CorrectAnswer from "../../components/exerciciesComponents/CorrectAnswer";
@@ -9,7 +10,6 @@ import Alternatives from "../../components/exerciciesComponents/Alternatives";
 import FillboxWithOptions from "../../components/exerciciesComponents/FillboxWithOptions";
 import HorizontalFillbox from "../../components/exerciciesComponents/HorizontalFillbox";
 import ShowStatisticsComponent from "../../components/exerciciesComponents/ShowStatistics";
-import { ExercisesArray } from "@/Types/exercisies";
 
 function Page() {
   

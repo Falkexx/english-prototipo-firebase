@@ -11,30 +11,16 @@ interface YourPsswrdProps {
   onConfirmPasswordChange: (confirmPassword: string) => void;
 }
 
-function YourPsswrd({
-  onPasswordChange,
-  onConfirmPasswordChange,
-}: YourPsswrdProps) {
+function YourPsswrd({ onPasswordChange, onConfirmPasswordChange }: YourPsswrdProps) {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
-  const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
-    useState(false);
+  const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = useState(false);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onPasswordChange(e.target.value);
   };
 
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onConfirmPasswordChange(e.target.value);
-  };
-
-  const handleShowPassword = () => {
-    setIsVisiblePassword(!isVisiblePassword);
-  };
-
-  const handleShowConfirmPassword = () => {
-    setIsVisibleConfirmPassword(!isVisibleConfirmPassword);
   };
 
   return (
@@ -44,46 +30,46 @@ function YourPsswrd({
       </h1>
 
       <form className="flex flex-col">
+        {/* Campo da Senha */}
         <label className="labelDef">Sua Senha</label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center">
-            {isVisiblePassword ? (
-              <Image src={Lock} alt="Lock Icon" width={20} height={20} />
-            ) : (
-              <Image src={OpenedEyes} alt="Lock Icon" width={20} height={20} />
-            )}
+          {/* Ícone do Cadeado (fixo) */}
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <Image src={Lock} alt="Lock Icon" width={20} height={20} />
           </div>
+          {/* Ícone do Olho (muda ao clicar) */}
           <div
-            className="absolute inset-y-0 right-0 flex items-center"
-            onClick={handleShowPassword}
+            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+            onClick={() => setIsVisiblePassword(!isVisiblePassword)}
           >
-            <Image src={Eyes} alt="Eye Icon" width={20} height={20} />
+            <Image src={isVisiblePassword ? OpenedEyes : Eyes} alt="Eye Icon" width={20} height={20} />
           </div>
+          {/* Input da Senha */}
           <input
             type={isVisiblePassword ? "text" : "password"}
-            className="inputDef px-7 w-full"
+            className="inputDef px-10 w-full"
             onChange={handlePasswordChange}
           />
         </div>
 
+        {/* Campo de Confirmação da Senha */}
         <label className="labelDef mt-14">Confirme sua Senha</label>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center">
+          {/* Ícone do Cadeado (fixo) */}
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <Image src={Lock} alt="Lock Icon" width={20} height={20} />
           </div>
+          {/* Ícone do Olho (muda ao clicar) */}
           <div
-            className="absolute inset-y-0 right-0 flex items-center"
-            onClick={handleShowConfirmPassword}
+            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+            onClick={() => setIsVisibleConfirmPassword(!isVisibleConfirmPassword)}
           >
-            {isVisibleConfirmPassword ? (
-              <Image src={Eyes} alt="Eye Icon" width={20} height={20} />
-            ) : (
-              <Image src={OpenedEyes} alt="Eye Icon" width={20} height={20} />
-            )}
+            <Image src={isVisibleConfirmPassword ? OpenedEyes : Eyes} alt="Eye Icon" width={20} height={20} />
           </div>
+          {/* Input de Confirmação da Senha */}
           <input
             type={isVisibleConfirmPassword ? "text" : "password"}
-            className="inputDef px-7 w-full"
+            className="inputDef px-10 w-full"
             onChange={handleConfirmPasswordChange}
           />
         </div>
