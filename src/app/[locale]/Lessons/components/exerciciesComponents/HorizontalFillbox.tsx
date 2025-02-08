@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+'use client'
+import React, { useState, useEffect, useRef } from "react";
 import AudioIcon from "@/Midias/Icons/AudioIcon.svg";
+import PauseIcon from "@/Midias/Icons/audioPause.svg";
 import Image from "next/image";
+
 interface HorizontalFillboxProps {
   title: string;
   question: string; // Frase com placeholders ($)
@@ -24,42 +27,49 @@ function HorizontalFillbox({
     Array(placeholdersCount).fill("")
   );
   const [isPlaying, setIsPlaying] = useState(false); // Controle do áudio
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Reseta estado quando props mudam
   useEffect(() => {
-    setAvailableSuggestions(suggestions); // Reseta sugestões disponíveis
-    setFilledBoxes(Array(placeholdersCount).fill("")); // Esvazia as caixas preenchidas
+    setAvailableSuggestions(suggestions);
+    setFilledBoxes(Array(placeholdersCount).fill(""));
   }, [suggestions, question]);
 
   const handleSuggestionClick = (suggestion: string) => {
-    const emptyIndex = filledBoxes.findIndex((box) => box === ""); // Encontra a primeira caixa vazia
+    const emptyIndex = filledBoxes.findIndex((box) => box === "");
     if (emptyIndex !== -1) {
       const updatedBoxes = [...filledBoxes];
-      updatedBoxes[emptyIndex] = suggestion; // Preenche a caixa
+      updatedBoxes[emptyIndex] = suggestion;
       setFilledBoxes(updatedBoxes);
       setAvailableSuggestions(
-        availableSuggestions.filter((s) => s !== suggestion) // Remove a sugestão das disponíveis
+        availableSuggestions.filter((s) => s !== suggestion)
       );
     }
   };
 
   const handleBoxClick = (index: number) => {
     const updatedBoxes = [...filledBoxes];
-    const removedSuggestion = updatedBoxes[index]; // Pega a palavra removida
-    updatedBoxes[index] = ""; // Esvazia a caixa
+    const removedSuggestion = updatedBoxes[index];
+    updatedBoxes[index] = "";
     setFilledBoxes(updatedBoxes);
-    setAvailableSuggestions([...availableSuggestions, removedSuggestion]); // Adiciona a sugestão de volta
+    setAvailableSuggestions([...availableSuggestions, removedSuggestion]);
   };
 
-  const playAudio = () => {
+  const toggleAudio = () => {
     if (!audioUrl) return;
-    const audio = new Audio(audioUrl);
-    setIsPlaying(true);
-    audio.play();
-    audio.onended = () => setIsPlaying(false); // Para o controle do áudio quando terminar
+
+    if (!audioRef.current) {
+      audioRef.current = new Audio(audioUrl);
+      audioRef.current.onended = () => setIsPlaying(false);
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
   };
 
-  // Substitui os "$" na questão pelo componente de preenchimento
   const renderedQuestion = question.split("$").map((segment, index) => (
     <React.Fragment key={index}>
       {segment}
@@ -78,38 +88,34 @@ function HorizontalFillbox({
 
   return (
     <section className="w-full mt-4">
-      {/* Título do exercício */}
       <article className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose">
         <h1>{title}</h1>
       </article>
 
-      {/* Imagem */}
       {imgUrl && (
         <div className="my-4">
           <img
-            src="https://i.ibb.co/2nLngFG/with-luggage-aircraft-crew-work-uniform-is-together-outdoors-near-plane-1.png"
+            src={imgUrl}
             alt="Exercise"
             className="w-full h-auto rounded-[10px] shadow border border-zinc-200"
           />
         </div>
       )}
 
-      {/* Botão de áudio */}
       {audioUrl && (
-        <button onClick={playAudio} className="">
-          <Image src={AudioIcon} alt="Icone" />
+        <button onClick={toggleAudio} className="flex items-center gap-2">
+          <Image src={isPlaying ? PauseIcon : AudioIcon} alt="Audio Icon" className="w-6 h-6" />
+          <span className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose">
+          </span>
         </button>
       )}
 
-      {/* Frase com os campos de preenchimento */}
       <p className="text-zinc-800 text-lg font-bold font-['Nunito'] leading-7 mt-4">
         {renderedQuestion}
       </p>
 
-      {/* Separador */}
       <div className="w-full h-[0px] border border-zinc-200 my-4"></div>
 
-      {/* Sugestões disponíveis */}
       <section className="h-auto px-4 py-4 rounded-[10px] border flex flex-wrap border-zinc-200 justify-start items-center gap-4 my-3">
         {availableSuggestions.map((suggestion, index) => (
           <div
@@ -122,9 +128,8 @@ function HorizontalFillbox({
         ))}
       </section>
 
-      {/* Botão para checar respostas */}
       <button
-        onClick={() => onCheckAnswers(filledBoxes)} // Passa respostas ao pai
+        onClick={() => onCheckAnswers(filledBoxes)}
         className="w-[100%] h-[58px] px-4 py-[18px] bg-[#f14968] rounded-[100px] shadow justify-center items-center gap-2.5 inline-flex"
       >
         <span className="grow shrink basis-0 text-center text-white text-base font-extrabold font-['Nunito'] leading-snug tracking-tight">

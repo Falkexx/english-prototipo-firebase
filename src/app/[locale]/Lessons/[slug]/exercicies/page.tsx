@@ -104,7 +104,7 @@ function Page() {
         "Today's weather is $ at departure and $ at arrival. The sky is $ now but will be $ later. We expect $ conditions during flight.",
       suggestions: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
       correct_answer: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
-      audio_url: "http://domain/image.png",
+      audio_url: "https://firebasestorage.googleapis.com/v0/b/englishboard-c566e.appspot.com/o/audios%2Fexercicios%2FtodayWeathersExe.mp3?alt=media&token=4625e64f-b865-4973-8e03-339a3a44f428",
     },
 
     {

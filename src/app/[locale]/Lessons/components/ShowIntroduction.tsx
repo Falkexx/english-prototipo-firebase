@@ -1,17 +1,36 @@
-import introductionImg from "@/Midias/introduction.svg";
+'use client'
+
 import IconAudio from "@/Midias/Icons/AudioIcon.svg";
+import PauseIcon from "@/Midias/Icons/audioPause.svg";
 import Image from "next/image";
 import NextIntroBtn from "@/app/[locale]/Lessons/components/NextIntroBtn";
 import IntroductionHeader from "./IntroductionHeader";
+import { useRef, useState } from "react";
+
 interface props {
   data: {
     id: string;
     description: string;
     imgUrl: string;
+    audioUrl: string;
   };
 }
 
 function ShowIntroduction({ data }: props) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <section>
       <div className="my-4">
@@ -26,7 +45,6 @@ function ShowIntroduction({ data }: props) {
 
       <article className="my-4">
         <img
-          className="w-full h-[217px] rounded-[10px] shadow border-2 border-[#f14968]"
           src={data.imgUrl}
           alt="Introduction Image"
         />
@@ -37,13 +55,13 @@ function ShowIntroduction({ data }: props) {
       </article>
 
       <article className="flex flex-row items-center gap-4 my-5">
-        {/* Quando o botão Play Text for clicado, chama a função playAudio */}
-        <button className="flex flex-row items-center gap-4">
-          <Image src={IconAudio} alt="Audio Icon" />
+        <button className="flex flex-row items-center gap-4" onClick={toggleAudio}>
+          <Image src={isPlaying ? PauseIcon : IconAudio} alt="Audio Icon" />
           <p className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose">
-            Play text
+            {isPlaying ? "Pause" : "Play text"}
           </p>
         </button>
+        <audio ref={audioRef} src={data.audioUrl} />
       </article>
 
       <NextIntroBtn HaveBreakDown={true} LessonID={"1"} />
