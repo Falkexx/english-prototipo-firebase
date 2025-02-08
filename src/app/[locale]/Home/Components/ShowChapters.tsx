@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import axios from "axios";
+//import { useState } from "react";
+//import axios from "axios";
 import { useQuery } from "react-query";
 import {useRouter} from '@/i18n/routing';
-import {Link} from '@/i18n/routing';
-import { useTranslations, useLocale } from 'next-intl';
+//import {Link} from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
 
 
