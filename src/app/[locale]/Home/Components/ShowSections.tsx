@@ -3,13 +3,26 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
-import axios from "axios";
 
 const fetchModulosData = async () => {
-  const data = await axios.get(
+  /*const data = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/section/all?take=10&skip=0`
   );
-  return data.data;
+  return data.data; ======== CHAMADA DA APIII CORRETAAAA ==========*/
+
+  //MOCKUP ABAIXO:
+
+    return [
+      {
+        id: "1",
+        name: "Aviação",
+        description: "Aprendendo sobre aviação",
+        achievement: "gold",
+        difficulty: "Easy",
+        image_url: "none",
+        exp_as_done: 10,
+      },
+    ];
 };
 
 function ShowSections({

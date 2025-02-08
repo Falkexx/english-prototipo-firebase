@@ -15,10 +15,32 @@ function ModuleContainer({
 
   // Função para buscar os módulos baseados no sectionId
   const fetchModulesBySection = async () => {
+
+
+    /**
+     
+
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/module/all?take=10&skip=0&sectionId=${sectionId}`
     );
     return data;
+
+     */
+
+
+    //MOCKUP ABAIXOOO ========
+
+    return [
+      {
+        id: "1",
+        name: "Learning fly",
+        description: "English for cabin crew",
+        difficulty: "Easy",
+        image_url: "...",
+        exp_as_done: 10
+      }
+    ]
+
   };
 
   const { data: modulesData = [], isLoading } = useQuery(

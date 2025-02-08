@@ -17,10 +17,33 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
 
   // Função para buscar os capítulos com base no moduleId
   const fetchChaptersByModule = async () => {
+
+    /*
+    
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/chapter/all?take=10&skip=0&moduleId=${moduleId}`
     );
     return data;
+    
+    */
+
+
+    //MOCKUP ABAIXO ====
+
+    return [
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      }
+    ]
+
+
   };
 
   // Função de redirecionamento
