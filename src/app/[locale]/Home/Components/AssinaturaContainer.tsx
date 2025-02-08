@@ -2,7 +2,6 @@ import Patinho from "@/Midias/var5 1.svg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
-import BottomHeader from "./BottomHeader";
 
 function AssinaturaContainer() {
   const t = useTranslations("LoggedHome");
@@ -20,7 +19,7 @@ function AssinaturaContainer() {
               href="/PaymentPage"
               className="text-center text-[#f14968] text-base font-extrabold font-['Nunito'] leading-snug"
             >
-              {t("subscribreBtn")}
+              {t("subscribeBtn")}
             </Link>
           </div>
 
