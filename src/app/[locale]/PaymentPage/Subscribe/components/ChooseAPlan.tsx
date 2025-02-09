@@ -9,15 +9,18 @@ function ChooseAPlan() {
     const [selectedPlan, setSelectedPlan] = useState<any>(null);
     const [planDetails, setPlanDetails] = useState<any>(null);
 
-    const { plans, isLoading, error } = GetPlans(); // Usando GetPlans para obter os planos
+    //const { plans, isLoading, error } = GetPlans(); // Usando GetPlans para obter os planos
+
+    const plans = GetPlans(); // Usando GetPlans para obter os planos
+
 
     const handleSelectPlan = (plan: any) => {
         setSelectedPlan(plan.unique_name);
         setPlanDetails(plan);
     };
 
-    if (isLoading) return <p>Carregando planos...</p>;
-    if (error) return <p>Erro ao carregar planos.</p>;
+    //if (isLoading) return <p>Carregando planos...</p>;
+    //if (error) return <p>Erro ao carregar planos.</p>;
 
     return (
         <section className="w-full flex flex-col gap-5 mt-5">

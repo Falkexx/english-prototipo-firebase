@@ -48,6 +48,7 @@ function Page() {
       type: "alternatives",
       title: "Who Does What?",
       description: "Who leads the pre-flight briefing?",
+      isOnRecheck: false,
       questions: [
         { letter: "A", question: "Chief Purser" },
         { letter: "B", question: "Captain" },
@@ -223,6 +224,7 @@ function Page() {
               questions={currentExercise.questions}
               correctAnswer={currentExercise.correct_answer}
               onCheckAnswers={handleCheckAnswers} // Valida respostas no tipo alternatives
+              isOnRecheck={currentExercise.isOnRecheck}
             />
           )}
 

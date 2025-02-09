@@ -10,14 +10,18 @@ type VerticalFillBoxExercise = {
   correct_answer: string[];
 };
 
-type AlternativesExercise = {
+export type AlternativesExercise = {
   id: string;
   type: "alternatives";
   title: string;
+  title_audio_url?:string
+  img_url:string
   description: string;
+  isOnRecheck: boolean
   questions: {
     letter: string;
     question: string;
+    question_audio_url?: string;
   }[];
   correct_answer: string; // Letra da resposta correta
 };
