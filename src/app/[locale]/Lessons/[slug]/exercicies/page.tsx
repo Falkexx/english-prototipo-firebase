@@ -12,8 +12,7 @@ import HorizontalFillbox from "../../components/exerciciesComponents/HorizontalF
 import ShowStatisticsComponent from "../../components/exerciciesComponents/ShowStatistics";
 
 function Page() {
-  
-  const exercicies:ExercisesArray = [
+  const exercicies: ExercisesArray = [
     {
       id: "1",
       type: "verticalFillBox",
@@ -47,16 +46,16 @@ function Page() {
       id: "2",
       type: "alternatives",
       title: "Who Does What?",
-      title_audio_url:"",
+      title_audio_url: "",
       description: "Who leads the pre-flight briefing?",
-      img_url:"",
+      img_url: "",
       isOnRecheck: false,
       questions: [
-        { letter: "A", question: "Chief Purser", question_audio_url:"" },
-        { letter: "B", question: "Captain", question_audio_url:"" },
-        { letter: "C", question: "Ground Staff", question_audio_url:"" },
-        { letter: "D", question: "Gallery Operator", question_audio_url:"" },
-        { letter: "E", question: "Aircraft Engineer", question_audio_url:"" },
+        { letter: "A", question: "Chief Purser", question_audio_url: "" },
+        { letter: "B", question: "Captain", question_audio_url: "" },
+        { letter: "C", question: "Ground Staff", question_audio_url: "" },
+        { letter: "D", question: "Gallery Operator", question_audio_url: "" },
+        { letter: "E", question: "Aircraft Engineer", question_audio_url: "" },
       ],
       correct_answer: "B", // Resposta correta
     },
@@ -107,7 +106,8 @@ function Page() {
         "Today's weather is $ at departure and $ at arrival. The sky is $ now but will be $ later. We expect $ conditions during flight.",
       suggestions: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
       correct_answer: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
-      audio_url: "https://firebasestorage.googleapis.com/v0/b/englishboard-c566e.appspot.com/o/audios%2Fexercicios%2FtodayWeathersExe.mp3?alt=media&token=4625e64f-b865-4973-8e03-339a3a44f428",
+      audio_url:
+        "https://firebasestorage.googleapis.com/v0/b/englishboard-c566e.appspot.com/o/audios%2Fexercicios%2FtodayWeathersExe.mp3?alt=media&token=4625e64f-b865-4973-8e03-339a3a44f428",
     },
 
     {
@@ -225,12 +225,14 @@ function Page() {
               description={currentExercise.description}
               questions={currentExercise.questions}
               correctAnswer={currentExercise.correct_answer}
-              onCheckAnswers={handleCheckAnswers} // Valida respostas no tipo alternatives
+              onCheckAnswers={handleCheckAnswers}
               isOnRecheck={currentExercise.isOnRecheck}
               img_url={currentExercise.img_url}
               title_audio_url={currentExercise.title_audio_url || ""}
-              question_audio_url={currentExercise.questions[0]?.question_audio_url || ""}
-              />
+              question_audio_url={
+                currentExercise.questions[0]?.question_audio_url || ""
+              }
+            />
           )}
 
           {currentExercise?.type === "fillboxWithOptions" && (
