@@ -9,7 +9,7 @@ function ExamsInstructions() {
   return (
     <section className="h-[calc(100vh-120px)] px-4">
 
-      <Header path="introduction" />
+      <Header path="introduction" currentTask={0} />
 
       <section className="h-full flex flex-col justify-between">
 
