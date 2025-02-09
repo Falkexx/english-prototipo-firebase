@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Header from "@/app/[locale]/Home/Components/Header";
 import Resume from "./Components/Resume";
@@ -7,30 +7,26 @@ import SucessPayment from "./Screens/SucessPayment";
 import { useState } from "react";
 import BottomHeader from "@/app/[locale]/Home/Components/BottomHeader";
 function index() {
+  const [Progress, setProgress] = useState(0);
 
-    const[Progress, setProgress] = useState(0)
+  function handleProgress() {
+    setProgress(Progress + 1);
+  }
+  return (
+    <>
+      <Header />
 
-    function handleProgress(){
+      <main className="px-4  flex flex-col justify-between">
+        {Progress == 0 ? <Resume /> : <SucessPayment />}
 
-        setProgress(Progress + 1)
+        <div className="my-10">
+          <Btn_continue handleProgress={handleProgress} />
+        </div>
+      </main>
 
-    }
-    return (
-        <>
-
-            <Header/>
-
-            <main className="px-4 h-[calc(100vh-30vh)] flex flex-col justify-between">
-
-                {Progress == 0 ? <Resume/> : <SucessPayment/>}
-                <Btn_continue handleProgress={handleProgress} />
-
-            </main>
-
-            <BottomHeader ActualPath="Plans"/>
-        
-        </>
-    );
+      <BottomHeader ActualPath="Plans" />
+    </>
+  );
 }
 
 export default index;

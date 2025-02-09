@@ -13,7 +13,7 @@ async function index() {
         <>
             <Header/>
 
-            <main className="px-4 h-[calc(100vh-30vh)]  flex flex-col justify-between">
+            <main className="px-4 flex flex-col justify-between">
                 <ChooseAPlan/>
             </main>
 
