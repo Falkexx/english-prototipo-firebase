@@ -90,6 +90,10 @@ function Page() {
     onCheckAnswers={handleCheckAnswers}
     isOnRecheck={currentExercise.isOnRecheck}
     img_url={currentExercise.img_url}
+    title_audio_url={currentExercise.title_audio_url || ""}
+    question_audio_url={
+      currentExercise.questions[0]?.question_audio_url || ""
+    }
   />
 )}
 
