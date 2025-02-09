@@ -30,6 +30,7 @@ function Alternatives({
   isOnRecheck,
   img_url,
   title_audio_url,
+  question_audio_url,
 }: AlternativesProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null); // Alternativa selecionada
   const [isPlaying, setIsPlaying] = useState(false); // Controle de reprodução do áudio
