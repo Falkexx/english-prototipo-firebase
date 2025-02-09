@@ -16,7 +16,7 @@ function EditBtns() {
                 Editar perfil
             </Link>
 
-            <Link href='/Ranking' className='Btn_Secundary flex justify-center items-center gap-1 h-11'>
+            <Link href='/RankingPage' className='Btn_Secundary flex justify-center items-center gap-1 h-11'>
                 <Image src={CupIcon} alt='Cup Icone' />
                 Ver ranking
             </Link>

@@ -47,6 +47,8 @@ function BottomHeader({ ActualPath }: BottomHeaderProps) {
           </Link>
         )}
 
+        {/*
+        
         {ActualPath === "Premium" ? (
           <Link href="/Premium" className="w-10 p-1 bg-[#ffeeef] rounded-xl border border-[#f14968]">
             <Image src={HeartIconActived} alt="Heart icon" className="w-12 h-9" />
@@ -56,6 +58,8 @@ function BottomHeader({ ActualPath }: BottomHeaderProps) {
             <Image src={HeartIcon} alt="Heart icon" className="w-12 h-9" />
           </Link>
         )}
+        
+        */}
 
         {ActualPath === "RankingPage" ? (
           <Link href="/RankingPage" className="w-10 p-1 bg-[#ffeeef] rounded-xl border border-[#f14968]">
