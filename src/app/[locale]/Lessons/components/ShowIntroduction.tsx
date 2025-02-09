@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import IconAudio from "@/Midias/Icons/AudioIcon.svg";
 import PauseIcon from "@/Midias/Icons/audioPause.svg";
@@ -44,10 +44,7 @@ function ShowIntroduction({ data }: props) {
       </article>
 
       <article className="my-4">
-        <img
-          src={data.imgUrl}
-          alt="Introduction Image"
-        />
+        <img src={data.imgUrl} alt="Introduction Image" />
       </article>
 
       <article className="w-full text-zinc-700 text-center font-medium font-['Nunito'] leading-normal flex justify-center items-center">
@@ -55,7 +52,10 @@ function ShowIntroduction({ data }: props) {
       </article>
 
       <article className="flex flex-row items-center gap-4 my-5">
-        <button className="flex flex-row items-center gap-4" onClick={toggleAudio}>
+        <button
+          className="flex flex-row items-center gap-4"
+          onClick={toggleAudio}
+        >
           <Image src={isPlaying ? PauseIcon : IconAudio} alt="Audio Icon" />
           <p className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose">
             {isPlaying ? "Pause" : "Play text"}
@@ -64,7 +64,9 @@ function ShowIntroduction({ data }: props) {
         <audio ref={audioRef} src={data.audioUrl} />
       </article>
 
-      <NextIntroBtn HaveBreakDown={true} LessonID={"1"} />
+      <div className="mb-7">
+        <NextIntroBtn HaveBreakDown={true} LessonID={"1"} />
+      </div>
     </section>
   );
 }

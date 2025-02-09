@@ -49,15 +49,13 @@
         }
       },
   
-      "studyMotivation": {
-        "title": "Why do you like to study English?",
+        "studyMotivation": {
+        "title": "Why do you want to study English?",
         "options": {
-          "fun": "Just for fun",
-          "career": "Improve my career",
-          "trips": "Trips and Tourism",
-          "others": "Others"
+        "fun": "I want to join the aviation industry",
+        "others": "Prepare for Re-check"
         }
-      },
+        },
   
       "skillsToImprove": {
         "title": "Which ability do you want to improve?",

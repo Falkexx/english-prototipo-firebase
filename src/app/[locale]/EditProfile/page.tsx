@@ -140,7 +140,7 @@ const Page = () => {
 
         <button
           type="submit"
-          className="mt-[47px] rounded-[100px] bg-[#F14968]
+          className="my-[47px] rounded-[100px] bg-[#F14968]
         text-white py-[18px] px-[16px] shadow-buttonSubmit text-[16px] font-extrabold leading-[140%]
         text-center tracking-[0.2px]"
         >

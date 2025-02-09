@@ -7,7 +7,7 @@ import { Link } from "@/i18n/routing";
 
 function ExamsInstructions() {
   return (
-    <section className="h-[calc(100vh-120px)] px-4">
+    <section className="px-4">
 
       <Header path="introduction" currentTask={0} />
 
@@ -53,7 +53,7 @@ function ExamsInstructions() {
         </main>
 
         
-        <section className="mb-8 w-full">
+        <section className="mt-10 w-full">
           <Link
             href="/Recheck/Alternatives"
             className="w-full block text-white text-center h-[58px] px-8 py-[18px] bg-[#f14968] rounded-[100px] shadow-[4px_8px_24px_0px_rgba(241,73,104,0.25)] font-extrabold font-['Nunito'] leading-snug tracking-tight"

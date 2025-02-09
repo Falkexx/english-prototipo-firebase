@@ -24,14 +24,7 @@ function ReasonToStudy() {
             Title: t("studyMotivation.options.fun"),
             Icon: Icon1,
         },
-        {
-            Title: t("studyMotivation.options.trips"),
-            Icon: Icon2,
-        },
-        {
-            Title: t("studyMotivation.options.career"),
-            Icon: Icon3,
-        },
+
         {
             Title: t("studyMotivation.options.others"),
             Icon: Icon4,

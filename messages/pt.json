@@ -51,10 +51,8 @@
     "studyMotivation": {
       "title": "Por que você quer estudar inglês?",
       "options": {
-        "fun": "Apenas por diversão",
-        "career": "Melhorar minha carreira",
-        "trips": "Viagens e turismo",
-        "others": "Outros"
+        "fun": "Quero ingressar na aviação",
+        "others": "Me preparar para o Re-check"
       }
     },
 

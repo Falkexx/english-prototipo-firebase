@@ -5,16 +5,18 @@ import BottomHeader from "../Home/Components/BottomHeader";
 import IsAuthenticated from "@/services/IsAuthenticaded";
 
 export default async function PaymentPage() {
-  
   await IsAuthenticated();
 
   // Renderiza a página caso o usuário esteja autenticado
   return (
     <>
       <Header />
-      <main className="px-4 h-[calc(100vh-24vh)] flex flex-col justify-between ">
+      <main className="px-4  flex flex-col justify-between ">
         <PremiumDescription />
-        <ButtonsContainer />
+
+        <div className="mt-12">
+          <ButtonsContainer />
+        </div>
       </main>
       <BottomHeader ActualPath="Plans" />
     </>
