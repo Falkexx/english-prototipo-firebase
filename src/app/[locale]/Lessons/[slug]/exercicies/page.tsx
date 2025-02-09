@@ -47,14 +47,16 @@ function Page() {
       id: "2",
       type: "alternatives",
       title: "Who Does What?",
+      title_audio_url:"",
       description: "Who leads the pre-flight briefing?",
+      img_url:"",
       isOnRecheck: false,
       questions: [
-        { letter: "A", question: "Chief Purser" },
-        { letter: "B", question: "Captain" },
-        { letter: "C", question: "Ground Staff" },
-        { letter: "D", question: "Gallery Operator" },
-        { letter: "E", question: "Aircraft Engineer" },
+        { letter: "A", question: "Chief Purser", question_audio_url:"" },
+        { letter: "B", question: "Captain", question_audio_url:"" },
+        { letter: "C", question: "Ground Staff", question_audio_url:"" },
+        { letter: "D", question: "Gallery Operator", question_audio_url:"" },
+        { letter: "E", question: "Aircraft Engineer", question_audio_url:"" },
       ],
       correct_answer: "B", // Resposta correta
     },
@@ -225,7 +227,10 @@ function Page() {
               correctAnswer={currentExercise.correct_answer}
               onCheckAnswers={handleCheckAnswers} // Valida respostas no tipo alternatives
               isOnRecheck={currentExercise.isOnRecheck}
-            />
+              img_url={currentExercise.img_url}
+              title_audio_url={currentExercise.title_audio_url || ""}
+              question_audio_url={currentExercise.questions[0]?.question_audio_url || ""}
+              />
           )}
 
           {currentExercise?.type === "fillboxWithOptions" && (

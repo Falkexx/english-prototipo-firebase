@@ -6,14 +6,14 @@ export const exercicies: AlternativesExercise[] = [
     type: "alternatives",
     isOnRecheck: true,
     title: "Discussing your interests and preferred activities during your leisure time:",
-    title_audio_url: "",
+    title_audio_url: "dasdsadsadsa",
     img_url: "",
     description: "",
     questions: [
       { letter: "A", question: "I like to sleep and watch TV on my days off because the job is very tiring.", question_audio_url: "" },
-      { letter: "B", question: "On my days off, I quite enjoy exploring the outdoors. Whether it's going for a stroll in the park or simply relaxing with a good book in a quiet café, I find that these activities help me recharge and bring balance to my life. Taking time for myself allows me to reflect on my thoughts and feelings, and focus on what is most important.", question_audio_url: "" },
-      { letter: "C", question: "I spend all my free time studying aviation because it's the most important thing for a flight attendant.", question_audio_url: "" },
-      { letter: "D", question: "I usually meet friends and go to parties because we need to have fun when we're not working.", question_audio_url: "" },
+      { letter: "B", question: "On my days off, I quite enjoy exploring the outdoors. Whether it's going for a stroll in the park or simply relaxing with a good book in a quiet café, I find that these activities help me recharge and bring balance to my life. Taking time for myself allows me to reflect on my thoughts and feelings, and focus on what is most important.", question_audio_url: "dsadsa" },
+      { letter: "C", question: "I spend all my free time studying aviation because it's the most important thing for a flight attendant.", question_audio_url: "dsadsa" },
+      { letter: "D", question: "I usually meet friends and go to parties because we need to have fun when we're not working.", question_audio_url: "dsadsadads" },
     ],
     correct_answer: "C"
   },

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import audioIcon from "@/Midias/Icons/AudioIcon.svg";
+import pauseIcon from "@/Midias/Icons/audioPause.svg";
 import Image from "next/image";
+
 interface AlternativeQuestion {
   letter: string;
   question: string;
+  question_audio_url: string; // URL do áudio da questão
 }
 
 interface AlternativesProps {
@@ -12,8 +15,10 @@ interface AlternativesProps {
   questions: AlternativeQuestion[];
   correctAnswer: string; // Resposta correta
   onCheckAnswers: (isCorrect: boolean) => void; // Callback para informar se a resposta está correta
-  isOnRecheck: boolean,
-  img_url: string;
+  isOnRecheck: boolean;
+  img_url: string; // URL da imagem a ser exibida
+  title_audio_url: string; // URL do áudio do título
+  question_audio_url: string; // URL do áudio da questão
 }
 
 function Alternatives({
@@ -24,8 +29,11 @@ function Alternatives({
   onCheckAnswers,
   isOnRecheck,
   img_url,
+  title_audio_url,
 }: AlternativesProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null); // Alternativa selecionada
+  const [isPlaying, setIsPlaying] = useState(false); // Controle de reprodução do áudio
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setSelectedAnswer(null); // Reseta a resposta selecionada ao mudar de exercício
@@ -38,41 +46,78 @@ function Alternatives({
   const handleCheckAnswer = () => {
     const isCorrect = selectedAnswer === correctAnswer; // Verifica se a resposta está correta
     onCheckAnswers(isCorrect); // Passa o resultado para o componente pai
-    console.log('está correta')
+    console.log("está correta");
   };
 
-  if(isOnRecheck){
+  // Função para alternar entre play/pause
+  const toggleAudio = (audioUrl: string) => {
+    if (!audioUrl) return;
 
+    if (!audioRef.current) {
+      audioRef.current = new Audio(audioUrl);
+      audioRef.current.onended = () => setIsPlaying(false);
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  if (isOnRecheck) {
     return (
       <section className="flex flex-col gap-3">
+        {/* Exibindo a imagem se img_url não estiver vazio */}
+        {img_url && (
+          <div className="mb-4">
+            <img
+              src={img_url}
+              alt="Imagem da questão"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
         <div className="flex flex-col gap-2">
-          <Image src={audioIcon} alt="audio icon" className="w-6 h-6" />
-          <h1 className="text-zinc-800 text-lg font-bold leading-7">
-            {title}
-          </h1>
+          <Image
+            src={isPlaying ? pauseIcon : audioIcon}
+            alt="audio icon"
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => toggleAudio(title_audio_url)}
+          />
+          <h1 className="text-zinc-800 text-lg font-bold leading-7">{title}</h1>
         </div>
-  
+
         <section className="flex flex-col gap-3">
           {questions.map((i) => (
             <section
               key={i.letter}
               onClick={() => handleAnswerClick(i.letter)}
               className={`flex flex-col gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all
-                ${
-                  selectedAnswer === i.letter
-                    ? "border-[#f14968] bg-[#f14968]/10" // Estilo selecionado
-                    : "border-zinc-100"
-                }`}
+      ${
+        selectedAnswer === i.letter
+          ? "border-[#f14968] bg-[#f14968]/10" // Estilo selecionado
+          : "border-zinc-100"
+      }`}
             >
               <div className="w-full flex flex-row justify-between items-center">
                 <h1
                   className={`text-lg font-bold leading-7 ${
-                    selectedAnswer === i.letter ? "text-[#f14968]" : "text-zinc-800"
+                    selectedAnswer === i.letter
+                      ? "text-[#f14968]"
+                      : "text-zinc-800"
                   }`}
                 >
                   {i.letter}
                 </h1>
-                <Image src={audioIcon} alt="audio icon" className="w-6 h-6" />
+                <Image
+                  src={isPlaying ? pauseIcon : audioIcon}
+                  alt="audio icon"
+                  className="w-6 h-6 cursor-pointer"
+                  onClick={() => toggleAudio(i.question_audio_url || "")} // Passa uma string vazia caso seja undefined
+                />
               </div>
               <p className="text-zinc-800 text-sm font-semibold leading-tight">
                 {i.question}
@@ -90,15 +135,22 @@ function Alternatives({
             Next
           </span>
         </button>
-  
       </section>
     );
-
-    
-  }else{
-    
+  } else {
     return (
       <div className="w-full h-auto relative bg-white p-4">
+        {/* Exibindo a imagem se img_url não estiver vazio */}
+        {img_url && (
+          <div className="mb-4">
+            <img
+              src={img_url}
+              alt="Imagem da questão"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
         <div className="text-zinc-700 text-xl font-extrabold font-['Nunito'] leading-loose mb-4">
           {title}
         </div>
@@ -131,7 +183,7 @@ function Alternatives({
             </div>
           ))}
         </div>
-  
+
         {/* Botão de checar resposta */}
         <button
           onClick={handleCheckAnswer} // Verifica a resposta

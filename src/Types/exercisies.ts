@@ -21,7 +21,7 @@ export type AlternativesExercise = {
   questions: {
     letter: string;
     question: string;
-    question_audio_url?: string;
+    question_audio_url: string;
   }[];
   correct_answer: string; // Letra da resposta correta
 };
