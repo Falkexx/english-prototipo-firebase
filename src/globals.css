@@ -81,19 +81,6 @@ select:focus {
     letter-spacing: 0.4px;
   }
 
-  .Btn_Primary {
-
-    width: 100%;
-    height: 58px;
-    padding: 18px 16px 18px 16px;
-    border-radius: 100px;
-    background: var(--color-red-default);
-    box-shadow: 4px 8px 24px 0px #F1496840;
-    font-weight: 700;
-    color: white;
-    letter-spacing: 0.4px;
-  }
-
   .Btn_Primary_edit {
 
     width: 100%;
