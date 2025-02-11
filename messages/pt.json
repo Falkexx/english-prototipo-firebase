@@ -11,6 +11,12 @@
     "CTABtn": "Ir para tela de Login"
   },
 
+  "NotAuthorized":{
+
+    "UserPasswordWrong":"Usuário ou Senha Incorretos. Tente novamente."
+      
+  },
+
   "LoginPage": {
     "title": "Bem-vindo de volta!",
     "subtitle": "Preencha o formulário com seus dados de login",
@@ -33,9 +39,10 @@
     },
 
     "YourPsswrd": {
-      "title": "Final step! Set a password for your account.",
-      "passwordLabel": "Your Password",
-      "confirmPasswordLabel": "Confirm Your Password"
+      "title": "Última etapa! Agora defina a sua senha.",
+      "passwordLabel": "Sua Senha",
+      "confirmPasswordLabel": "Confirme sua Senha",
+      "characterAlert":"a senha deve ter 1 caractere especial, uma letra maiuscula, uma letra minuscula e 8 caracteres"
     },
 
     "englishLevel": {

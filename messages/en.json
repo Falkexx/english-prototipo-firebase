@@ -11,12 +11,18 @@
     "CTABtn": "Go to Sign in Page"
   },
 
+  "NotAuthorized":{
+
+    "UserPasswordWrong":"User or Password incorrect. try again"
+    
+  },
+
   "LoginPage": {
     "title": "Welcome back!",
     "subtitle": "fill up the form with your Login data",
-    "emailabel": "Your Email",
-    "passwordlabel": "Your Password",
-    "forgotpassword": "Recovery password",
+    "emailLabel": "Your Email",
+    "passwordLabel": "Your Password",
+    "forgotPassword": "Recovery password",
     "loginBtn": "Sign in"
     },
 
@@ -30,7 +36,8 @@
       "YourPsswrd": {
         "title": "Final step! Set a password for your account.",
         "passwordLabel": "Your Password",
-        "confirmPasswordLabel": "Confirm Your Password"
+        "confirmPasswordLabel": "Confirm Your Password",
+        "characterAlert":"The password must have 1 special character, one uppercase letter, one lowercase letter and 8 characters"
       },
   
       "welcome": {
