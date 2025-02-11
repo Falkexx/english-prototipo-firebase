@@ -23,13 +23,13 @@ function HeroDesk() {
 
         <div className="w-full flex flex-row gap-7">
 
-            <Link href={`/Signup`} className="w-2/4">
+            <Link href={`/Signup`} className="w-2/4 inline-block">
               <button className="Btn_Primary">{t("startNow")}</button>{" "}
               {/* Usar a tradução da HomePage */}
             </Link>
 
 
-            <Link href={`/Login`} className="w-2/4">
+            <Link href={`/Login`} className="w-2/4 inline-block">
               <button className="Btn_Secundary">{t("accessAccount")}</button>{" "}
               {/* Usar a tradução da HomePage */}
             </Link>
