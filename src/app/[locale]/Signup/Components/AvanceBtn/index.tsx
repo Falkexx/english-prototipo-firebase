@@ -7,71 +7,41 @@ interface AvanceBtnProps {
 }
 
 function AvanceBtn({ AvanceFunction, ProgressStatus = 0, ProgressLogin }: AvanceBtnProps) {
-    // Obter as traduções
     const t = useTranslations('SignUpStages.AvanceBtn');
 
-    // Caso o ProgressLogin seja 0, exibe o botão de "Entrar"
+    // Função que executa a ação de avanço e rola para o topo
+    const handleClick = () => {
+        if (AvanceFunction) {
+            AvanceFunction();
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     if (ProgressLogin === 0) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('enter')}</button>
-            </>
-        );
+        return <button className="Btn_Primary" onClick={handleClick}>{t('enter')}</button>;
     }
 
-    // Caso o ProgressStatus seja 0, exibe o botão de "Iniciar"
     if (ProgressStatus === 0) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('start')}</button>
-            </>
-        );
+        return <button className="Btn_Primary" onClick={handleClick}>{t('start')}</button>;
     }
 
-    // Caso o ProgressStatus seja 7, exibe o botão de "Criar minha conta"
-    else if (ProgressStatus === 7) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('createAccount')}</button>
-            </>
-        );
+    if (ProgressStatus === 7) {
+        return <button className="Btn_Primary" onClick={handleClick}>{t('createAccount')}</button>;
     }
 
-    // Caso o ProgressStatus esteja entre 8 e 11, exibe o botão de "Continuar"
-    else if (ProgressStatus > 7 && ProgressStatus < 12) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('continue')}</button>
-            </>
-        );
+    if (ProgressStatus > 7 && ProgressStatus < 12) {
+        return <button className="Btn_Primary" onClick={handleClick}>{t('continue')}</button>;
     }
 
-    // Caso o ProgressStatus seja 12, exibe o botão de "Acessar a plataforma"
-    else if (ProgressStatus === 12) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('accessPlatform')}</button>
-            </>
-        );
+    if (ProgressStatus === 12) {
+        return <button className="Btn_Primary" onClick={handleClick}>{t('accessPlatform')}</button>;
     }
 
-    // Caso o ProgressStatus seja 10, exibe o botão de "Finalizar"
-    else if (ProgressStatus === 10) {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('finish')}</button>
-            </>
-        );
+    if (ProgressStatus === 10) {
+        return <button className="Btn_Primary" onClick={handleClick}>{t('finish')}</button>;
     }
 
-    // Para os outros casos, exibe o botão de "Avançar"
-    else {
-        return (
-            <>
-                <button className="Btn_Primary" onClick={AvanceFunction}>{t('advance')}</button>
-            </>
-        );
-    }
+    return <button className="Btn_Primary" onClick={handleClick}>{t('advance')}</button>;
 }
 
 export default AvanceBtn;

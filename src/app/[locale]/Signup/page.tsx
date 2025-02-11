@@ -22,7 +22,6 @@ import YourPsswrd from "./Components/Telas/YourPsswrd";
 import Loading from "@/Components/UI/LoginLoading";
 import AlternativesConclusion from "./Components/Telas/AlternativesConclusion";
 
-
 export default function Index() {
   const [progressBar, setProgressBar] = useState(SIGNUP_STAGES.WELCOME);
   const [name, setName] = useState("");
@@ -95,62 +94,81 @@ export default function Index() {
     }
   };
 
-const handleSignUp = async () => {
-  if (!name || !email || !password) return;
+  const handleSignUp = async () => {
+    if (!name || !email || !password) return;
 
-  setProgressBar(SIGNUP_STAGES.LOADING); // Exibe a tela de loading
-  setLoading(true);
+    setProgressBar(SIGNUP_STAGES.LOADING); // Exibe a tela de loading
+    setLoading(true);
 
-  try {
-    await signUp({ name, email, password, country: "Brazil" });
-    setProgressBar(SIGNUP_STAGES.SIGNUP_CONCLUSION); // Vai direto para a conclusão
-  } catch (error) {
-    console.error("Erro ao se cadastrar:", error);
-    setProgressBar(SIGNUP_STAGES.PASSWORD); // Retorna para a tela de senha em caso de erro
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      await signUp({ name, email, password, country: "Brazil" });
+      setProgressBar(SIGNUP_STAGES.SIGNUP_CONCLUSION); // Vai direto para a conclusão
+    } catch (error) {
+      console.error("Erro ao se cadastrar:", error);
+      setProgressBar(SIGNUP_STAGES.PASSWORD); // Retorna para a tela de senha em caso de erro
+    } finally {
+      setLoading(false);
+    }
+  };
 
-return (
-  <>
-    {loading ? (
-      <Loading />
-    ) : (
-      <main
-        className={`${
-          progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION
-            ? "flex justify-center items-center h-screen"
-            : `p-4 ${
-                stages[progressBar].container
-                  ? "h-[calc(100vh-15vh)]"
-                  : "min-h-screen"
-              } flex flex-col justify-between gap-5`
-        }`}
-      >
-        {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
-          <HeaderCadastros
-            BackFunction={handleBack}
-            ProgressBarStatus={progressBar}
-          />
-        )}
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="lg:min-h-screen lg:w-full flex flex-col justify-between">
+          <main
+            className={`${
+              progressBar === SIGNUP_STAGES.SIGNUP_CONCLUSION
+                ? "flex justify-center items-center h-screen lg:min-h-fit"
+                : `p-4 ${
+                    stages[progressBar].container
+                      ? "h-[calc(100vh-15vh)] lg:min-h-fit"
+                      : "min-h-screen lg:min-h-fit"
+                  } flex flex-col justify-between gap-5 lg:w-3/4 lg:mx-auto lg:justify-normal `
+            }`}
+          >
+            {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
+              <HeaderCadastros
+                BackFunction={handleBack}
+                ProgressBarStatus={progressBar}
+              />
+            )}
 
-        <Container>{stages[progressBar].component}</Container>
+            <Container>{stages[progressBar].component}</Container>
 
-        {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
-          <AvanceBtn
-            AvanceFunction={
-              progressBar === SIGNUP_STAGES.PASSWORD
-                ? handleSignUp
-                : handleNextStage
-            }
-            ProgressStatus={progressBar}
-          />
-        )}
-      </main>
-    )}
-  </>
-);
+            <div className="lg:hidden">
+              {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
+                <AvanceBtn
+                  AvanceFunction={
+                    progressBar === SIGNUP_STAGES.PASSWORD
+                      ? handleSignUp
+                      : handleNextStage
+                  }
+                  ProgressStatus={progressBar}
+                />
+              )}
+            </div>
+          </main>
 
-
+          <div className="hidden lg:flex w-full border h-28 border-zinc-200 items-center justify-center">
+            <div className="w-3/4 flex flex-row justify-end">
+              <div className="w-1/4">
+                {progressBar !== SIGNUP_STAGES.SIGNUP_CONCLUSION && (
+                  <AvanceBtn
+                    AvanceFunction={
+                      progressBar === SIGNUP_STAGES.PASSWORD
+                        ? handleSignUp
+                        : handleNextStage
+                    }
+                    ProgressStatus={progressBar}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  );
 }
