@@ -51,7 +51,7 @@ function Page() {
   return (
     <>
       {isLoading && <LoginLoading Error={sigInError} />}
-      <main className="p-4 flex flex-col h-[calc(100vh-10vh)] justify-between gap-5">
+      <main className="p-4 flex flex-col h-[calc(100vh-10vh)] justify-between gap-5 lg:max-w-7xl lg:m-auto">
         <section>
           <HeaderCadastros BackFunction={BackToHome} />
           <article className="flex flex-col gap-2 mb-10 mt-10">
@@ -111,7 +111,7 @@ function Page() {
                 <h1 className="text-red-500 text-base font-medium leading-normal">{sigInError}</h1>
               </div>
             </section>
-            <div className="w-full mt-6">
+            <div className="w-full mt-6 lg:w-2/4 lg:m-auto cursor-pointer">
               <input type="submit" value={t("loginBtn")} className="Btn_Primary" />
             </div>
           </form>
