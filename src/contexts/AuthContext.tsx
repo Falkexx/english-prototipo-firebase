@@ -2,6 +2,7 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from "next-intl";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -17,6 +18,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const router = useRouter();
+  const t = useTranslations("NotAuthorized");
+
 
   // Verifica se o usuário está autenticado ao montar o componente
   useEffect(() => {
@@ -45,7 +48,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     }
 
-    /*
     
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`, {
@@ -55,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao fazer login');
+        throw new Error(`${t('UserPasswordWrong')}`);
       }
 
       const { access_token } = await response.json();
@@ -64,10 +66,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthenticated(true); // Atualiza o estado de autenticação
       router.push('/Home');
     } catch (error) {
-      console.error('Erro na autenticação:', error);
+      throw new Error(`${t('UserPasswordWrong')}`);
     }
     
-    */
   }
 
   async function signUp({ email, password, country, name }: { email: string; password: string; country: string; name: string }) {
@@ -77,27 +78,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       password,
       country: "Brazil",
     };
-
+  
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/v1/student/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
+  
+      const responseData = await response.json(); // Converte a resposta para JSON
+  
       if (!response.ok) {
-        throw new Error('Erro ao cadastrar usuário');
+        // Se a resposta da API contiver um array de mensagens de erro, captura a primeira
+        const errorMessage = responseData?.message?.[0] || "Erro desconhecido";
+        throw new Error(errorMessage);
       }
-
-      const { access_token } = await response.json();
-      setCookie(undefined, 'nextauth.token', access_token, { maxAge: 60 * 60 * 1, path: '/' });
+  
+      const { access_token } = responseData;
+      setCookie(undefined, "nextauth.token", access_token, { maxAge: 60 * 60 * 1, path: "/" });
       setToken(access_token);
-      setIsAuthenticated(true); // Atualiza o estado de autenticação
-      router.push('/Home');
+      setIsAuthenticated(true);
+      router.push("/Home");
     } catch (error) {
-      console.error('Erro na autenticação:', error);
+      if (error instanceof Error) {
+        throw error; // Garante que a mensagem do erro seja lançada corretamente
+      } else {
+        throw new Error("Ocorreu um erro inesperado.");
+      }
     }
   }
+  
 
   function logout() {
     destroyCookie(undefined, 'nextauth.token');

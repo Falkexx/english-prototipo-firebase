@@ -23,6 +23,8 @@ function Page() {
   const [progressBar, setProgressBar] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [openEyes, setOpenEyes] = useState(false); // Estado para alternar visibilidade da senha
+  const [sigInError, setSigInError] = useState("")
+  
 
   const router = useRouter();
   const { register, handleSubmit } = useForm<FormData>();
@@ -35,15 +37,20 @@ function Page() {
   }
 
   async function handleSigin(data: FormData) {
-    setIsLoading(true);
-    await signIn(data);
+    try {
+      setIsLoading(true);
+      await signIn(data);
+    } catch (error: any) {  
+      setIsLoading(false);  
+      setSigInError(error.message);
+    }
   }
-
+  
   const t = useTranslations("LoginPage");
 
   return (
     <>
-      {isLoading && <LoginLoading />}
+      {isLoading && <LoginLoading Error={sigInError} />}
       <main className="p-4 flex flex-col h-[calc(100vh-10vh)] justify-between gap-5">
         <section>
           <HeaderCadastros BackFunction={BackToHome} />
@@ -96,6 +103,12 @@ function Page() {
                 <Link href={"/Login/Recoverpassword"} className="text-[#f14968] text-base font-medium font-['Nunito'] leading-normal">
                   {t("forgotPassword")}
                 </Link>
+              </div>
+
+
+              <div>
+
+                <h1 className="text-red-500 text-base font-medium leading-normal">{sigInError}</h1>
               </div>
             </section>
             <div className="w-full mt-6">

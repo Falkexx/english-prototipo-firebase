@@ -33,6 +33,8 @@ function YourPsswrd({ onPasswordChange, onConfirmPasswordChange }: YourPsswrdPro
         {t('YourPsswrd.title')}
       </h1>
 
+      <p>{t('YourPsswrd.characterAlert')}</p>
+
       <form className="flex flex-col">
         {/* Campo da Senha */}
         <label className="labelDef">{t('YourPsswrd.passwordLabel')}</label>
