@@ -10,15 +10,17 @@ export default async function PaymentPage() {
   // Renderiza a página caso o usuário esteja autenticado
   return (
     <>
-      <Header />
-      <main className="px-4  flex flex-col justify-between ">
-        <PremiumDescription />
+      <section>
+        <Header />
+        <main className="px-4  flex flex-col justify-between ">
+          <PremiumDescription />
 
-        <div className="mt-12">
-          <ButtonsContainer />
-        </div>
-      </main>
-      <BottomHeader ActualPath="Plans" />
+          <div className="mt-12">
+            <ButtonsContainer />
+          </div>
+        </main>
+        <BottomHeader ActualPath="Plans" />
+      </section>
     </>
   );
 }

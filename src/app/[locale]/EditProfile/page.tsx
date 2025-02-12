@@ -78,7 +78,7 @@ const Page = () => {
         <Sidebar ActualPath="Profile" />
       </div>
 
-      <div className="flex flex-col items-center justify-center lg:w-[60%]">
+      <div className="flex flex-col items-center justify-center lg:w-[70%]">
         <img
           src={userAvatar}
           alt="Foto de perfil"
@@ -156,7 +156,7 @@ const Page = () => {
           </button>
         </form>
 
-        <div className="lg:hidden">
+        <div className="lg:hidden w-full ">
           <BottomHeader ActualPath="Profile" />
         </div>
 
