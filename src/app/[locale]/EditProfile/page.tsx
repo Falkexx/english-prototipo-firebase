@@ -13,6 +13,7 @@ import InputMask from "react-input-mask";
 import SuccessFulModal from "./components/SuccessFulModal";
 import { useQuery } from "react-query";
 import GetUserDatas from "@/services/GetUserDatas";
+import Sidebar from "../Home/Components/Desktop/Sidebar/Sidebar";
 
 const Page = () => {
   const { token } = useContext(AuthContext);
@@ -33,7 +34,9 @@ const Page = () => {
     refetchOnWindowFocus: true,
   });
 
-  const userAvatar = userData?.avatar_url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf49fton7yztt_1Xmzro_oc-xSEV9oa-JzXg&s";
+  const userAvatar =
+    userData?.avatar_url ??
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf49fton7yztt_1Xmzro_oc-xSEV9oa-JzXg&s";
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,88 +73,96 @@ const Page = () => {
   if (isLoading) return <div>Carregando...</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <img
-        src={userAvatar}
-        alt="Foto de perfil"
-        className="mt-[24.2px] w-28 h-28 rounded-full"
-      />
-      <form className="mt-[40px] flex flex-col" onSubmit={handleSubmit}>
-        <label htmlFor="name" className="labelDef">
-          Nome
-        </label>
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Insira seu nome"
-          className="inputDef"
+    <section className="lg:flex lg:flex-row lg:w-full lg:m-auto lg:gap-8">
+      <div className="hidden lg:block lg:w-[23%]">
+        <Sidebar ActualPath="Profile" />
+      </div>
+
+      <div className="flex flex-col items-center justify-center lg:w-[60%]">
+        <img
+          src={userAvatar}
+          alt="Foto de perfil"
+          className="mt-[24.2px] w-28 h-28 rounded-full"
         />
+        <form className="mt-[40px] flex flex-col lg:w-full"   onSubmit={handleSubmit}>
+          <label htmlFor="name" className="labelDef">
+            Nome
+          </label>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Insira seu nome"
+            className="inputDef"
+          />
 
-        <label htmlFor="cellphone" className="labelDef mt-[32px]">
-          Número de telefone
-        </label>
-        <InputMask
-          mask="+99 (99) 999999999"
-          name="cellphone"
-          required
-          placeholder="+99 (99) 999999999"
-          className="inputDef"
-        />
+          <label htmlFor="cellphone" className="labelDef mt-[32px]">
+            Número de telefone
+          </label>
+          <InputMask
+            mask="+99 (99) 999999999"
+            name="cellphone"
+            required
+            placeholder="+99 (99) 999999999"
+            className="inputDef"
+          />
 
-        <label htmlFor="email" className="labelDef mt-[32px]">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Insira seu e-mail"
-          className="inputDef"
-        />
+          <label htmlFor="email" className="labelDef mt-[32px]">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Insira seu e-mail"
+            className="inputDef"
+          />
 
-        <label htmlFor="dateOfBirth" className="labelDef mt-[32px]">
-          Data de Nascimento
-        </label>
-        <input
-          type="date"
-          name="dateOfBirth"
-          required
-          placeholder="Data de nascimento"
-          className="inputDef"
-        />
+          <label htmlFor="dateOfBirth" className="labelDef mt-[32px]">
+            Data de Nascimento
+          </label>
+          <input
+            type="date"
+            name="dateOfBirth"
+            required
+            placeholder="Data de nascimento"
+            className="inputDef"
+          />
 
-        <label htmlFor="country" className="labelDef mt-[32px]">
-          País
-        </label>
-        <select
-          name="country"
-          id="country"
-          required
-          className="inputDef"
-          defaultValue={"BR"}
-        >
-          {optionsPaises.map((pais) => (
-            <option key={pais.value} value={pais.value}>
-              {pais.label}
-            </option>
-          ))}
-        </select>
+          <label htmlFor="country" className="labelDef mt-[32px]">
+            País
+          </label>
+          <select
+            name="country"
+            id="country"
+            required
+            className="inputDef"
+            defaultValue={"BR"}
+          >
+            {optionsPaises.map((pais) => (
+              <option key={pais.value} value={pais.value}>
+                {pais.label}
+              </option>
+            ))}
+          </select>
 
-        <button
-          type="submit"
-          className="my-[47px] rounded-[100px] bg-[#F14968]
+          <button
+            type="submit"
+            className="my-[47px] rounded-[100px] bg-[#F14968]
         text-white py-[18px] px-[16px] shadow-buttonSubmit text-[16px] font-extrabold leading-[140%]
         text-center tracking-[0.2px]"
-        >
-          Salvar
-        </button>
-      </form>
+          >
+            Salvar
+          </button>
+        </form>
 
-      <BottomHeader ActualPath="Profile" />
+        <div className="lg:hidden">
+          <BottomHeader ActualPath="Profile" />
+        </div>
 
-      {isChangeDone ? <SuccessFulModal /> : ""}
-    </div>
+        {isChangeDone ? <SuccessFulModal /> : ""}
+      </div>
+    </section>
   );
 };
 
