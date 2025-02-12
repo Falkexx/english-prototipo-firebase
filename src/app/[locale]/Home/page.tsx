@@ -46,7 +46,7 @@ function LoggedHome() {
     <Loading>
       <section className="lg:w-full lg:flex lg:flex-row lg:gap-8">
         <div className="hidden lg:block lg:w-[23%]">
-          <Sidebar/>
+          <Sidebar ActualPath="Home"/>
         </div>
 
         <div className="lg:hidden">
