@@ -24,7 +24,7 @@ function Navigation({ ActualPath }: NavigationProps) {
   const t = useTranslations("sidebar")
   const data = [
     { title: t("initialPage"), icon: HomeIcon, iconActive: HomeIconActived, href: "/Home", path: "Home" },
-    { title: t("myConquests"), icon: HeartIcon, iconActive: HeartIconActived, href: "/Premium", path: "Premium" },
+    //{ title: t("myConquests"), icon: HeartIcon, iconActive: HeartIconActived, href: "/Premium", path: "Premium" },
     { title: t("leaderBoard"), icon: CupIcon, iconActive: CupIconActived, href: "/RankingPage", path: "RankingPage" },
     { title: t("payments"), icon: DollarIcon, iconActive: DollarIconActived, href: "/PaymentPage", path: "Plans" },
     { title: t("recheck"), icon: ThunderIcon, iconActive: ThunderIconActived, href: "/Recheck", path: "Exams" },
