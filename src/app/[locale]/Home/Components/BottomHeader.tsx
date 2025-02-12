@@ -35,7 +35,7 @@ function BottomHeader({ ActualPath }: BottomHeaderProps) {
   }, [router]);
 
   return (
-    <header className="w-full h-16 bg-white border-t-2 border-zinc-200 fixed bottom-0">
+    <header className="w-full h-16 bg-white border-t-2 border-zinc-200 fixed bottom-0 lg:hidden">
       <nav className="w-full flex flex-row justify-around items-center h-full">
         {ActualPath === "Home" ? (
           <Link href="/Home" className="w-10 p-1 bg-[#ffeeef] rounded-xl border border-[#f14968]">

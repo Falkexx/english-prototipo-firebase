@@ -11,14 +11,14 @@ function ExamsInstructions() {
 
       <Header path="introduction" currentTask={0} />
 
-      <section className="h-full flex flex-col justify-between">
+      <section className="h-full lg:h-[50vh] flex flex-col justify-between">
 
         <main className="flex flex-col gap-4 w-full ">
           <h1 className="text-zinc-800 text-lg font-bold leading-7">
             Re-check for Cabine Crew
           </h1>
 
-          <p className="w-[358px] text-zinc-700 text-base font-medium leading-normal">
+          <p className="w-full text-zinc-700 text-base font-medium leading-normal">
             Lorem ipsum dolor sit amet. Qui officiis tempore cum quaerat
             eligendi vel doloremque odit et velit nostrum eum eveniet voluptas!
             Eos suscipit laboriosam et voluptates quas non dolorem voluptas ut
