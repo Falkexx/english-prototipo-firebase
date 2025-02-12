@@ -5,24 +5,35 @@ import { useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
 
 const fetchModulosData = async () => {
-  /*const data = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/section/all?take=10&skip=0`
-  );
-  return data.data; ======== CHAMADA DA APIII CORRETAAAA ==========*/
-
-  //MOCKUP ABAIXO:
-
-    return [
-      {
-        id: "1",
-        name: "Aviação",
-        description: "Aprendendo sobre aviação",
-        achievement: "gold",
-        difficulty: "Easy",
-        image_url: "none",
-        exp_as_done: 10,
-      },
-    ];
+  return [
+    {
+      id: "1",
+      name: "Aviação",
+      description: "Aprendendo sobre aviação",
+      achievement: "gold",
+      difficulty: "Easy",
+      image_url: "none",
+      exp_as_done: 10,
+    },
+    {
+      id: "2",
+      name: "Cotidiano",
+      description: "Aprendendo sobre o dia a dia",
+      achievement: "silver",
+      difficulty: "Medium",
+      image_url: "none",
+      exp_as_done: 15,
+    },
+    {
+      id: "3",
+      name: "Emergências",
+      description: "Treinamento de emergências",
+      achievement: "bronze",
+      difficulty: "Hard",
+      image_url: "none",
+      exp_as_done: 20,
+    },
+  ];
 };
 
 function ShowSections({
@@ -32,9 +43,12 @@ function ShowSections({
 }) {
   const carousel = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState<number | any>();
+  const [selectedSectionId, setSelectedSectionId] = useState<string | null>(
+    null
+  );
 
   function handleResize() {
-    setWidth(window.screen.width);
+    setWidth(window.innerWidth);
   }
 
   useEffect(() => {
@@ -56,18 +70,18 @@ function ShowSections({
   );
 
   return (
-    <section className="mt-14">
+    <section className="mt-14 lg:mt-7 lg:mb-6">
       <motion.div
         ref={carousel}
         whileTap={width < 1100 ? { cursor: "pointer" } : { cursor: "" }}
       >
         <motion.div
-          className="w-[100%] lg:w-full"
+          className="w-[100%] lg:w-full flex flex-row gap-4 lg:gap-5 lg:w-fit lg:m-auto"
           drag={width <= 1100 ? "x" : false}
-          dragConstraints={width <= 1100 ? { right: 0, left: -width } : false}
+          dragConstraints={width <= 1100 ? { right: 0, left: -300 } : false}
         >
           {isLoading ? (
-            <div className="flex flex-row gap-4 lg:gap-20 lg:w-fit lg:pl-8 lg:justify-center lg:m-auto animate-pulse">
+            <div className="flex flex-row animate-pulse">
               {[...Array(3)].map((_, index) => (
                 <div
                   key={index}
@@ -76,19 +90,30 @@ function ShowSections({
               ))}
             </div>
           ) : modulosData.length > 0 ? (
-            modulosData.map((e) => (
-              <div
-                key={e.id}
-                className="flex flex-row gap-4 lg:gap-20 lg:w-fit lg:pl-8 lg:justify-center lg:m-auto"
-                onClick={() => onSelectSection(e.id)} // Ao clicar, envia o id da seção
-              >
-                <div className="h-[45px] px-6 py-2.5 bg-[#f14968] rounded-[100px] justify-center items-center gap-1 inline-flex">
-                  <div className="text-center text-white text-lg font-bold font-['Nunito'] leading-[25.20px] tracking-tight">
+            modulosData.map((e) => {
+              const isSelected = e.id === selectedSectionId;
+
+              return (
+                <motion.div
+                  key={e.id}
+                  className={`h-[45px] px-6 py-2.5 rounded-[100px] justify-center items-center gap-1 inline-flex cursor-pointer transition-all ${
+                    isSelected
+                      ? "bg-[#f14968] text-white shadow-lg"
+                      : "border-2 border-zinc-200 text-zinc-200"
+                  }`}
+                  onClick={() => {
+                    setSelectedSectionId(e.id);
+                    onSelectSection(e.id);
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="text-center text-lg font-bold font-['Nunito'] leading-[25.20px] tracking-tight">
                     {e.name}
                   </div>
-                </div>
-              </div>
-            ))
+                </motion.div>
+              );
+            })
           ) : (
             ""
           )}

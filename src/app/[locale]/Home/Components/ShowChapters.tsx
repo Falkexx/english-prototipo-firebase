@@ -40,7 +40,62 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
         exp_as_done: 10,
         create_at: "2024-11-22T17:35:00.000Z",
         updated_at: "2024-11-22T17:35:00.000Z"
-      }
+      },
+
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      },
+
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      },
+
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      },
+
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      },
+
+      {
+        id: "1",
+        name: "In the plane",
+        description: "pre-flight",
+        difficulty: "easy",
+        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
+        exp_as_done: 10,
+        create_at: "2024-11-22T17:35:00.000Z",
+        updated_at: "2024-11-22T17:35:00.000Z"
+      },
     ]
 
 
@@ -60,17 +115,17 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
   );
 
   return (
-    <section className="mt-9 flex flex-row justify-center">
+    <section className="mt-9 flex flex-row  justify-center lg:w-[100%]">
       {isLoading ? (
         <div>Loading chapters...</div>
       ) : chaptersData.length > 0 ? (
-        <div className="relative flex flex-row">
+        <div className="relative flex flex-row w-full ">
           {/* Linha da timeline */}
           <div className="absolute left-[22px] top-10 bottom-0 w-[4px] bg-[#f14968]"></div>
 
-          <div className="flex flex-col items-center space-y-6">
+          <div className="flex flex-col items-center w-full space-y-6 ">
             {chaptersData.map((chapter: any, index: number) => (
-              <div key={index} className="flex flex-row items-center space-x-4">
+              <div key={index} className="flex flex-row w-full  items-center space-x-4">
                 {/* Imagem conectada pela linha */}
                 <div className="relative flex-shrink-0">
                   <img
@@ -81,7 +136,7 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
 
                 {/* Conteúdo dos capítulos */}
                 <div
-                  className="w-[269px] h-16 px-6 py-2 bg-white rounded-2xl border-2 border-[#f14968] justify-between items-center inline-flex cursor-pointer"
+                  className="w-[269px] lg:w-full h-16 px-6 py-2 bg-white rounded-2xl border-2 border-[#f14968] justify-between items-center inline-flex cursor-pointer"
                   onClick={() => RedirectToLessons(chapter.id)} // Passa o ID do capítulo na função
                 >
                   <div className="flex-col justify-start items-start gap-1 inline-flex">

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import LogoMobile from '@/Midias/LogoMobile.svg'
 import FlagSelector from "@/app/[locale]/Home/Components/FlagSelector"
+
+
 function Header() {
     return (
 

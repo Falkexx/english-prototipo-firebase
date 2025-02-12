@@ -31,6 +31,16 @@
     "subscribeBtn": "subscribe"
   },
 
+  "sidebar": {
+      "initialPage": "Home Page",
+      "myConquests": "My Achievements",
+      "leaderBoard": "Leaderboard",
+      "payments": "Payments",
+      "recheck": "English Re-check",
+      "myProfile": "My Profile",
+      "logOut": "Log Out"
+  },
+
   
     "SignUpStages": {
       "YourPsswrd": {

@@ -31,6 +31,16 @@
     "subscribeBtn": "Assinar"
   },
 
+  "sidebar": {
+      "initialPage": "Página Inicial",
+      "myConquests": "Minhas Conquistas",
+      "leaderBoard": "Leaderboard",
+      "payments": "Pagamentos",
+      "recheck": "Re-check de Inglês",
+      "myProfile": "Meu Perfil",
+      "logOut": "Encerrar Sessão"
+  },
+
   "SignUpStages": {
     "welcome": {
       "title": "Bem-vindo(a) a ",

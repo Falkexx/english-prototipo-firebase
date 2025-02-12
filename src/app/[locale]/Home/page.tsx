@@ -11,6 +11,7 @@ import { AuthContext } from "@/contexts/AuthContext"; // Autenticação via cont
 import Loading from "@/Components/LoadingHome";
 import { Link } from "@/i18n/routing";
 import { FaArrowRight } from "react-icons/fa6";
+import Sidebar from "./Components/Desktop/Sidebar/Sidebar";
 
 function LoggedHome() {
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>(
@@ -43,37 +44,47 @@ function LoggedHome() {
 
   return (
     <Loading>
-      <Header />
+      <section className="lg:w-full lg:flex lg:flex-row lg:gap-8">
+        <div className="hidden lg:block lg:w-[23%]">
+          <Sidebar/>
+        </div>
 
-      <main className="w-full px-4 overflow-x-hidden mb-20 ">
-        <section className="mt-4">
-          <Link
-            href="/Recheck"
-            className="w-full h-[60px] px-4 py-[18px] bg-[#f14968] rounded-[100px] shadow-[4px_8px_24px_0px_rgba(241,73,104,0.25)] justify-center items-center gap-3 inline-flex"
-          >
-            <p className="text-center text-white text-base font-extrabold leading-snug tracking-tight">
-              Recheck for Cabin Crew
-            </p>
+        <div className="lg:hidden">
+          <Header />
+        </div>
 
-            <i className="text-white">
-              <FaArrowRight />
-            </i>
-          </Link>
+        <main className="w-full px-4 overflow-x-hidden mb-20 lg:w-[60%]">
+          <section className="mt-4 lg:hidden">
+            <Link
+              href="/Recheck"
+              className="w-full h-[60px] px-4 py-[18px] bg-[#f14968] rounded-[100px] shadow-[4px_8px_24px_0px_rgba(241,73,104,0.25)] justify-center items-center gap-3 inline-flex"
+            >
+              <p className="text-center text-white text-base font-extrabold leading-snug tracking-tight">
+                Recheck for Cabin Crew
+              </p>
+
+              <i className="text-white">
+                <FaArrowRight />
+              </i>
+            </Link>
+          </section>
+
+          <div className="lg:hidden">
+            <AssinaturaContainer />
+          </div>
+          <ShowSections onSelectSection={handleSelectSection} />
+          {selectedSectionId && (
+            <ModuleContainer
+              sectionId={selectedSectionId}
+              onSelectModule={handleSelectModule}
+            />
+          )}
+          {selectedModuleId && <ShowChapters moduleId={selectedModuleId} />}
+        </main>
+
+        <section className="lg:hidden">
+          <BottomHeader ActualPath="Home" />
         </section>
-
-        <AssinaturaContainer />
-        <ShowSections onSelectSection={handleSelectSection} />
-        {selectedSectionId && (
-          <ModuleContainer
-            sectionId={selectedSectionId}
-            onSelectModule={handleSelectModule}
-          />
-        )}
-        {selectedModuleId && <ShowChapters moduleId={selectedModuleId} />}
-      </main>
-
-      <section>
-        <BottomHeader ActualPath="Home" />
       </section>
     </Loading>
   );
