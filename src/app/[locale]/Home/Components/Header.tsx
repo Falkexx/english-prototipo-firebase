@@ -48,7 +48,7 @@ function Header() {
   const userAvatar = userData?.avatar_url ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf49fton7yztt_1Xmzro_oc-xSEV9oa-JzXg&s";
 
   return (
-    <header className="w-full px-4 py-8 border border-b">
+    <header className="w-full px-4 py-8 border border-b lg:hidden">
       <nav className="w-full flex flex-row justify-between items-center">
         <section className="flex flex-row items-center w-full gap-2">
           <div className="border rounded-full border-bg-primary w-14 h-14 overflow-hidden">
