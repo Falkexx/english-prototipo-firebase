@@ -184,6 +184,7 @@ function Page() {
     if (isCorrect) {
       setShowWrongAnswer(false); // Garante que o componente errado está oculto
       setShowCorrectAnswer(true); // Mostra o componente de resposta correta
+      window.scrollTo(0,0)
     } else {
       setShowCorrectAnswer(false); // Garante que o componente correto está oculto
       setShowWrongAnswer(false); // Reinicia o estado antes de exibir novamente
