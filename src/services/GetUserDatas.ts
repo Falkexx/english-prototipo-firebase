@@ -1,65 +1,70 @@
-import axios from "axios";
-import { User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
-interface UserDTO  {
-
+interface UserDTO {
   id: string;
-  name: string;
-  email: string;
+  name: string | null;
+  email: string | null;
   number_phone: string | null;
-  date_of_birth: string | null; // ISO date format, e.g., "2003-05-14"
+  date_of_birth: string | null;
   avatar_url: string | null;
   country: string;
   exp: number;
-  role: 'STUDENT' | 'TEACHER' | 'ADMIN'; // Enum-like type for role
+  role: "STUDENT" | "TEACHER" | "ADMIN";
   is_premium: boolean;
-  created_at: string; // ISO date format
-  updated_at: string; // ISO date format
+  created_at: string;
+  updated_at: string;
 }
 
-async function GetUserDatas(token: string){
+async function GetUserDatas(token: string): Promise<UserDTO | null> {
+  const mockedToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."; // Token mockado
+  const auth = getAuth();
 
-  const mockedToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNGJmODU0LTdmMmUtNDRmYi1hZTc0LWI2Njk3ZTM3MzRiZCIsImlzUHJlbWl1bSI6ZmFsc2UsImVtYWlsIjoiQW5kcmVAdGVzdGUuY29tIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE3MzkwMzI1OTEsImV4cCI6MTczOTExODk5MX0.hmWI5KQ9r_O2KB4amSDbsu8HZ6cQ7acjBWdPKXpqHAM"
-
-  const response: UserDTO = {
-    id: "1773dfd0-5c9e-4c47-8b91-1c7a5b489aae",
-    name: "Renata",
-    email: "RenataAdmin",
-    number_phone: null,
-    date_of_birth: "1990-01-01",
-    avatar_url: null,
-    country: "Brazil",
-    exp: 1739121824,
-    role: "ADMIN",
-    is_premium: false,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    
-  } 
-
-  if(token == mockedToken){
-
-    return response
+  // 🔹 Se for um token mockado, retorna um usuário fixo
+  if (token === mockedToken) {
+    return {
+      id: "1773dfd0-5c9e-4c47-8b91-1c7a5b489aae",
+      name: "Renata",
+      email: "RenataAdmin",
+      number_phone: null,
+      date_of_birth: "1990-01-01",
+      avatar_url: null,
+      country: "Brazil",
+      exp: 1739121824,
+      role: "ADMIN",
+      is_premium: false,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
   }
 
+  // 🔹 Espera o Firebase carregar os dados do usuário
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Usuário autenticado:", user);
 
+        const userData: UserDTO = {
+          id: user.uid,
+          name: user.displayName,
+          email: user.email,
+          number_phone: user.phoneNumber || null,
+          date_of_birth: "1990-01-01",
+          avatar_url: user.photoURL || null,
+          country: "Brazil",
+          exp: 1739121824,
+          role: "STUDENT", // Ajuste conforme necessário
+          is_premium: false,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
 
-  //const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/v1/student/current`, {
-    //headers: {
- 
-      //"Accept":"*/*",
-      //"Authorization":`Bearer ${token}`,
-      //"Content-Type":"application/json"
-      
-    //}
-  //})
-
-  
-  
-
-
-  //return response.data
-
+        resolve(userData);
+      } else {
+        console.log("Nenhum usuário autenticado.");
+        resolve(null);
+      }
+    });
+  });
 }
 
 export default GetUserDatas;
