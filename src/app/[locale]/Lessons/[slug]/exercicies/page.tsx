@@ -1,7 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExercisesArray } from "@/Types/exercisies";
+import { useParams } from "next/navigation";
+import { db } from "@/Server/FirebaseDb"; // Importe a configuração do Firebase
+import { doc, updateDoc, arrayUnion, getDoc, setDoc } from "firebase/firestore";
+import GetUserDatas from "@/services/GetUserDatas";
+import { useQuery } from "react-query";
+import { parseCookies } from "nookies"; // Importando a função parseCookies
+
 import ExerciciesProgressBar from "../../components/ExerciciesProgressBar";
 import VerticalFillbox from "../../components/exerciciesComponents/VerticalFillbox";
 import CorrectAnswer from "../../components/exerciciesComponents/CorrectAnswer";
@@ -69,7 +76,7 @@ function Page() {
       correct_answer: ["sun", "turbulence", "cloudy", "rainy", "stormy"],
       questions: ["Turbulence", "Clear Weather", "Cloudy", "Rainy", "Stormy"],
       difficulty: "HARD",
-      isPremium: true,
+      is_Premium: true,
       created_at: "2024-11-24T21:21:04.006Z",
       updated_at: "2024-11-24T21:21:04.006Z",
       options: [
@@ -126,7 +133,7 @@ function Page() {
         "Report for duty",
       ],
       difficulty: "HARD",
-      isPremium: true,
+      is_Premium: true,
       created_at: "2024-11-24T21:21:04.006Z",
       updated_at: "2024-11-24T21:21:04.006Z",
       options: [
@@ -153,6 +160,21 @@ function Page() {
       ],
     },
   ];
+  const params = useParams();
+  const slug = params.slug; // Pegando o slug da URL
+  console.log("esse é o Slug", slug);
+
+  const token = ""; // Defina seu token de autenticação, se necessário
+
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["userData"],
+    queryFn: () => GetUserDatas(token!),
+    staleTime: 1000 * 60 * 5, // Cache por 5 minutos
+  });
 
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0); // Índice do exercício atual
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false); // Controle do componente de resposta correta
@@ -161,13 +183,32 @@ function Page() {
 
   const currentExercise = exercicies[currentExerciseIndex];
 
-  const handleNextExercise = () => {
+  if (isLoading) return "Carregando dados...";
+  if (error) return `Erro: ${error}`;
+
+  const handleNextExercise = async () => {
     setShowCorrectAnswer(false); // Reseta o estado de resposta correta
     setShowWrongAnswer(false); // Reseta o estado de resposta errada
 
     if (currentExerciseIndex === exercicies.length - 1) {
       // Se estiver no último exercício, mostra as estatísticas
       setShowStatistics(true);
+
+      // Recuperar o moduleId dos cookies
+      const cookies = parseCookies();
+      const moduleId = cookies.moduleId; // Exemplo de como recuperar o moduleId dos cookies
+
+      if (userData) {
+        try {
+          const userRef = doc(db, "users", userData.id); // Pega a referência do usuário com o UID
+          await updateDoc(userRef, {
+            chapters_done: arrayUnion({slug, moduleId}), // Adiciona tanto o slug quanto o moduleId ao campo 'chapters_done'
+          });
+          console.log("Slug e moduleId enviados para o Firestore:", slug, moduleId);
+        } catch (error) {
+          console.error("Erro ao atualizar o Firestore:", error);
+        }
+      }
     } else {
       // Caso contrário, avança para o próximo exercício
       setCurrentExerciseIndex((prev) =>
@@ -184,7 +225,7 @@ function Page() {
     if (isCorrect) {
       setShowWrongAnswer(false); // Garante que o componente errado está oculto
       setShowCorrectAnswer(true); // Mostra o componente de resposta correta
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
     } else {
       setShowCorrectAnswer(false); // Garante que o componente correto está oculto
       setShowWrongAnswer(false); // Reinicia o estado antes de exibir novamente
@@ -199,6 +240,12 @@ function Page() {
         <ShowStatisticsComponent />
       ) : (
         <>
+          {userData ? (
+            <div>{userData.email}</div>
+          ) : (
+            <div>Não foi possível obter o e-mail</div>
+          )}
+
           {/* Barra de progresso */}
           <ExerciciesProgressBar
             LessonsAmount={exercicies.length}

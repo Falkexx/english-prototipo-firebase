@@ -79,7 +79,11 @@ function LoggedHome() {
               onSelectModule={handleSelectModule}
             />
           )}
-          {selectedModuleId && <ShowChapters moduleId={selectedModuleId} />}
+
+          {/*
+          
+          {//selectedModuleId && <ShowChapters moduleId={//selectedModuleId} />}
+          */}
         </main>
 
         <section className="lg:hidden">

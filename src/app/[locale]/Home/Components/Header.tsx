@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { parseCookies } from "nookies";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useQuery } from "react-query";
+
 import GetUserDatas from "@/services/GetUserDatas";
 
 import LogoMobile from "@/Midias/LogoMobile.svg";
@@ -35,7 +36,6 @@ function Header() {
     queryFn: () => GetUserDatas(token!),
     enabled: !!token,
     staleTime: 1000 * 60 * 5, // Cache por 5 minutos
-    refetchOnWindowFocus: true,
   });
 
   const toggleOverlay = () => setHamburguerMenu(!hamburgerMenu);

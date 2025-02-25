@@ -6,6 +6,8 @@ import Image from "next/image";
 import NextIntroBtn from "@/app/[locale]/Lessons/components/NextIntroBtn";
 import IntroductionHeader from "./IntroductionHeader";
 import { useRef, useState } from "react";
+import { useParams } from "next/navigation";
+
 
 interface props {
   data: {
@@ -19,6 +21,8 @@ interface props {
 function ShowIntroduction({ data }: props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const params = useParams();
+  const slug = params.slug; // Pegando o slug da URL
 
   const toggleAudio = () => {
     if (audioRef.current) {
@@ -65,7 +69,7 @@ function ShowIntroduction({ data }: props) {
       </article>
 
       <div className="mb-7">
-        <NextIntroBtn HaveBreakDown={true} LessonID={"1"} />
+        <NextIntroBtn HaveBreakDown={true} LessonID={slug[0]} />
       </div>
     </section>
   );

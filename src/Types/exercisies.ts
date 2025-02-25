@@ -36,7 +36,7 @@ type FillboxWithOptionsExercise = {
   correct_answer: string[];
   questions: string[];
   difficulty: "EASY" | "MEDIUM" | "HARD";
-  isPremium: boolean;
+  is_Premium: boolean;
   created_at: string;
   updated_at: string;
   options: {
