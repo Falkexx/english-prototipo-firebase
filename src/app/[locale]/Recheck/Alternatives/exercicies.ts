@@ -4,6 +4,7 @@ export const exercicies: AlternativesExercise[] = [
   {
     id: "1",
     type: "alternatives",
+    chapter_id:"",
     isOnRecheck: true,
     title: "Discussing your interests and preferred activities during your leisure time:",
     title_audio_url: "dasdsadsadsa",
@@ -21,6 +22,7 @@ export const exercicies: AlternativesExercise[] = [
   {
     id: "2",
     type: "alternatives",
+    chapter_id:"",
     isOnRecheck: true,
     title: "What motivated you to become a flight attendant?",
     title_audio_url: "",
@@ -38,6 +40,8 @@ export const exercicies: AlternativesExercise[] = [
   {
     id: "3",
     type: "alternatives",
+    chapter_id:"",
+
     isOnRecheck: true,
     title: "Describe this image:",
     title_audio_url: "",
@@ -55,6 +59,8 @@ export const exercicies: AlternativesExercise[] = [
   {
     id: "4",
     type: "alternatives",
+    chapter_id:"",
+
     isOnRecheck: true,
     title: "Discussing your interests and preferred activities during your leisure time:",
     title_audio_url: "",
