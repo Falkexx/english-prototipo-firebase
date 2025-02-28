@@ -7,7 +7,7 @@ import { useLocale } from "next-intl";
 import GetUserDatas from "@/services/GetUserDatas"; // Função para pegar dados do usuário
 import nookies from "nookies"; // Importando nookies
 import { UserDTO } from "@/services/GetUserDatas";
-import { Chapters } from "./Mocked_datas/Chapters";
+import { Chapters } from "../../../../services/Mocked_Datas/Chapters";
 
 function ShowChapters({ moduleId }: { moduleId: string }) {
   const router = useRouter(); // Inicializa o hook useRouter
@@ -26,11 +26,10 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
   };
 
   // Query para obter os capítulos
-
-  const chaptersData = Chapters
+  const chaptersData = Chapters;
 
   // Query para obter os dados do usuário
-  const token = "user-auth-token"; // Exemplo de token, substitua conforme sua lógica de autenticação
+  const token = "user-auth-token"; // Substitua pela lógica real de autenticação
   const { data: userData, isLoading: isLoadingUser } = useQuery(
     ["userData"],
     () => GetUserDatas(token),
@@ -39,14 +38,18 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
 
   // Verificar se o capítulo foi feito pelo usuário
   const isChapterCompleted = (chapterId: string) => {
-    // Verificar se algum objeto em chapters_done tem o slug igual ao chapterId
     return userData?.chapters_done?.some(
-      (chapter: { slug: string }) => chapter.slug == chapterId
+      (chapter: { slug: string }) => chapter.slug === chapterId
     );
   };
 
+  // Verificar se o capítulo é premium e se o usuário tem acesso
   const isChapterPremium = (chapter_premium_data: boolean) => {
-    return chapter_premium_data;
+    // Se o capítulo não é premium, está disponível para todos
+    if (!chapter_premium_data) return false;
+
+    // Se o usuário tem plano diferente de "free", ele pode acessar capítulos premium
+    return userData?.plan === "free";
   };
 
   return (
@@ -58,7 +61,7 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
 
           <div className="flex flex-col items-center w-full space-y-6">
             {chaptersData
-              .filter((chapter) => chapter.module_id === moduleId) // Filtrando pelos capítulos que possuem o mesmo module_id
+              .filter((chapter) => chapter.module_id === moduleId) // Filtrando pelos capítulos do moduleId
               .map((chapter: any) => (
                 <div
                   key={chapter.id}
@@ -86,7 +89,10 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
                         : "border-[#f14968] cursor-pointer"
                     }`}
                     onClick={() => {
-                      if (!isChapterCompleted(chapter.id) && !isChapterPremium(chapter.is_Premium)) {
+                      if (
+                        !isChapterCompleted(chapter.id) &&
+                        !isChapterPremium(chapter.is_Premium)
+                      ) {
                         RedirectToLessons(chapter.id);
                       }
                     }}
@@ -108,9 +114,10 @@ function ShowChapters({ moduleId }: { moduleId: string }) {
                         </h1>
                       )}
 
+                      {/* Se o capítulo é premium e o usuário não tem acesso, mostrar mensagem */}
                       {isChapterPremium(chapter.is_Premium) && (
                         <h1 className="text-sm text-green-500">
-                          Obetnha o Premium para acessar
+                          Obtenha o Premium para acessar
                         </h1>
                       )}
                     </div>

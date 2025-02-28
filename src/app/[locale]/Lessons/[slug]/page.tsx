@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import ShowIntroduction from "../components/ShowIntroduction";
-import { Chapters } from "../../Home/Components/Mocked_datas/Chapters";
+import { Chapters } from "../../../../services/Mocked_Datas/Chapters";
 import GetUserDatas from "@/services/GetUserDatas";
 import { useQuery } from "react-query";
 import Loading from "@/Components/LoadingHome";
