@@ -1,156 +1,129 @@
 "use client";
 
-//import { useState } from "react";
-//import axios from "axios";
+// Importando os hooks e bibliotecas necessárias
 import { useQuery } from "react-query";
-import {useRouter} from '@/i18n/routing';
-//import {Link} from '@/i18n/routing';
-import { useLocale } from 'next-intl';
-
-
-
+import { useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
+import GetUserDatas from "@/services/GetUserDatas"; // Função para pegar dados do usuário
+import nookies from "nookies"; // Importando nookies
+import { UserDTO } from "@/services/GetUserDatas";
+import { Chapters } from "../../../../services/Mocked_Datas/Chapters";
 
 function ShowChapters({ moduleId }: { moduleId: string }) {
   const router = useRouter(); // Inicializa o hook useRouter
   const locale = useLocale(); // Obtém o locale atual
 
+  // Função de redirecionamento para as lições
+  const RedirectToLessons = (chapterId: string) => {
+    // Salvar o moduleId nos cookies
+    nookies.set(null, "moduleId", moduleId, {
+      maxAge: 30 * 24 * 60 * 60, // O cookie dura 30 dias
+      path: "/", // O cookie é acessível em todo o domínio
+    });
 
-  // Função para buscar os capítulos com base no moduleId
-  const fetchChaptersByModule = async () => {
-
-    /*
-    
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/chapter/all?take=10&skip=0&moduleId=${moduleId}`
-    );
-    return data;
-    
-    */
-
-
-    //MOCKUP ABAIXO ====
-
-    return [
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-
-      {
-        id: "1",
-        name: "In the plane",
-        description: "pre-flight",
-        difficulty: "easy",
-        image_url: "https://i.ibb.co/d6kgqkD/Ellipse-153.png",
-        exp_as_done: 10,
-        create_at: "2024-11-22T17:35:00.000Z",
-        updated_at: "2024-11-22T17:35:00.000Z"
-      },
-    ]
-
-
+    // Redirecionar para o capítulo
+    router.push(`/Lessons/${chapterId}`);
   };
 
-  // Função de redirecionamento
-  function RedirectToLessons(chapterId: string) {
-    router.push(`/Lessons/${chapterId}`); // Redireciona para Lessons/id do capítulo
-  }
+  // Query para obter os capítulos
+  const chaptersData = Chapters;
 
-  const { data: chaptersData = [], isLoading } = useQuery(
-    ["chapters", moduleId],
-    fetchChaptersByModule,
-    {
-      enabled: !!moduleId, // Só faz a requisição se moduleId for válido
-    }
+  // Query para obter os dados do usuário
+  const token = "user-auth-token"; // Substitua pela lógica real de autenticação
+  const { data: userData, isLoading: isLoadingUser } = useQuery(
+    ["userData"],
+    () => GetUserDatas(token),
+    { enabled: !!token }
   );
 
+  // Verificar se o capítulo foi feito pelo usuário
+  const isChapterCompleted = (chapterId: string) => {
+    return userData?.chapters_done?.some(
+      (chapter: { slug: string }) => chapter.slug === chapterId
+    );
+  };
+
+  // Verificar se o capítulo é premium e se o usuário tem acesso
+  const isChapterPremium = (chapter_premium_data: boolean) => {
+    // Se o capítulo não é premium, está disponível para todos
+    if (!chapter_premium_data) return false;
+
+    // Se o usuário tem plano diferente de "free", ele pode acessar capítulos premium
+    return userData?.plan === "free";
+  };
+
   return (
-    <section className="mt-9 flex flex-row  justify-center lg:w-[100%]">
-      {isLoading ? (
-        <div>Loading chapters...</div>
-      ) : chaptersData.length > 0 ? (
-        <div className="relative flex flex-row w-full ">
+    <section className="my-6 flex flex-row justify-center lg:w-[100%] scrollbar-hide">
+      {chaptersData.length > 0 ? (
+        <div className="relative flex flex-row w-full">
           {/* Linha da timeline */}
           <div className="absolute left-[22px] top-10 bottom-0 w-[4px] bg-[#f14968]"></div>
 
-          <div className="flex flex-col items-center w-full space-y-6 ">
-            {chaptersData.map((chapter: any, index: number) => (
-              <div key={index} className="flex flex-row w-full  items-center space-x-4">
-                {/* Imagem conectada pela linha */}
-                <div className="relative flex-shrink-0">
-                  <img
-                    className="w-12 h-12 rounded-full border-4 border-[#f14968] z-10"
-                    src={chapter.image_url}
-                  />
-                </div>
-
-                {/* Conteúdo dos capítulos */}
+          <div className="flex flex-col items-center w-full space-y-6">
+            {chaptersData
+              .filter((chapter) => chapter.module_id === moduleId) // Filtrando pelos capítulos do moduleId
+              .map((chapter: any) => (
                 <div
-                  className="w-[269px] lg:w-full h-16 px-6 py-2 bg-white rounded-2xl border-2 border-[#f14968] justify-between items-center inline-flex cursor-pointer"
-                  onClick={() => RedirectToLessons(chapter.id)} // Passa o ID do capítulo na função
+                  key={chapter.id}
+                  className="flex flex-row w-full items-center space-x-4"
                 >
-                  <div className="flex-col justify-start items-start gap-1 inline-flex">
-                    <div className="self-stretch text-zinc-800 text-lg font-bold font-['Nunito'] leading-7">
-                      {chapter.name}
-                    </div>
-                    <div className="text-zinc-600 text-xs font-medium font-['Nunito'] leading-none">
-                      {chapter.description}
+                  {/* Imagem conectada pela linha */}
+                  <div className="relative flex-shrink-0">
+                    <img
+                      className={`w-12 h-12 rounded-full ${
+                        isChapterCompleted(chapter.id)
+                          ? "border-4 border-[#f14968] z-10"
+                          : ""
+                      }`}
+                      src={chapter.image_url}
+                      alt={chapter.name}
+                    />
+                  </div>
+
+                  {/* Conteúdo dos capítulos */}
+                  <div
+                    className={`w-[269px] lg:w-full h-16 px-6 py-2 bg-white rounded-2xl border-2 ${
+                      isChapterCompleted(chapter.id) ||
+                      isChapterPremium(chapter.is_Premium)
+                        ? "border-gray-400 cursor-not-allowed"
+                        : "border-[#f14968] cursor-pointer"
+                    }`}
+                    onClick={() => {
+                      if (
+                        !isChapterCompleted(chapter.id) &&
+                        !isChapterPremium(chapter.is_Premium)
+                      ) {
+                        RedirectToLessons(chapter.id);
+                      }
+                    }}
+                  >
+                    <div className="gap-1 flex flex-row justify-between items-center">
+                      <div>
+                        <div className="self-stretch text-zinc-800 text-lg font-bold font-['Nunito'] leading-7">
+                          {chapter.name}
+                        </div>
+                        <div className="text-zinc-600 text-xs font-medium font-['Nunito'] leading-none">
+                          {chapter.description}
+                        </div>
+                      </div>
+
+                      {/* Se o capítulo foi feito, mostrar mensagem */}
+                      {isChapterCompleted(chapter.id) && (
+                        <h1 className="text-sm text-green-500">
+                          Capítulo já feito!
+                        </h1>
+                      )}
+
+                      {/* Se o capítulo é premium e o usuário não tem acesso, mostrar mensagem */}
+                      {isChapterPremium(chapter.is_Premium) && (
+                        <h1 className="text-sm text-green-500">
+                          Obtenha o Premium para acessar
+                        </h1>
+                      )}
                     </div>
                   </div>
-                  <div className="w-5 h-5 relative" />
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       ) : (

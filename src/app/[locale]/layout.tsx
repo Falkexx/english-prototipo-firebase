@@ -3,6 +3,8 @@ import { getMessages } from "next-intl/server";
 import React from "react";
 import RootLayoutClient from "../../layout"; // Componente de layout no lado do cliente
 import { SubscriptionProvider } from "@/contexts/SubscribtionPayment";
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 
 export default async function LocaleLayout({
   children,

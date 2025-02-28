@@ -1,5 +1,6 @@
 type VerticalFillBoxExercise = {
   id: string;
+  chapter_id:string
   type: "verticalFillBox";
   title: string;
   questions: {
@@ -12,6 +13,7 @@ type VerticalFillBoxExercise = {
 
 export type AlternativesExercise = {
   id: string;
+  chapter_id:string;
   type: "alternatives";
   title: string;
   title_audio_url?:string
@@ -28,6 +30,7 @@ export type AlternativesExercise = {
 
 type FillboxWithOptionsExercise = {
   id: string;
+  chapter_id:string;
   type: "fillboxWithOptions";
   title: string;
   description: string;
@@ -36,7 +39,7 @@ type FillboxWithOptionsExercise = {
   correct_answer: string[];
   questions: string[];
   difficulty: "EASY" | "MEDIUM" | "HARD";
-  isPremium: boolean;
+  is_Premium: boolean;
   created_at: string;
   updated_at: string;
   options: {
@@ -47,6 +50,7 @@ type FillboxWithOptionsExercise = {
 
 type HorizontalFillBoxExercise = {
   id: string;
+  chapter_id:string;
   type: "horizontalFillBox";
   title: string;
   description: string;

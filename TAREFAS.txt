@@ -1,0 +1,7 @@
+1 - Mensagens de Erro na tela de Signup
+2 - Mensagens de Erro na tela de Login
+3 - Recovery password funcionando para o Firebase
+4 - Melhorar os fetchings ao Firebase, adicionando o Revalidate.
+5 - Adicionar pagamento com Paypal
+6 - Adicionar proteção à Rota do Recheck.
+7 - Adicionar responsividade nos exercicios.

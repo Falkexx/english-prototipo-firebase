@@ -1,4 +1,3 @@
-import nookies from 'nookies';
 import { cookies } from 'next/headers'; // Para acessar os cookies no servidor
 import { redirect } from '@/i18n/routing';
 

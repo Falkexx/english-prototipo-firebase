@@ -1,7 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExercisesArray } from "@/Types/exercisies";
+import { useParams } from "next/navigation";
+import { db } from "@/Server/FirebaseDb";
+import { doc, updateDoc, arrayUnion, getDoc, setDoc } from "firebase/firestore";
+import GetUserDatas from "@/services/GetUserDatas";
+import { useQuery } from "react-query";
+import { parseCookies } from "nookies";
+
 import ExerciciesProgressBar from "../../components/ExerciciesProgressBar";
 import VerticalFillbox from "../../components/exerciciesComponents/VerticalFillbox";
 import CorrectAnswer from "../../components/exerciciesComponents/CorrectAnswer";
@@ -10,168 +17,70 @@ import Alternatives from "../../components/exerciciesComponents/Alternatives";
 import FillboxWithOptions from "../../components/exerciciesComponents/FillboxWithOptions";
 import HorizontalFillbox from "../../components/exerciciesComponents/HorizontalFillbox";
 import ShowStatisticsComponent from "../../components/exerciciesComponents/ShowStatistics";
+import { exercicies } from "@/services/Mocked_Datas/Exercicies";
 
 function Page() {
-  const exercicies: ExercisesArray = [
-    {
-      id: "1",
-      type: "verticalFillBox",
-      title: "Match the Job Titles",
-      questions: [
-        {
-          question: "Helps Passengers on the Plane",
-          correct_answer: ["Flight Deck Crew"],
-        },
-        { question: "Leads the Cabin Team", correct_answer: ["Chief Purser"] },
-        { question: "Flies the Plane", correct_answer: ["Captain"] },
-        { question: "Works in the Cockpit", correct_answer: ["Ground Staff"] },
-        { question: "Works at the Airport", correct_answer: ["Cabin Crew"] },
-      ],
-      suggestions: [
-        "Flight Deck Crew",
-        "Chief Purser",
-        "Captain",
-        "Ground Staff",
-        "Cabin Crew",
-      ],
-      correct_answer: [
-        "Flight Deck Crew",
-        "Chief Purser",
-        "Captain",
-        "Ground Staff",
-        "Cabin Crew",
-      ],
-    },
-    {
-      id: "2",
-      type: "alternatives",
-      title: "Who Does What?",
-      title_audio_url: "",
-      description: "Who leads the pre-flight briefing?",
-      img_url: "",
-      isOnRecheck: false,
-      questions: [
-        { letter: "A", question: "Chief Purser", question_audio_url: "" },
-        { letter: "B", question: "Captain", question_audio_url: "" },
-        { letter: "C", question: "Ground Staff", question_audio_url: "" },
-        { letter: "D", question: "Gallery Operator", question_audio_url: "" },
-        { letter: "E", question: "Aircraft Engineer", question_audio_url: "" },
-      ],
-      correct_answer: "B", // Resposta correta
-    },
-    {
-      id: "nrILaRYUczlbk9cJqJ1r",
-      type: "fillboxWithOptions",
-      description: "Match the emojis with words",
-      title: "Weather Condition",
-      image_url: "http://domain/image.png",
-      audio_url: "http://domain/image.png",
-      correct_answer: ["sun", "turbulence", "cloudy", "rainy", "stormy"],
-      questions: ["Turbulence", "Clear Weather", "Cloudy", "Rainy", "Stormy"],
-      difficulty: "HARD",
-      isPremium: true,
-      created_at: "2024-11-24T21:21:04.006Z",
-      updated_at: "2024-11-24T21:21:04.006Z",
-      options: [
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/sun.png",
-          value: "sun",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/wind-face.png",
-          value: "turbulence",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/cloud.png",
-          value: "cloudy",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/umbrella-with-rain-drops.png",
-          value: "rainy",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/high-voltage.png",
-          value: "stormy",
-        },
-      ],
-    },
-    {
-      id: "1",
-      type: "horizontalFillBox",
-      title: "Weather Report",
-      description: "Complete with: good, bad, clear, cloudy, rainy",
-      img_url:
-        "https://i.ibb.co/2nLngFG/with-luggage-aircraft-crew-work-uniform-is-together-outdoors-near-plane-1.png",
-      question:
-        "Today's weather is $ at departure and $ at arrival. The sky is $ now but will be $ later. We expect $ conditions during flight.",
-      suggestions: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
-      correct_answer: ["Sunny", "Good", "Clear", "Cloudy", "Rainy"],
-      audio_url:
-        "https://firebasestorage.googleapis.com/v0/b/englishboard-c566e.appspot.com/o/audios%2Fexercicios%2FtodayWeathersExe.mp3?alt=media&token=4625e64f-b865-4973-8e03-339a3a44f428",
-    },
+  const params = useParams();
+  const slug = params.slug; // Pegando o slug da URL
+  console.log("Esse é o Slug", slug);
 
-    {
-      id: "nrILaRYUczlbk9cJqJ1r",
-      type: "fillboxWithOptions",
-      description: "Number these actions 1-5",
-      title: "Put in order",
-      image_url: "http://domain/image.png",
-      audio_url: "http://domain/image.png",
-      correct_answer: ["1", "2", "3", "4", "5"],
-      questions: [
-        "Check safety equipment",
-        "Attend briefing",
-        "Welcome passengers",
-        "Put on uniform",
-        "Report for duty",
-      ],
-      difficulty: "HARD",
-      isPremium: true,
-      created_at: "2024-11-24T21:21:04.006Z",
-      updated_at: "2024-11-24T21:21:04.006Z",
-      options: [
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/keycap-1.png",
-          value: "1",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/keycap-2.png",
-          value: "2",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/keycap-3.png",
-          value: "3",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/keycap-4.png",
-          value: "4",
-        },
-        {
-          img: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/keycap-5.png",
-          value: "5",
-        },
-      ],
-    },
-  ];
+  const token = ""; // Defina seu token de autenticação, se necessário
+
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["userData"],
+    queryFn: () => GetUserDatas(token!),
+    staleTime: 1000 * 60 * 5, // Cache por 5 minutos
+  });
+
+  // Filtrar os exercícios com base no chapter_id igual ao slug
+  const filteredExercises = exercicies.filter(
+    (exercise) => exercise.chapter_id === slug
+  );
+
+  console.log(filteredExercises)
 
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0); // Índice do exercício atual
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false); // Controle do componente de resposta correta
   const [showWrongAnswer, setShowWrongAnswer] = useState(false); // Controle do componente de resposta errada
   const [showStatistics, setShowStatistics] = useState(false); // Controle para mostrar estatísticas
 
-  const currentExercise = exercicies[currentExerciseIndex];
+  // Exercício atual com base no índice dentro dos exercícios filtrados
+  const currentExercise = filteredExercises[currentExerciseIndex];
 
-  const handleNextExercise = () => {
+  if (isLoading) return "Carregando dados...";
+  if (error) return `Erro: ${error}`;
+
+  const handleNextExercise = async () => {
     setShowCorrectAnswer(false); // Reseta o estado de resposta correta
     setShowWrongAnswer(false); // Reseta o estado de resposta errada
 
-    if (currentExerciseIndex === exercicies.length - 1) {
-      // Se estiver no último exercício, mostra as estatísticas
+    if (currentExerciseIndex === filteredExercises.length - 1) {
+      // Se estiver no último exercício filtrado, mostra as estatísticas
       setShowStatistics(true);
+
+      // Recuperar o moduleId dos cookies
+      const cookies = parseCookies();
+      const moduleId = cookies.moduleId;
+
+      if (userData) {
+        try {
+          const userRef = doc(db, "users", userData.id); // Referência do usuário
+          await updateDoc(userRef, {
+            chapters_done: arrayUnion({ slug, moduleId }), // Adiciona slug e moduleId
+          });
+          console.log("Slug e moduleId enviados para o Firestore:", slug, moduleId);
+        } catch (error) {
+          console.error("Erro ao atualizar o Firestore:", error);
+        }
+      }
     } else {
-      // Caso contrário, avança para o próximo exercício
+      // Avança para o próximo exercício dentro dos filtrados
       setCurrentExerciseIndex((prev) =>
-        Math.min(prev + 1, exercicies.length - 1)
+        Math.min(prev + 1, filteredExercises.length - 1)
       );
     }
   };
@@ -182,12 +91,13 @@ function Page() {
 
   const handleCheckAnswers = (isCorrect: boolean) => {
     if (isCorrect) {
-      setShowWrongAnswer(false); // Garante que o componente errado está oculto
-      setShowCorrectAnswer(true); // Mostra o componente de resposta correta
+      setShowWrongAnswer(false);
+      setShowCorrectAnswer(true);
+      window.scrollTo(0, 0);
     } else {
-      setShowCorrectAnswer(false); // Garante que o componente correto está oculto
-      setShowWrongAnswer(false); // Reinicia o estado antes de exibir novamente
-      setTimeout(() => setShowWrongAnswer(true), 50); // Reexibe o componente
+      setShowCorrectAnswer(false);
+      setShowWrongAnswer(false);
+      setTimeout(() => setShowWrongAnswer(true), 50);
     }
   };
 
@@ -196,12 +106,12 @@ function Page() {
       {/* Mostra as estatísticas se for o momento */}
       {showStatistics ? (
         <ShowStatisticsComponent />
-      ) : (
+      ) : filteredExercises.length > 0 ? (
         <>
           {/* Barra de progresso */}
           <ExerciciesProgressBar
-            LessonsAmount={exercicies.length}
-            currentLesson={currentExerciseIndex + 1} // Passa o exercício atual
+            LessonsAmount={filteredExercises.length} // Usa o tamanho dos exercícios filtrados
+            currentLesson={currentExerciseIndex + 1} // Exercício atual
           />
 
           {/* Renderiza o exercício atual */}
@@ -242,7 +152,7 @@ function Page() {
               questions={currentExercise.questions}
               options={currentExercise.options}
               correctAnswer={currentExercise.correct_answer}
-              onCheckAnswers={handleCheckAnswers} // Passa diretamente o handleCheckAnswers
+              onCheckAnswers={handleCheckAnswers}
             />
           )}
 
@@ -251,8 +161,8 @@ function Page() {
               title={currentExercise.title}
               question={currentExercise.question}
               suggestions={currentExercise.suggestions}
-              imgUrl={currentExercise.img_url} // Passa a imagem
-              audioUrl={currentExercise.audio_url} // Passa o áudio
+              imgUrl={currentExercise.img_url}
+              audioUrl={currentExercise.audio_url}
               onCheckAnswers={(answers) =>
                 handleCheckAnswers(
                   JSON.stringify(answers) ===
@@ -272,6 +182,8 @@ function Page() {
             <WrongAnswer onRetryLesson={handleRetryExercise} />
           )}
         </>
+      ) : (
+        <div>No exercises found for this chapter.</div>
       )}
     </section>
   );

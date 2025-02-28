@@ -1,13 +1,27 @@
-'use client'
-import { createContext, useState, useEffect, ReactNode } from 'react';
-import { setCookie, destroyCookie, parseCookies } from 'nookies';
-import { useRouter } from 'next/navigation';
+"use client";
+import { createContext, useState, useEffect, ReactNode } from "react";
+import { setCookie, destroyCookie, parseCookies } from "nookies";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+
+// FIREBASE IMPORTS
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { authenticate, db } from "@/Server/FirebaseDb"; // 🔹 Importando Firestore
+import { doc, setDoc } from "firebase/firestore"; // 🔹 Firestore
 
 type AuthContextType = {
   isAuthenticated: boolean;
   signIn: (data: { email: string; password: string }) => Promise<void>;
-  signUp: (data: { email: string; password: string; country: string; name: string }) => Promise<void>;
+  signUp: (data: {
+    email: string;
+    password: string;
+    country: string;
+    name: string;
+  }) => Promise<void>;
   logout: () => void;
   token: string | null;
 };
@@ -20,100 +34,79 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const t = useTranslations("NotAuthorized");
 
-
   // Verifica se o usuário está autenticado ao montar o componente
   useEffect(() => {
     const cookies = parseCookies();
-    const tokenFromCookie = cookies['nextauth.token'] || null;
+    const tokenFromCookie = cookies["nextauth.token"] || null;
     setToken(tokenFromCookie);
     setIsAuthenticated(!!tokenFromCookie);
   }, []);
 
   async function signIn({ email, password }: { email: string; password: string }) {
-
-    if(email == "RenataAdmin" && password == "admin123"){
-
-      try {
-
-        const access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNGJmODU0LTdmMmUtNDRmYi1hZTc0LWI2Njk3ZTM3MzRiZCIsImlzUHJlbWl1bSI6ZmFsc2UsImVtYWlsIjoiQW5kcmVAdGVzdGUuY29tIiwicm9sZXMiOlsiU1RVREVOVCJdLCJpYXQiOjE3MzkwMzI1OTEsImV4cCI6MTczOTExODk5MX0.hmWI5KQ9r_O2KB4amSDbsu8HZ6cQ7acjBWdPKXpqHAM";
-        
-        setCookie(undefined, 'nextauth.token', access_token, { maxAge: 60 * 60 * 1, path: '/' });
-        setToken(access_token);
-        setIsAuthenticated(true); // Atualiza o estado de autenticação
-        router.push('/Home');
-      } catch (error) {
-        console.error('Erro na autenticação:', error);
-      }
-
-
-    }
-
-    
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      const userCredentials = await signInWithEmailAndPassword(authenticate, email, password);
+      const user = userCredentials.user;
 
-      if (!response.ok) {
-        throw new Error(`${t('UserPasswordWrong')}`);
+      if (user) {
+        console.log("Usuário logado:", user);
+        const accessToken = await user.getIdToken(); // Obtém o token correto
+
+        setCookie(undefined, "nextauth.token", accessToken, {
+          maxAge: 60 * 60 * 1,
+          path: "/",
+        });
+
+        setToken(accessToken);
+        setIsAuthenticated(true);
+        router.push("/Home");
       }
-
-      const { access_token } = await response.json();
-      setCookie(undefined, 'nextauth.token', access_token, { maxAge: 60 * 60 * 1, path: '/' });
-      setToken(access_token);
-      setIsAuthenticated(true); // Atualiza o estado de autenticação
-      router.push('/Home');
     } catch (error) {
-      throw new Error(`${t('UserPasswordWrong')}`);
+      console.error("Erro ao fazer login:", error);
     }
-    
   }
 
   async function signUp({ email, password, country, name }: { email: string; password: string; country: string; name: string }) {
-    const data = {
-      name,
-      email,
-      password,
-      country: "Brazil",
-    };
-  
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/v1/student/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-  
-      const responseData = await response.json(); // Converte a resposta para JSON
-  
-      if (!response.ok) {
-        // Se a resposta da API contiver um array de mensagens de erro, captura a primeira
-        const errorMessage = responseData?.message?.[0] || "Erro desconhecido";
-        throw new Error(errorMessage);
-      }
-  
-      const { access_token } = responseData;
-      setCookie(undefined, "nextauth.token", access_token, { maxAge: 60 * 60 * 1, path: "/" });
-      setToken(access_token);
-      setIsAuthenticated(true);
-      router.push("/Home");
-    } catch (error) {
-      if (error instanceof Error) {
-        throw error; // Garante que a mensagem do erro seja lançada corretamente
+      const userCredential = await createUserWithEmailAndPassword(authenticate, email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        await updateProfile(user, { displayName: name });
+
+        // 🔹 Criando documento no Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          UID: user.uid,
+          name: name,
+          plan: "free",
+          created_at: new Date().toISOString(),
+          sections_done:[],
+          modules_done:[],
+          chapters_done:[],
+        });
+
+        const accessToken = await user.getIdToken(); // Obtém o token correto
+
+        setCookie(undefined, "nextauth.token", accessToken, {
+          maxAge: 60 * 60 * 1,
+          path: "/",
+        });
+
+        setToken(accessToken);
+        setIsAuthenticated(true);
+        router.push("/Home");
       } else {
-        throw new Error("Ocorreu um erro inesperado.");
+        console.error("Usuário não encontrado após a criação.");
       }
+    } catch (error) {
+      console.error("Erro ao criar usuário:", error);
     }
   }
-  
 
   function logout() {
-    destroyCookie(undefined, 'nextauth.token');
+    destroyCookie(undefined, "nextauth.token", { path: "/" });
     setToken(null);
-    setIsAuthenticated(false); // Atualiza o estado de autenticação
-    router.push('/');
+    setIsAuthenticated(false);
+    router.push("/");
   }
 
   return (

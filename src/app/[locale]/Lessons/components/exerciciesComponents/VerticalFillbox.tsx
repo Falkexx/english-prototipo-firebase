@@ -73,7 +73,7 @@ function VerticalFillbox({
 
       <div className="w-[358px] h-[0px] border border-zinc-200"></div>
 
-      <section className="h-auto min-h-48 px-4 py-4 bg-zinc-100 rounded-[10px] border flex flex-wrap border-zinc-200 justify-start items-center gap-4 my-3">
+      <section className="h-auto px-4 py-4 bg-zinc-100 rounded-[10px] border flex flex-wrap border-zinc-200 justify-start items-center gap-4 my-3">
         {availableSuggestions.map((suggestion, index) => (
           <div
             key={index}

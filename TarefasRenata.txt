@@ -1,0 +1,6 @@
+1 - Pegar a AWS ou Azure
+2 - Conta na pagbank
+3 - Conta no Paypal
+4 - Aconselhável criar um E-mail corp
+5 - IA text to Speech
+6 - Armazenamento continua com o Firebase
