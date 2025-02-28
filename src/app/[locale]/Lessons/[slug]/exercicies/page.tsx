@@ -22,7 +22,6 @@ import { exercicies } from "@/services/Mocked_Datas/Exercicies";
 function Page() {
   const params = useParams();
   const slug = params.slug; // Pegando o slug da URL
-  console.log("Esse é o Slug", slug);
 
   const token = ""; // Defina seu token de autenticação, se necessário
 
@@ -41,7 +40,6 @@ function Page() {
     (exercise) => exercise.chapter_id === slug
   );
 
-  console.log(filteredExercises)
 
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0); // Índice do exercício atual
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false); // Controle do componente de resposta correta
@@ -72,7 +70,6 @@ function Page() {
           await updateDoc(userRef, {
             chapters_done: arrayUnion({ slug, moduleId }), // Adiciona slug e moduleId
           });
-          console.log("Slug e moduleId enviados para o Firestore:", slug, moduleId);
         } catch (error) {
           console.error("Erro ao atualizar o Firestore:", error);
         }

@@ -48,7 +48,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const user = userCredentials.user;
 
       if (user) {
-        console.log("Usuário logado:", user);
         const accessToken = await user.getIdToken(); // Obtém o token correto
 
         setCookie(undefined, "nextauth.token", accessToken, {

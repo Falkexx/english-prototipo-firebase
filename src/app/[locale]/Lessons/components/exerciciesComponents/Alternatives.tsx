@@ -47,7 +47,6 @@ function Alternatives({
   const handleCheckAnswer = () => {
     const isCorrect = selectedAnswer === correctAnswer; // Verifica se a resposta está correta
     onCheckAnswers(isCorrect); // Passa o resultado para o componente pai
-    console.log("está correta");
   };
 
   // Função para alternar entre play/pause

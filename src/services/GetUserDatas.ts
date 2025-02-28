@@ -53,7 +53,6 @@ async function GetUserDatas(token: string): Promise<UserDTO | null> {
   return new Promise((resolve) => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log("Usuário autenticado:", user);
 
         try {
           // 🔹 Buscando os dados do Firestore com base no UID
@@ -62,8 +61,6 @@ async function GetUserDatas(token: string): Promise<UserDTO | null> {
 
           if (userDocSnap.exists()) {
             const userDataFromFirestore = userDocSnap.data();
-
-            console.log('dados do firestore', userDataFromFirestore)
 
             const userData: UserDTO = {
               id: user.uid,
@@ -85,7 +82,6 @@ async function GetUserDatas(token: string): Promise<UserDTO | null> {
 
             resolve(userData);
 
-            console.log(userData)
           } else {
             console.log("Usuário não encontrado no Firestore.");
             resolve(null);
